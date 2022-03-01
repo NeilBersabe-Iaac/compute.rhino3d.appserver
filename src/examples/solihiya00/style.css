@@ -1,0 +1,127 @@
+@font-face {
+    font-family: Raj;
+    src: url(fonts/Rajdhani-Regular.ttf);
+}
+
+/*   Body Edits */
+/*--------------------------*/
+body{
+    background-color: rgb(15, 15, 15);
+    font-family: Raj;
+    line-height: 1.2em;
+    color: rgb(185, 185, 185);
+    margin: 0%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    }
+input {width: 85%;}
+
+#header00{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    /* grid-template-rows: 30% 30% 30% ; */
+    grid-gap: 1px;
+}
+#logo{
+    padding: 20px;
+}
+h1{
+    font-family: Raj, cursive;
+    vertical-align: top;
+    color: darkorange;
+    border: orange;
+    font-size: 300%;
+    padding: 0%;
+    margin-top: 15px;
+    margin-bottom: 0%;
+}
+h3{
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+span.a{
+    display: inline-block;
+    width: 70%;
+}
+span.b{
+    display: inline-block;
+    width: 20%;
+}
+.text1{
+    padding-bottom: 15px;
+}
+
+
+.slider0 {
+    -webkit-appearance:none;
+    width: 85%;
+    height: 12px;
+    background: #505050;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    
+  }
+  
+  .slider0:hover {
+    opacity: 1;
+  }
+  
+  .slider0::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 12px;
+    background: orange;
+    cursor: pointer;
+  }
+  
+  .slider0::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: orange;
+    cursor: pointer;
+  }   
+}
+
+#container {
+    position: relative;
+    padding: 20px;
+    margin: 20px;
+}
+#downloadButton{
+    background-color: transparent;
+    height:30px;
+    width: 100px;
+    color: orange;
+    font-family: Raj;
+    font-size: 100%;
+}
+#downloadButton:hover{
+    cursor: pointer;
+    border: 2px solid orange;
+    
+#overlay {z-index: 1; width: 100%
+}
+
+#loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid orange; /* Grey */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}   
+
+
+
+            
