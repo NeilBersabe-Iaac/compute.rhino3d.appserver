@@ -15,6 +15,7 @@ It is also possible to download the geometry as a mesh geometry in .obj format
 
 # _PLUGINS
 - Kangaroo2 for physics simulation
+- Weaverbird
 - A single pufferfish node Mesh Flip (flip)
 
 # _DATA FLOW DIAGRAM
