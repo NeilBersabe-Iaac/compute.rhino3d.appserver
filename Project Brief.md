@@ -19,4 +19,5 @@ It is also possible to download the geometry as a mesh geometry in .obj format
 - A single pufferfish node Mesh Flip (flip)
 
 # _DATA FLOW DIAGRAM
-1. [Images](docs/installation.md)
+1. [Inputs & Outputs](docs/InputOutput.png)
+2. [Data Flow Diagram](docs/DataFlow.png)
