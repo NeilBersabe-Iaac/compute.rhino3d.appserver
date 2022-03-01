@@ -1,6 +1,9 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/mcneel/compute.rhino3d.appserver/main?label=version&style=flat-square)
 ![node-current (scoped)](https://img.shields.io/badge/dynamic/json?label=node&query=engines.node&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmcneel%2Fcompute.rhino3d.appserver%2Fmain%2Fpackage.json&style=flat-square&color=dark-green)
 
+
+Neil John Bersabe
+
 # _PROJECT BRIEF
 - SOLIHIYA
 - The browser-based configurator is based from the Filipino traditional weaving pattern called solihiya. 
