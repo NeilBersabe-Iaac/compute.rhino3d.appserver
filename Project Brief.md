@@ -10,26 +10,11 @@ A color gradient is applied to mesh edges corresponding to the variety of attrac
 There are also parameter sliders that control height, and size of the smallest and largest openings
 It is also possible to download the geometry as a mesh geometry in .obj format
 
-## _PLUGINS
-- **Easy to get started**: for
+# _PLUGINS
+- Kangaroo2 for physics simulation
+- A single pufferfish node Mesh Flip (flip)
 
-## Getting Started
+# _DATA FLOW DIAGRAM
 1. Fork this repo
 2. Follow the [installation guide](docs/installation.md) to test and debug on your computer
 3. Follow the [Heroku hosting guide](docs/heroku.md) to push your customized AppServer to Heroku for a production web server
-
-## How and What Video
-- A workshop on using the appserver can be found at https://vimeo.com/442079095 - also [slides](https://docs.google.com/presentation/d/1nCbd87iA_D2ZCwoSirOYK3har6XUJHDUEIkt635btUU)
-- AECTECH 2020 workshop: https://youtu.be/At4BaIuEE3c - [slides](https://docs.google.com/presentation/d/1uY6DcYpBNrgxk8sbHHv1gy3IZWRmO7QF1rUT1XOl3s0/edit?usp=drivesdk)
-
-## Example
-When we have our testing server up and running, you can visit
-
-https://compute-rhino3d-appserver.herokuapp.com/examples/
-
-To see a sample web application that passes three numbers based on slider positions to the AppServer for solving a grasshopper definition. Results are returned to the web page and new mesh visualizations are created.
-
-----
-## Other Information
-- [API Endpoints](docs/endpoints.md) the server supports
-- [Client Code](docs/clientcode.md) example for calling the AppServer
