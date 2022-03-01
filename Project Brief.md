@@ -15,6 +15,4 @@ It is also possible to download the geometry as a mesh geometry in .obj format
 - A single pufferfish node Mesh Flip (flip)
 
 # _DATA FLOW DIAGRAM
-1. Fork this repo
-2. Follow the [installation guide](docs/installation.md) to test and debug on your computer
-3. Follow the [Heroku hosting guide](docs/heroku.md) to push your customized AppServer to Heroku for a production web server
+1. [Images](docs/installation.md)
