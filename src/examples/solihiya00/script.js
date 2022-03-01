@@ -2,6 +2,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.m
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js";
 import { Rhino3dmLoader } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js";
 import rhino3dm from "https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js";
+import { RhinoCompute } from "https://cdn.jsdelivr.net/npm/compute-rhino3d@0.13.0-beta/compute.rhino3d.module.js";
 
 // set up loader for converting the results to threejs
 const loader = new Rhino3dmLoader();
@@ -23,8 +24,7 @@ rhino3dm().then(async (m) => {
   compute();
 });
 
-const downloadButton = document.getElementById("downloadButton");
-downloadButton.onclick = download;
+
 
 /////////////////////////////////////////////////////////////////////////////
 //                            HELPER  FUNCTIONS                            //
@@ -34,29 +34,64 @@ downloadButton.onclick = download;
  * Gets <input> elements from html and sets handlers
  * (html is generated from the grasshopper definition)
  */
-function getInputs() {
-  const inputs = {};
-  for (const input of document.getElementsByTagName("input")) {
-    switch (input.type) {
-      case "number":
-        inputs[input.id] = input.valueAsNumber;
-        input.onchange = onSliderChange;
-        break;
-      case "range":
-        inputs[input.id] = input.valueAsNumber;
-        input.onmouseup = onSliderChange;
-        input.ontouchend = onSliderChange;
-        break;
-      case "checkbox":
-        inputs[input.id] = input.checked;
-        input.onclick = onSliderChange;
-        break;
-      default:
-        break;
-    }
-  }
-  return inputs;
-}
+// function getInputs() {
+//   const inputs = {};
+//   for (const input of document.getElementsByTagName("input")) {
+//     switch (input.type) {
+//       case "number":
+//         inputs[input.id] = input.valueAsNumber;
+//         input.onchange = onSliderChange;
+//         break;
+//       case "range":
+//         inputs[input.id] = input.valueAsNumber;
+//         input.onmouseup = onSliderChange;
+//         input.ontouchend = onSliderChange;
+//         break;
+//       case "checkbox":
+//         inputs[input.id] = input.checked;
+//         input.onclick = onSliderChange;
+//         break;
+//       default:
+//         break;
+//     }
+//   }
+//   return inputs;
+// }
+
+
+//////////////////////////
+// Set up sliders
+const zHeight_slider = document.getElementById('zHeight');
+zHeight_slider.addEventListener('mouseup', onSliderChange, false);
+zHeight_slider.addEventListener('touchend', onSliderChange, false);
+
+const solAngle_slider = document.getElementById('solAngle');
+solAngle_slider.addEventListener('mouseup', onSliderChange, false);
+solAngle_slider.addEventListener('touchend', onSliderChange, false);
+
+const toD_slider = document.getElementById('toD');
+toD_slider.addEventListener('mouseup', onSliderChange, false);
+toD_slider.addEventListener('touchend', onSliderChange, false);
+
+const smlOpening_slider = document.getElementById('smlOpening');
+smlOpening_slider.addEventListener('mouseup', onSliderChange, false);
+smlOpening_slider.addEventListener('touchend', onSliderChange, false);
+
+const lrgOpening_slider = document.getElementById('lrgOpening');
+lrgOpening_slider.addEventListener('mouseup', onSliderChange, false);
+lrgOpening_slider.addEventListener('touchend', onSliderChange, false);
+
+const loader = new Rhino3dmLoader();
+loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/');
+
+//Set up Buttons
+    const downloadButton = document.getElementById('downloadButton');
+    downloadButton.onclick = download;
+
+
+
+
+/////////////////////////
 
 // more globals
 let scene, camera, renderer, controls;
@@ -263,7 +298,11 @@ function onSliderChange() {
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
-  renderer.render(scene, camera);
+    renderer.render(scene, camera);
+    scene.rotation.z += 0.0002;
+    scene.rotation.y += 0.0;
+    scene.rotation.x += 0.0;
+
 }
 
 /**
@@ -324,7 +363,7 @@ function download() {
   const filename = data.definition.replace(/\.gh$/, "") + ".3dm";
   const link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);
-  link.download = filename;
+  link.download = 'solihiya.obj';
   link.click();
 }
 
