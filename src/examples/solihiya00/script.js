@@ -2,7 +2,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.m
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js";
 import { Rhino3dmLoader } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js";
 import rhino3dm from "https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js";
-import { RhinoCompute } from "https://cdn.jsdelivr.net/npm/compute-rhino3d@0.13.0-beta/compute.rhino3d.module.js";
+import { TransformControls } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/TransformControls.js";
 
 // set up loader for converting the results to threejs
 const loader = new Rhino3dmLoader();
@@ -11,20 +11,115 @@ loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 // initialise 'data' object that will be used by compute()
 const data = {
   definition: "Solihiya00.gh",
-  inputs: getInputs(),
+  //   inputs: getInputs(),
 };
+
+//////////////////////////
+// Set up sliders
+const zHeight_slider = document.getElementById("zHeight");
+zHeight_slider.addEventListener("mouseup", onSliderChange, false);
+zHeight_slider.addEventListener("touchend", onSliderChange, false);
+
+const solAngle_slider = document.getElementById("solAngle");
+solAngle_slider.addEventListener("mouseup", onSliderChange, false);
+solAngle_slider.addEventListener("touchend", onSliderChange, false);
+
+const toD_slider = document.getElementById("toD");
+toD_slider.addEventListener("mouseup", onSliderChange, false);
+toD_slider.addEventListener("touchend", onSliderChange, false);
+
+const smlOpening_slider = document.getElementById("smlOpening");
+smlOpening_slider.addEventListener("mouseup", onSliderChange, false);
+smlOpening_slider.addEventListener("touchend", onSliderChange, false);
+
+const lrgOpening_slider = document.getElementById("lrgOpening");
+lrgOpening_slider.addEventListener("mouseup", onSliderChange, false);
+lrgOpening_slider.addEventListener("touchend", onSliderChange, false);
+
+//Set up Buttons
+const downloadButton = document.getElementById("downloadButton");
+downloadButton.onclick = download;
+
+/////////////////////////
+//Setup Empty Points List
+let points = [];
 
 // globals
 let rhino, doc;
 
 rhino3dm().then(async (m) => {
+  console.log("Loaded rhino3dm.");
   rhino = m;
 
   init();
+  rndPts();
   compute();
 });
 
+function rndPts() {
+  // generate random points
 
+  const cntPts = 3;
+  const bndX = dimension_slider.valueAsNumber / 2;
+  const bndY = dimension_slider.valueAsNumber / 2;
+
+  for (let i = 0; i < cntPts; i++) {
+    const x = Math.random() * (bndX - -bndX) + -bndX;
+    const y = Math.random() * (bndY - -bndY) + -bndY;
+    const z = 0;
+
+    const pt = '{"X":' + x + ',"Y":' + y + ',"Z":' + z + "}";
+
+    console.log(`x ${x} y ${y}`);
+
+    points.push(pt);
+
+    //viz in three
+    const icoGeo = new THREE.IcosahedronGeometry(25);
+    const icoMat = new THREE.MeshNormalMaterial();
+    const ico = new THREE.Mesh(icoGeo, icoMat);
+    ico.name = "ico";
+    ico.position.set(x, y, z);
+    scene.add(ico);
+
+    let tcontrols = new TransformControls(camera, renderer.domElement);
+    tcontrols.enabled = true;
+    tcontrols.attach(ico);
+    tcontrols.showZ = false;
+    tcontrols.addEventListener("dragging-changed", onChange);
+    scene.add(tcontrols);
+  }
+}
+
+let dragging = false;
+function onChange() {
+  dragging = !dragging;
+  if (!dragging) {
+    // update points position
+    points = [];
+    scene.traverse((child) => {
+      if (child.name === "ico") {
+        const pt =
+          '{"X":' +
+          child.position.x +
+          ',"Y":' +
+          child.position.y +
+          ',"Z":' +
+          child.position.z +
+          "}";
+        points.push(pt);
+        console.log(pt);
+      }
+    }, false);
+
+    compute();
+
+    controls.enabled = true;
+    return;
+  }
+
+  controls.enabled = false;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 //                            HELPER  FUNCTIONS                            //
@@ -57,106 +152,6 @@ rhino3dm().then(async (m) => {
 //   }
 //   return inputs;
 // }
-
-
-//////////////////////////
-// Set up sliders
-const zHeight_slider = document.getElementById('zHeight');
-zHeight_slider.addEventListener('mouseup', onSliderChange, false);
-zHeight_slider.addEventListener('touchend', onSliderChange, false);
-
-const solAngle_slider = document.getElementById('solAngle');
-solAngle_slider.addEventListener('mouseup', onSliderChange, false);
-solAngle_slider.addEventListener('touchend', onSliderChange, false);
-
-const toD_slider = document.getElementById('toD');
-toD_slider.addEventListener('mouseup', onSliderChange, false);
-toD_slider.addEventListener('touchend', onSliderChange, false);
-
-const smlOpening_slider = document.getElementById('smlOpening');
-smlOpening_slider.addEventListener('mouseup', onSliderChange, false);
-smlOpening_slider.addEventListener('touchend', onSliderChange, false);
-
-const lrgOpening_slider = document.getElementById('lrgOpening');
-lrgOpening_slider.addEventListener('mouseup', onSliderChange, false);
-lrgOpening_slider.addEventListener('touchend', onSliderChange, false);
-
-const loader = new Rhino3dmLoader();
-loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/');
-
-//Set up Buttons
-    const downloadButton = document.getElementById('downloadButton');
-    downloadButton.onclick = download;
-
-
-
-
-/////////////////////////
-
-// more globals
-let scene, camera, renderer, controls;
-
-/**
- * Sets up the scene, camera, renderer, lights and controls and starts the animation
- */
-function init() {
-  // Rhino models are z-up, so set this as the default
-  THREE.Object3D.DefaultUp = new THREE.Vector3(0, 0, 1);
-
-  // create a scene and a camera
-  scene = new THREE.Scene();
-
-  //Scene Background
-  // scene.background = new THREE.Color(1, 1, 1)
-
-  let material, cubeMap;
-  cubeMap = new THREE.CubeTextureLoader()
-    .setPath("./assets/")
-    .load(["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"]);
-  scene.background = cubeMap;
-
-  // very light grey for background, like rhino
-  //   scene.background = new THREE.Color("whitesmoke");
-  ///
-
-  camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    1,
-    10000
-  );
-
-  ///
-  // camera.position.set(1, -1, 1) // like perspective view
-  camera.position.x = -20;
-  camera.position.y = -30;
-  camera.position.z = 45;
-
-  ///
-
-  // create the renderer and add it to the html
-  renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  // add some controls to orbit the camera
-  controls = new OrbitControls(camera, renderer.domElement);
-  controls.autoRotate = true;
-
-  // add a directional light
-  const directionalLight = new THREE.DirectionalLight(0xffffff);
-  directionalLight.intensity = 2;
-  scene.add(directionalLight);
-
-  const ambientLight = new THREE.AmbientLight();
-  scene.add(ambientLight);
-
-  // handle changes in the window size
-  window.addEventListener("resize", onWindowResize, false);
-
-  animate();
-}
 
 /**
  * Call appserver
@@ -248,6 +243,70 @@ function collectResults(responseJson) {
     zoomCameraToSelection(camera, controls, scene.children);
   });
 }
+// more globals
+let scene, camera, renderer, controls;
+
+/**
+ * Sets up the scene, camera, renderer, lights and controls and starts the animation
+ */
+function init() {
+  // Rhino models are z-up, so set this as the default
+  THREE.Object3D.DefaultUp = new THREE.Vector3(0, 0, 1);
+
+  // create a scene and a camera
+  scene = new THREE.Scene();
+
+  //Scene Background
+  // scene.background = new THREE.Color(1, 1, 1)
+
+  let material, cubeMap;
+  cubeMap = new THREE.CubeTextureLoader()
+    .setPath("./assets/")
+    .load(["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"]);
+  scene.background = cubeMap;
+
+  // very light grey for background, like rhino
+  //   scene.background = new THREE.Color("whitesmoke");
+  ///
+
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    1,
+    10000
+  );
+
+  ///
+  // camera.position.set(1, -1, 1) // like perspective view
+  camera.position.x = -20;
+  camera.position.y = -30;
+  camera.position.z = 45;
+
+  ///
+
+  // create the renderer and add it to the html
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // add some controls to orbit the camera
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.autoRotate = true;
+
+  // add a directional light
+  const directionalLight = new THREE.DirectionalLight(0xffffff);
+  directionalLight.intensity = 2;
+  scene.add(directionalLight);
+
+  const ambientLight = new THREE.AmbientLight();
+  scene.add(ambientLight);
+
+  // handle changes in the window size
+  window.addEventListener("resize", onWindowResize, false);
+
+  animate();
+}
 
 /**
  * Attempt to decode data tree item to rhino geometry
@@ -298,11 +357,10 @@ function onSliderChange() {
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
-    renderer.render(scene, camera);
-    scene.rotation.z += 0.0002;
-    scene.rotation.y += 0.0;
-    scene.rotation.x += 0.0;
-
+  renderer.render(scene, camera);
+  scene.rotation.z += 0.0002;
+  scene.rotation.y += 0.0;
+  scene.rotation.x += 0.0;
 }
 
 /**
@@ -363,7 +421,7 @@ function download() {
   const filename = data.definition.replace(/\.gh$/, "") + ".3dm";
   const link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);
-  link.download = 'solihiya.obj';
+  link.download = "solihiya.obj";
   link.click();
 }
 
