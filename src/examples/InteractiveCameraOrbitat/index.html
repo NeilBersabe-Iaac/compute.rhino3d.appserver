@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Camera Orbit</title>
+  <style>
+    body{
+      margin: 0;
+    }
+    canvas{
+      width: 100%;
+      height: 100%;
+    }
+    .controls{
+      display: flex;
+      width: 10%;
+      gap: 30px;
+      position: absolute;
+      margin-top: 3%;
+      margin-left: 3%;
+    }
+
+    .btn{
+      padding: 20px;
+      font-size: 30px;
+      border: none;
+      background-color: darkgreen;
+      font-family: monospace;
+      color: white;
+      border-radius: 20px;
+    }
+    .btn:hover{
+      font-weight: bold;
+      cursor: pointer;
+      background-color: rgb(209, 209, 209);
+      color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+<div class="controls">
+<button id="home" class="btn">HOME</button>
+<button id="view01" class="btn">VIEW01</button>
+</div>
+<script type="module" src="script.js"></script>
+</body>
+</html>
