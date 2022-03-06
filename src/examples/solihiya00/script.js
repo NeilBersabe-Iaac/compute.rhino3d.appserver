@@ -301,23 +301,23 @@ function collectResults(responseJson) {
     }
   }
 
-  let objects = doc.objects();
-  for ( let i = 0; i < objects.count; i++ ) {
+  // let objects = doc.objects();
+  // for ( let i = 0; i < objects.count; i++ ) {
   
-      const rhinoObject = objects.get( i );
+  //     const rhinoObject = objects.get( i );
   
   
-          // asign geometry userstrings to object attributes
-          if ( rhinoObject.geometry().userStringCount > 0 ) {
-          const g_userStrings = rhinoObject.geometry().getUserStrings()
-          rhinoObject.attributes().setUserString(g_userStrings[0][0], g_userStrings[0][1])
+  //         // asign geometry userstrings to object attributes
+  //         if ( rhinoObject.geometry().userStringCount > 0 ) {
+  //         const g_userStrings = rhinoObject.geometry().getUserStrings()
+  //         rhinoObject.attributes().setUserString(g_userStrings[0][0], g_userStrings[0][1])
           
-          ////////////////////////////////////////////////////////////
-          const length = rhinoObject.geometry().getUserStrings()[1]
-          console.log(length)
-          ////////////////////////////////////////////////////////////
-      }
-  }
+  //         ////////////////////////////////////////////////////////////
+  //         const length = rhinoObject.geometry().getUserStrings()[1]
+  //         console.log(length)
+  //         ////////////////////////////////////////////////////////////
+  //     }
+  // }
 
 
   if (doc.objects().count < 1) {
@@ -356,6 +356,27 @@ function collectResults(responseJson) {
         }
       }
     })
+    //COLOR MESHES
+    object.traverse((child) => {
+      if (child.isMesh) {
+          const mat = new THREE.MeshStandardMaterial( {color: (0x202020),roughness: 0.01 ,transparent: true, opacity: 0.50 } )
+          child.material = mat;
+                if (child.userData.attributes.geometry.userStringCount > 0) {
+                  
+  
+                  //get color from userStrings
+                  const colorData = child.userData.attributes.userStrings[0]
+                  const col = colorData[1];
+  
+                  //convert color from userstring to THREE color and assign it
+                  const threeColor = new THREE.Color("rgb(" + col + ")");
+                  const mat = new THREE.LineBasicMaterial({ color: threeColor });
+                  child.material = mat;
+                }
+      }
+    });
+
+
 
 
 
