@@ -264,7 +264,7 @@ async function compute() {
 
     collectResults(responseJson);
   } catch (error) {
-    // console.error(error);
+    console.error(error);
   }
 }
 
@@ -300,6 +300,25 @@ function collectResults(responseJson) {
       }
     }
   }
+
+  let objects = doc.objects();
+  for ( let i = 0; i < objects.count; i++ ) {
+  
+      const rhinoObject = objects.get( i );
+  
+  
+          // asign geometry userstrings to object attributes
+          if ( rhinoObject.geometry().userStringCount > 0 ) {
+          const g_userStrings = rhinoObject.geometry().getUserStrings()
+          rhinoObject.attributes().setUserString(g_userStrings[0][0], g_userStrings[0][1])
+          
+          ////////////////////////////////////////////////////////////
+          const length = rhinoObject.geometry().getUserStrings()[1]
+          console.log(length)
+          ////////////////////////////////////////////////////////////
+      }
+  }
+
 
   if (doc.objects().count < 1) {
     console.error("No rhino objects to load!");
@@ -408,20 +427,12 @@ function init() {
   ///
   scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
   
-  camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    1,
-    10000
-  );
+  camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,1,10000);
 
-  ///
   // camera.position.set(1, -1, 1) // like perspective view
   camera.position.x = -20;
   camera.position.y = -30;
   camera.position.z = 45;
-
-  ///
 
   // create the renderer and add it to the html
   renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -431,7 +442,7 @@ function init() {
 
   // add some controls to orbit the camera
   controls = new OrbitControls(camera, renderer.domElement);
-  controls.autoRotate = false;
+
 
   // add a directional light
   const directionalLight = new THREE.DirectionalLight(0xffffff);
@@ -512,8 +523,7 @@ function zoomCameraToSelection(camera, controls, selection, fitOffset = 1.2) {
   const center = box.getCenter(new THREE.Vector3());
 
   const maxSize = Math.max(size.x, size.y, size.z);
-  const fitHeightDistance =
-    maxSize / (2 * Math.atan((Math.PI * camera.fov) / 360));
+  const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * camera.fov) / 360));
   const fitWidthDistance = fitHeightDistance / camera.aspect;
   const distance = fitOffset * Math.max(fitHeightDistance, fitWidthDistance);
 
