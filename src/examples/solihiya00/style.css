@@ -82,7 +82,7 @@ span.b{
     background: orange;
     cursor: pointer;
   }   
-}
+
 
 #container {
     position: relative;
@@ -100,7 +100,7 @@ span.b{
 #downloadButton:hover{
     cursor: pointer;
     border: 2px solid orange;
-    
+}    
 #overlay{z-index: 1; width: 100%
 }
 

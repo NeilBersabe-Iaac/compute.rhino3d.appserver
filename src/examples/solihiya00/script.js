@@ -9,10 +9,10 @@ const loader = new Rhino3dmLoader();
 loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 
 // initialise 'data' object that will be used by compute()
-// const data = {
-const definition = "Solihiya.gh";
-  //   inputs: getInputs(),
-// };
+const data = {
+definition: "Solihiya.gh",
+    inputs: getInputs(),
+};
 
 //////////////////////////
 // Set up sliders
@@ -183,29 +183,29 @@ function onChange() {
  * Gets <input> elements from html and sets handlers
  * (html is generated from the grasshopper definition)
  */
-// function getInputs() {
-//   const inputs = {};
-//   for (const input of document.getElementsByTagName("input")) {
-//     switch (input.type) {
-//       case "number":
-//         inputs[input.id] = input.valueAsNumber;
-//         input.onchange = onSliderChange;
-//         break;
-//       case "range":
-//         inputs[input.id] = input.valueAsNumber;
-//         input.onmouseup = onSliderChange;
-//         input.ontouchend = onSliderChange;
-//         break;
-//       case "checkbox":
-//         inputs[input.id] = input.checked;
-//         input.onclick = onSliderChange;
-//         break;
-//       default:
-//         break;
-//     }
-//   }
-//   return inputs;
-// }
+function getInputs() {
+  const inputs = {};
+  for (const input of document.getElementsByTagName("input")) {
+    switch (input.type) {
+      case "number":
+        inputs[input.id] = input.valueAsNumber;
+        input.onchange = onSliderChange;
+        break;
+      case "range":
+        inputs[input.id] = input.valueAsNumber;
+        input.onmouseup = onSliderChange;
+        input.ontouchend = onSliderChange;
+        break;
+      case "checkbox":
+        inputs[input.id] = input.checked;
+        input.onclick = onSliderChange;
+        break;
+      default:
+        break;
+    }
+  }
+  return inputs;
+}
 
 /**
  * Call appserver
@@ -247,10 +247,11 @@ async function compute() {
   'headers': {'Content-Type': 'application/json'}
 }
 
-  // Object.keys(data.inputs).forEach((key) =>
-  //   url.searchParams.append(key, data.inputs[key])
-  // );
-  // console.log(url.toString());
+const url = new URL('/solve/' + data.definition, window.location.origin)
+  Object.keys(data.inputs).forEach((key) =>
+    url.searchParams.append(key, data.inputs[key])
+  );
+  console.log(url.toString());
 
   try {
     const response = await fetch('/solve', request);
@@ -274,7 +275,13 @@ async function compute() {
 function collectResults(responseJson) {
   const values = responseJson.values;
 
-  console.log(values)
+  console.log()
+  //GET VALUES
+  // // let RH_IN: zHeight =  
+  // let area = "Slide to see area"
+  // let roofarea = "Slide to see roofarea"
+  // let plants = "Slide to see No. plants"
+
 
   // clear doc
   try {
@@ -294,6 +301,20 @@ function collectResults(responseJson) {
       for (let j = 0; j < branch.length; j++) {
         // ...load rhino geometry into doc
         const rhinoObject = decodeItem(branch[j]);
+
+        // if (values[i].ParamName == "RH_OUT:maxext") {
+        //   mshifting = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        // }
+        // if (values[i].ParamName == "RH_OUT:cropsspacing") {
+        //   crops = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        // }
+        // if (values[i].ParamName == "RH_OUT:lanewidth") {
+        //   lwidth = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        // }
+
+        // console.log(values[i].ParamName)
+
+
         if (rhinoObject !== null) {
           doc.objects().add(rhinoObject, null);
         }
@@ -301,6 +322,16 @@ function collectResults(responseJson) {
     }
   }
 
+// //GET VALUES
+// document.getElementById('area').innerText = "// BUILDING AREA = " + area + " m2"
+// document.getElementById('roofarea').innerText = "// ROOF AREA = " + roofarea + " m2"
+// document.getElementById('plants').innerText = "// NO. PLANTS = " + plants + " plant"
+// document.getElementById('kg').innerText = "// YIELD/YEAR = " + kg + " kg"
+// document.getElementById('weight').innerText = "// STRUCTURE WEIGHT = " + weight + " kg"
+
+
+
+  ////////////////////////////
   // let objects = doc.objects();
   // for ( let i = 0; i < objects.count; i++ ) {
   
@@ -408,6 +439,25 @@ function collectResults(responseJson) {
 
     function onSliderChange () {
       showSpinner(true) 
+
+      let inputs = {}
+        for (const input of document.getElementsByTagName('input')) {
+          switch (input.type) {
+          case 'number':
+            inputs[input.id] = input.valueAsNumber
+            break
+          case 'range':
+            inputs[input.id] = input.valueAsNumber
+            break
+          case 'checkbox':
+            inputs[input.id] = input.checked
+            break
+          }
+        }
+        
+        data.inputs = inputs
+
+
       compute()
     }
 
@@ -580,10 +630,3 @@ function download() {
   link.click();
 }
 
-// /**
-//  * Shows or hides the loading spinner
-//  */
-// function showSpinner(enable) {
-//   if (enable) document.getElementById("loader").style.display = "block";
-//   else document.getElementById("loader").style.display = "none";
-// }
