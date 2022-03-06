@@ -101,7 +101,7 @@ span.b{
     cursor: pointer;
     border: 2px solid orange;
     
-#overlay {z-index: 1; width: 100%
+#overlay{z-index: 1; width: 100%
 }
 
 #loader {
