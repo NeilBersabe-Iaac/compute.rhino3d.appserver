@@ -14,7 +14,7 @@ loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 //     inputs: getInputs(),
 // };
 
-const definition = 'Solihiya00_v2.gh';
+const definition = 'Solihiya00_v3.gh';
 
 //////////////////////////
 // Set up sliders
