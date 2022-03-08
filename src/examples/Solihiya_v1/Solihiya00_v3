@@ -142,7 +142,7 @@ const cntPts = startPts.length;
     tcontrols.attach(ico);
     tcontrols.showZ = false;
     tcontrols.addEventListener("dragging-changed", onChange);
-    tcontrols.setSize(0.35)
+    tcontrols.setSize(0.25)
     scene.add(tcontrols);
   }
 }
@@ -184,30 +184,30 @@ function onChange() {
 /**
  * Gets <input> elements from html and sets handlers
  * (html is generated from the grasshopper definition)
-//  */
-// function getInputs() {
-//   const inputs = {};
-//   for (const input of document.getElementsByTagName("input")) {
-//     switch (input.type) {
-//       case "number":
-//         inputs[input.id] = input.valueAsNumber;
-//         input.onchange = onSliderChange;
-//         break;
-//       case "range":
-//         inputs[input.id] = input.valueAsNumber;
-//         input.onmouseup = onSliderChange;
-//         input.ontouchend = onSliderChange;
-//         break;
-//       case "checkbox":
-//         inputs[input.id] = input.checked;
-//         input.onclick = onSliderChange;
-//         break;
-//       default:
-//         break;
-//     }
-//   }
-//   return inputs;
-// }
+ */
+function getInputs() {
+  const inputs = {};
+  for (const input of document.getElementsByTagName("input")) {
+    switch (input.type) {
+      case "number":
+        inputs[input.id] = input.valueAsNumber;
+        input.onchange = onSliderChange;
+        break;
+      case "range":
+        inputs[input.id] = input.valueAsNumber;
+        input.onmouseup = onSliderChange;
+        input.ontouchend = onSliderChange;
+        break;
+      case "checkbox":
+        inputs[input.id] = input.checked;
+        input.onclick = onSliderChange;
+        break;
+      default:
+        break;
+    }
+  }
+  return inputs;
+}
 
 /**
  * Call appserver
@@ -249,11 +249,11 @@ async function compute() {
   'headers': {'Content-Type': 'application/json'}
 }
 
-// const url = new URL('/solve/' + data.definition, window.location.origin)
-//   Object.keys(data.inputs).forEach((key) =>
-//     url.searchParams.append(key, data.inputs[key])
-//   );
-//   console.log(url.toString());
+const url = new URL('/solve/' + data.definition, window.location.origin)
+  Object.keys(data.inputs).forEach((key) =>
+    url.searchParams.append(key, data.inputs[key])
+  );
+  console.log(url.toString());
 
   try {
     const response = await fetch('/solve', request);
@@ -277,7 +277,7 @@ async function compute() {
 function collectResults(responseJson) {
   const values = responseJson.values;
 
-  console.log(values);
+  console.log()
   //GET VALUES
   // // let RH_IN: zHeight =  
   // let area = "Slide to see area"
@@ -389,25 +389,25 @@ function collectResults(responseJson) {
         }
       }
     })
-    // //COLOR MESHES
-    // object.traverse((child) => {
-    //   if (child.isMesh) {
-    //       const mat = new THREE.MeshStandardMaterial( {color: (0x202020),roughness: 0.01 ,transparent: true, opacity: 0.50 } )
-    //       child.material = mat;
-    //             if (child.userData.attributes.geometry.userStringCount > 0) {
+    //COLOR MESHES
+    object.traverse((child) => {
+      if (child.isMesh) {
+          const mat = new THREE.MeshStandardMaterial( {color: (0x202020),roughness: 0.01 ,transparent: true, opacity: 0.50 } )
+          child.material = mat;
+                if (child.userData.attributes.geometry.userStringCount > 0) {
                   
   
-    //               //get color from userStrings
-    //               const colorData = child.userData.attributes.userStrings[0]
-    //               const col = colorData[1];
+                  //get color from userStrings
+                  const colorData = child.userData.attributes.userStrings[0]
+                  const col = colorData[1];
   
-    //               //convert color from userstring to THREE color and assign it
-    //               const threeColor = new THREE.Color("rgb(" + col + ")");
-    //               const mat = new THREE.LineBasicMaterial({ color: threeColor });
-    //               child.material = mat;
-    //             }
-    //   }
-    // });
+                  //convert color from userstring to THREE color and assign it
+                  const threeColor = new THREE.Color("rgb(" + col + ")");
+                  const mat = new THREE.LineBasicMaterial({ color: threeColor });
+                  child.material = mat;
+                }
+      }
+    });
 
 
 
@@ -442,22 +442,22 @@ function collectResults(responseJson) {
     function onSliderChange () {
       showSpinner(true) 
 
-      // let inputs = {}
-      //   for (const input of document.getElementsByTagName('input')) {
-      //     switch (input.type) {
-      //     case 'number':
-      //       inputs[input.id] = input.valueAsNumber
-      //       break
-      //     case 'range':
-      //       inputs[input.id] = input.valueAsNumber
-      //       break
-      //     case 'checkbox':
-      //       inputs[input.id] = input.checked
-      //       break
-      //     }
-      //   }
+      let inputs = {}
+        for (const input of document.getElementsByTagName('input')) {
+          switch (input.type) {
+          case 'number':
+            inputs[input.id] = input.valueAsNumber
+            break
+          case 'range':
+            inputs[input.id] = input.valueAsNumber
+            break
+          case 'checkbox':
+            inputs[input.id] = input.checked
+            break
+          }
+        }
         
-        // data.inputs = inputs
+        data.inputs = inputs
 
 
       compute()
@@ -474,7 +474,7 @@ function collectResults(responseJson) {
 
 // Boilerplate//
 // more globals
-var scene, camera, renderer, controls;
+let scene, camera, renderer, controls;
 
 /**
  * Sets up the scene, camera, renderer, lights and controls and starts the animation
@@ -515,8 +515,7 @@ function init() {
 
   // add some controls to orbit the camera
   controls = new OrbitControls(camera, renderer.domElement);
-    // controls.target.set(30, 39, 20);
-  controls.update();
+
 
   // add a directional light
   const directionalLight = new THREE.DirectionalLight(0xffffff);
@@ -563,20 +562,14 @@ function init() {
 /**
  * The animation loop!
  */
-// function animate() {
-//   requestAnimationFrame(animate);
-//   controls.update();
-//   renderer.render(scene, camera);
-//   scene.rotation.z += 0.000002;
-//   scene.rotation.y += 0.0;
-//   scene.rotation.x += 0.0;
-// }
-
-var animate = function () {
-  requestAnimationFrame( animate )
-  renderer.render( scene, camera )
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+  scene.rotation.z += 0.000002;
+  scene.rotation.y += 0.0;
+  scene.rotation.x += 0.0;
 }
-
 
 /**
  * Helper function for window resizes (resets the camera pov and renderer size)
@@ -635,7 +628,7 @@ function download() {
   const filename = data.definition.replace(/\.gh$/, "") + ".3dm";
   const link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);
-  link.download = filename;
+  link.download = "solihiya.obj";
   link.click();
 }
 
