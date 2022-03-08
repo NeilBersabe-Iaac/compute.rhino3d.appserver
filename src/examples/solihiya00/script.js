@@ -14,7 +14,7 @@ loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 //     inputs: getInputs(),
 // };
 
-const definition = 'Solihiya.gh';
+const definition = 'Solihiya00_v2.gh';
 
 //////////////////////////
 // Set up sliders
@@ -90,92 +90,92 @@ rhino3dm().then(async (m) => {
   rhino = m;
 
   init();
-  rndPts();
+  // rndPts();
   compute();
 });
 
-function rndPts() {
-  // generate random points
+// function rndPts() {
+//   // generate random points
 
-  const startPts = [
+//   const startPts = [
 
-    {x:3.276063, y:11.223933, z:0},
-    {x:-8.663308, y:18.347937, z:0},
-    {x:-3.87914, y:33.307085, z:0},
-    {x:4.563591, y:44.35353, z:0},
-    {x:16.825266, y:45.566347, z:0},
-    {x:21.027902, y:38.132332, z:0},
-    {x:28.596457, y:34.535895, z:0},
-    {x:37.259009, y:35.357609, z:0},
-    {x:44.208391, y:30.493998, z:0},
-    {x:45.483061, y:23.416053, z:0},
-    {x:41.160147, y:7.166575, z:0},
-    {x:31.918529, y:5.326137, z:0},
-    {x:24.132118, y:6.224273, z:0},
-    {x:21.344111, y:9.850299, z:0},
-    {x:18.25342, y:16.528613, z:0},
+//     {x:3.276063, y:11.223933, z:0},
+//     {x:-8.663308, y:18.347937, z:0},
+//     {x:-3.87914, y:33.307085, z:0},
+//     {x:4.563591, y:44.35353, z:0},
+//     {x:16.825266, y:45.566347, z:0},
+//     {x:21.027902, y:38.132332, z:0},
+//     {x:28.596457, y:34.535895, z:0},
+//     {x:37.259009, y:35.357609, z:0},
+//     {x:44.208391, y:30.493998, z:0},
+//     {x:45.483061, y:23.416053, z:0},
+//     {x:41.160147, y:7.166575, z:0},
+//     {x:31.918529, y:5.326137, z:0},
+//     {x:24.132118, y:6.224273, z:0},
+//     {x:21.344111, y:9.850299, z:0},
+//     {x:18.25342, y:16.528613, z:0},
     
 
-  ]
-const cntPts = startPts.length;
+//   ]
+// const cntPts = startPts.length;
 
-  for (let i = 0; i < cntPts; i++) {
-    const x = startPts[i].x
-    const y = startPts[i].y
-    const z = startPts[i].z
+//   for (let i = 0; i < cntPts; i++) {
+//     const x = startPts[i].x
+//     const y = startPts[i].y
+//     const z = startPts[i].z
 
-    const pt = "{\"X\":" + x + ",\"Y\":" + y + ",\"Z\":" + z + "}"
-    console.log( `x ${x} y ${y}` )
+//     const pt = "{\"X\":" + x + ",\"Y\":" + y + ",\"Z\":" + z + "}"
+//     console.log( `x ${x} y ${y}` )
 
-    points.push(pt);
+//     points.push(pt);
 
-    //viz in three
-    const icoGeo = new THREE.SphereGeometry(0.3);
-    const icoMat = new THREE.MeshStandardMaterial();
-    const ico = new THREE.Mesh(icoGeo, icoMat);
-    ico.name = "ico";
-    ico.position.set(x, y, z);
-    scene.add(ico);
+//     //viz in three
+//     const icoGeo = new THREE.SphereGeometry(0.3);
+//     const icoMat = new THREE.MeshStandardMaterial();
+//     const ico = new THREE.Mesh(icoGeo, icoMat);
+//     ico.name = "ico";
+//     ico.position.set(x, y, z);
+//     scene.add(ico);
 
-    let tcontrols = new TransformControls(camera, renderer.domElement);
-    tcontrols.enabled = true;
-    tcontrols.attach(ico);
-    tcontrols.showZ = false;
-    tcontrols.addEventListener("dragging-changed", onChange);
-    tcontrols.setSize(0.35)
-    scene.add(tcontrols);
-  }
-}
+//     let tcontrols = new TransformControls(camera, renderer.domElement);
+//     tcontrols.enabled = true;
+//     tcontrols.attach(ico);
+//     tcontrols.showZ = false;
+//     tcontrols.addEventListener("dragging-changed", onChange);
+//     tcontrols.setSize(0.35)
+//     scene.add(tcontrols);
+//   }
+// }
 
-let dragging = false;
-function onChange() {
-  dragging = !dragging;
-  if (!dragging) {
-    // update points position
-    points = [];
-    scene.traverse((child) => {
-      if (child.name === "ico") {
-        const pt =
-          '{"X":' +
-          child.position.x +
-          ',"Y":' +
-          child.position.y +
-          ',"Z":' +
-          child.position.z +
-          "}";
-        points.push(pt);
-        console.log(pt);
-      }
-    }, false);
+// let dragging = false;
+// function onChange() {
+//   dragging = !dragging;
+//   if (!dragging) {
+//     // update points position
+//     points = [];
+//     scene.traverse((child) => {
+//       if (child.name === "ico") {
+//         const pt =
+//           '{"X":' +
+//           child.position.x +
+//           ',"Y":' +
+//           child.position.y +
+//           ',"Z":' +
+//           child.position.z +
+//           "}";
+//         points.push(pt);
+//         console.log(pt);
+//       }
+//     }, false);
 
-    compute();
+//     compute();
 
-    controls.enabled = true;
-    return;
-  }
+//     controls.enabled = true;
+//     return;
+//   }
 
-  controls.enabled = false;
-}
+//   controls.enabled = false;
+// }
 
 /////////////////////////////////////////////////////////////////////////////
 //                            HELPER  FUNCTIONS                            //
@@ -498,14 +498,14 @@ function init() {
   // very light grey for background, like rhino
   //   scene.background = new THREE.Color("whitesmoke");
   ///
-  scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
+  // scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
   
   camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,1,10000);
 
   // camera.position.set(1, -1, 1) // like perspective view
-  camera.position.x = -20;
-  camera.position.y = -30;
-  camera.position.z = 45;
+  camera.position.x = 5;
+  camera.position.y = 1;
+  camera.position.z = 0.5;
 
   // create the renderer and add it to the html
   renderer = new THREE.WebGLRenderer({ antialias: true });
