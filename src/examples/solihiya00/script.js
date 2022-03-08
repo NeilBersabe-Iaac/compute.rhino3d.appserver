@@ -129,7 +129,7 @@ const cntPts = startPts.length;
 
     //viz in three
     const icoGeo = new THREE.SphereGeometry(0.3);
-    const icoMat = new THREE.MeshNormalMaterial(50);
+    const icoMat = new THREE.MeshStandardMaterial();
     const ico = new THREE.Mesh(icoGeo, icoMat);
     ico.name = "ico";
     ico.position.set(x, y, z);
