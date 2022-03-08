@@ -54,20 +54,20 @@ const TreesLocation = document.getElementById( 'RH_IN: Trees Location' )
 TreesLocation.addEventListener( 'mouseup', onSliderChange, false )
 TreesLocation.addEventListener( 'touchend', onSliderChange, false )
 
-const TreesScale = document.getElementById( 'RH_IN:Trees Scale' )
+const TreesScale = document.getElementById( 'RH_IN: Trees Scale' )
 TreesScale.addEventListener( 'mouseup', onSliderChange, false )
 TreesScale.addEventListener( 'touchend', onSliderChange, false )
 
 ////
 
-const ShowPeople = document.getElementById( 'RH_IN:Show People' )
+const ShowPeople = document.getElementById( 'RH_IN: Show People' )
 ShowPeople.addEventListener( 'change', onSliderChange, false )
 
-const Population = document.getElementById( 'RH_IN:Population' )
+const Population = document.getElementById( 'RH_IN: Population' )
 Population.addEventListener( 'mouseup', onSliderChange, false )
 Population.addEventListener( 'touchend', onSliderChange, false )
 
-const PeopleLocation = document.getElementById( 'RH_IN:People Location' )
+const PeopleLocation = document.getElementById( 'RH_IN: People Location' )
 PeopleLocation.addEventListener( 'mouseup', onSliderChange, false )
 PeopleLocation.addEventListener( 'touchend', onSliderChange, false )
 
