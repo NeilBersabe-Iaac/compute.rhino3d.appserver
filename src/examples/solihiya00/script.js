@@ -43,14 +43,14 @@ lrgOpening_slider.addEventListener("touchend", onSliderChange, false);
 // const Annotation_Button = document.getElementById("RH_IN:Show Annotations");
 // Annotation_Button.addEventListener( 'change', onSliderChange, false 
 
-const Showtrees = document.getElementById( 'RH_IN:Show Trees' )
+const Showtrees = document.getElementById( 'RH_IN: Show Trees' )
 Showtrees.addEventListener( 'change', onSliderChange, false )
 
-const TreesNo = document.getElementById( 'RH_IN:Trees No' )
+const TreesNo = document.getElementById( 'RH_IN: Trees No' )
 TreesNo.addEventListener( 'mouseup', onSliderChange, false )
 TreesNo.addEventListener( 'touchend', onSliderChange, false )
 
-const TreesLocation = document.getElementById( 'RH_IN:Trees Location' )
+const TreesLocation = document.getElementById( 'RH_IN: Trees Location' )
 TreesLocation.addEventListener( 'mouseup', onSliderChange, false )
 TreesLocation.addEventListener( 'touchend', onSliderChange, false )
 
@@ -503,9 +503,9 @@ function init() {
   camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,1,10000);
 
   // camera.position.set(1, -1, 1) // like perspective view
-  camera.position.x = 5;
-  camera.position.y = 1;
-  camera.position.z = 0.5;
+  camera.position.x = .5;
+  camera.position.y = .85;
+  camera.position.z = .25;
 
   // create the renderer and add it to the html
   renderer = new THREE.WebGLRenderer({ antialias: true });
