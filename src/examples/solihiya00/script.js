@@ -10,7 +10,8 @@ loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 
 // initialise 'data' object that will be used by compute()
 const data = {
-definition: "Solihiya.gh",
+  definition: "Solihiya.gh",
+  
     inputs: getInputs(),
 };
 
@@ -129,7 +130,7 @@ const cntPts = startPts.length;
 
     //viz in three
     const icoGeo = new THREE.SphereGeometry(0.3);
-    const icoMat = new THREE.MeshNormalMaterial(50);
+    const icoMat = new THREE.MeshStandardMaterial(50);
     const ico = new THREE.Mesh(icoGeo, icoMat);
     ico.name = "ico";
     ico.position.set(x, y, z);
