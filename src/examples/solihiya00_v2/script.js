@@ -14,7 +14,7 @@ loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 //     inputs: getInputs(),
 // };
 
-const definition = 'Solihiya.gh';
+const definition = "Solihiya00_v2.gh";
 
 //////////////////////////
 // Set up sliders
@@ -41,36 +41,35 @@ lrgOpening_slider.addEventListener("touchend", onSliderChange, false);
 ///////
 
 // const Annotation_Button = document.getElementById("RH_IN:Show Annotations");
-// Annotation_Button.addEventListener( 'change', onSliderChange, false 
+// Annotation_Button.addEventListener( 'change', onSliderChange, false
 
-const Showtrees = document.getElementById( 'RH_IN:Show Trees' )
-Showtrees.addEventListener( 'change', onSliderChange, false )
+const Showtrees = document.getElementById("RH_IN:Show Trees");
+Showtrees.addEventListener("change", onSliderChange, false);
 
-const TreesNo = document.getElementById( 'RH_IN:Trees No' )
-TreesNo.addEventListener( 'mouseup', onSliderChange, false )
-TreesNo.addEventListener( 'touchend', onSliderChange, false )
+const TreesNo = document.getElementById("RH_IN:Trees No");
+TreesNo.addEventListener("mouseup", onSliderChange, false);
+TreesNo.addEventListener("touchend", onSliderChange, false);
 
-const TreesLocation = document.getElementById( 'RH_IN:Trees Location' )
-TreesLocation.addEventListener( 'mouseup', onSliderChange, false )
-TreesLocation.addEventListener( 'touchend', onSliderChange, false )
+const TreesLocation = document.getElementById("RH_IN:Trees Location");
+TreesLocation.addEventListener("mouseup", onSliderChange, false);
+TreesLocation.addEventListener("touchend", onSliderChange, false);
 
-const TreesScale = document.getElementById( 'RH_IN:Trees Scale' )
-TreesScale.addEventListener( 'mouseup', onSliderChange, false )
-TreesScale.addEventListener( 'touchend', onSliderChange, false )
+const TreesScale = document.getElementById("RH_IN:Trees Scale");
+TreesScale.addEventListener("mouseup", onSliderChange, false);
+TreesScale.addEventListener("touchend", onSliderChange, false);
 
 ////
 
-const ShowPeople = document.getElementById( 'RH_IN:Show People' )
-ShowPeople.addEventListener( 'change', onSliderChange, false )
+const ShowPeople = document.getElementById("RH_IN:Show People");
+ShowPeople.addEventListener("change", onSliderChange, false);
 
-const Population = document.getElementById( 'RH_IN:Population' )
-Population.addEventListener( 'mouseup', onSliderChange, false )
-Population.addEventListener( 'touchend', onSliderChange, false )
+const Population = document.getElementById("RH_IN:Population");
+Population.addEventListener("mouseup", onSliderChange, false);
+Population.addEventListener("touchend", onSliderChange, false);
 
-const PeopleLocation = document.getElementById( 'RH_IN:People Location' )
-PeopleLocation.addEventListener( 'mouseup', onSliderChange, false )
-PeopleLocation.addEventListener( 'touchend', onSliderChange, false )
-
+const PeopleLocation = document.getElementById("RH_IN:People Location");
+PeopleLocation.addEventListener("mouseup", onSliderChange, false);
+PeopleLocation.addEventListener("touchend", onSliderChange, false);
 
 //Set up Buttons
 const downloadButton = document.getElementById("downloadButton");
@@ -90,92 +89,91 @@ rhino3dm().then(async (m) => {
   rhino = m;
 
   init();
-  rndPts();
+  // rndPts();
   compute();
 });
 
-function rndPts() {
-  // generate random points
+// function rndPts() {
+//   // generate random points
 
-  const startPts = [
+//   const startPts = [
 
-    {x:3.276063, y:11.223933, z:0},
-    {x:-8.663308, y:18.347937, z:0},
-    {x:-3.87914, y:33.307085, z:0},
-    {x:4.563591, y:44.35353, z:0},
-    {x:16.825266, y:45.566347, z:0},
-    {x:21.027902, y:38.132332, z:0},
-    {x:28.596457, y:34.535895, z:0},
-    {x:37.259009, y:35.357609, z:0},
-    {x:44.208391, y:30.493998, z:0},
-    {x:45.483061, y:23.416053, z:0},
-    {x:41.160147, y:7.166575, z:0},
-    {x:31.918529, y:5.326137, z:0},
-    {x:24.132118, y:6.224273, z:0},
-    {x:21.344111, y:9.850299, z:0},
-    {x:18.25342, y:16.528613, z:0},
-    
+//     {x:3.276063, y:11.223933, z:0},
+//     {x:-8.663308, y:18.347937, z:0},
+//     {x:-3.87914, y:33.307085, z:0},
+//     {x:4.563591, y:44.35353, z:0},
+//     {x:16.825266, y:45.566347, z:0},
+//     {x:21.027902, y:38.132332, z:0},
+//     {x:28.596457, y:34.535895, z:0},
+//     {x:37.259009, y:35.357609, z:0},
+//     {x:44.208391, y:30.493998, z:0},
+//     {x:45.483061, y:23.416053, z:0},
+//     {x:41.160147, y:7.166575, z:0},
+//     {x:31.918529, y:5.326137, z:0},
+//     {x:24.132118, y:6.224273, z:0},
+//     {x:21.344111, y:9.850299, z:0},
+//     {x:18.25342, y:16.528613, z:0},
 
-  ]
-const cntPts = startPts.length;
+//   ]
+// const cntPts = startPts.length;
 
-  for (let i = 0; i < cntPts; i++) {
-    const x = startPts[i].x
-    const y = startPts[i].y
-    const z = startPts[i].z
+//   for (let i = 0; i < cntPts; i++) {
+//     const x = startPts[i].x
+//     const y = startPts[i].y
+//     const z = startPts[i].z
 
-    const pt = "{\"X\":" + x + ",\"Y\":" + y + ",\"Z\":" + z + "}"
-    console.log( `x ${x} y ${y}` )
+//     const pt = "{\"X\":" + x + ",\"Y\":" + y + ",\"Z\":" + z + "}"
+//     console.log( `x ${x} y ${y}` )
 
-    points.push(pt);
+//     points.push(pt);
 
-    //viz in three
-    const icoGeo = new THREE.SphereGeometry(0.3);
-    const icoMat = new THREE.MeshStandardMaterial();
-    const ico = new THREE.Mesh(icoGeo, icoMat);
-    ico.name = "ico";
-    ico.position.set(x, y, z);
-    scene.add(ico);
+//     //viz in three
+//     const icoGeo = new THREE.SphereGeometry(0.3);
+//     const icoMat = new THREE.MeshStandardMaterial();
+//     const ico = new THREE.Mesh(icoGeo, icoMat);
+//     ico.name = "ico";
+//     ico.position.set(x, y, z);
+//     scene.add(ico);
 
-    let tcontrols = new TransformControls(camera, renderer.domElement);
-    tcontrols.enabled = true;
-    tcontrols.attach(ico);
-    tcontrols.showZ = false;
-    tcontrols.addEventListener("dragging-changed", onChange);
-    tcontrols.setSize(0.25)
-    scene.add(tcontrols);
-  }
-}
+//     let tcontrols = new TransformControls(camera, renderer.domElement);
+//     tcontrols.enabled = true;
+//     tcontrols.attach(ico);
+//     tcontrols.showZ = false;
+//     tcontrols.addEventListener("dragging-changed", onChange);
+//     tcontrols.setSize(0.35)
+//     scene.add(tcontrols);
+//   }
+// }
 
-let dragging = false;
-function onChange() {
-  dragging = !dragging;
-  if (!dragging) {
-    // update points position
-    points = [];
-    scene.traverse((child) => {
-      if (child.name === "ico") {
-        const pt =
-          '{"X":' +
-          child.position.x +
-          ',"Y":' +
-          child.position.y +
-          ',"Z":' +
-          child.position.z +
-          "}";
-        points.push(pt);
-        console.log(pt);
-      }
-    }, false);
+// let dragging = false;
+// function onChange() {
+//   dragging = !dragging;
+//   if (!dragging) {
+//     // update points position
+//     points = [];
+//     scene.traverse((child) => {
+//       if (child.name === "ico") {
+//         const pt =
+//           '{"X":' +
+//           child.position.x +
+//           ',"Y":' +
+//           child.position.y +
+//           ',"Z":' +
+//           child.position.z +
+//           "}";
+//         points.push(pt);
+//         console.log(pt);
+//       }
+//     }, false);
 
-    compute();
+//     compute();
 
-    controls.enabled = true;
-    return;
-  }
+//     controls.enabled = true;
+//     return;
+//   }
 
-  controls.enabled = false;
-}
+//   controls.enabled = false;
+// }
 
 /////////////////////////////////////////////////////////////////////////////
 //                            HELPER  FUNCTIONS                            //
@@ -184,30 +182,30 @@ function onChange() {
 /**
  * Gets <input> elements from html and sets handlers
  * (html is generated from the grasshopper definition)
- */
-function getInputs() {
-  const inputs = {};
-  for (const input of document.getElementsByTagName("input")) {
-    switch (input.type) {
-      case "number":
-        inputs[input.id] = input.valueAsNumber;
-        input.onchange = onSliderChange;
-        break;
-      case "range":
-        inputs[input.id] = input.valueAsNumber;
-        input.onmouseup = onSliderChange;
-        input.ontouchend = onSliderChange;
-        break;
-      case "checkbox":
-        inputs[input.id] = input.checked;
-        input.onclick = onSliderChange;
-        break;
-      default:
-        break;
-    }
-  }
-  return inputs;
-}
+//  */
+// function getInputs() {
+//   const inputs = {};
+//   for (const input of document.getElementsByTagName("input")) {
+//     switch (input.type) {
+//       case "number":
+//         inputs[input.id] = input.valueAsNumber;
+//         input.onchange = onSliderChange;
+//         break;
+//       case "range":
+//         inputs[input.id] = input.valueAsNumber;
+//         input.onmouseup = onSliderChange;
+//         input.ontouchend = onSliderChange;
+//         break;
+//       case "checkbox":
+//         inputs[input.id] = input.checked;
+//         input.onclick = onSliderChange;
+//         break;
+//       default:
+//         break;
+//     }
+//   }
+//   return inputs;
+// }
 
 /**
  * Call appserver
@@ -217,46 +215,45 @@ async function compute() {
     definition: definition,
     inputs: {
       //'dimension': dimension_slider.valueAsNumber,
-     // 'height': height_slider.valueAsNumber,
-     'RH_IN: zHeight': zHeight_slider.valueAsNumber,
-     'RH_IN: solAngle': solAngle_slider.valueAsNumber,
-     'RH_IN: toD': toD_slider.valueAsNumber,
-     'RH_IN: smlOpening': smlOpening_slider.valueAsNumber,
-     'RH_IN: lrgOpening': lrgOpening_slider.valueAsNumber,
-     //Insert Annotation Checkbox here
-     //
-     'RH_IN: Show Trees': Showtrees.checked,
-     'RH_IN: Tree Location': TreesLocation.valueAsNumber,
-     'RH_IN: Trees Scale': TreesScale.valueAsNumber,
-     'RH_IN: Trees No': TreesNo.valueAsNumber,
-     //
-     'RH_IN: Show People': ShowPeople.checked,
-     'RH_IN: People Location': PeopleLocation.valueAsNumber,
-     'RH_IN: Population': Population.valueAsNumber,
-  
-     'points': points
+      // 'height': height_slider.valueAsNumber,
+      "RH_IN: zHeight": zHeight_slider.valueAsNumber,
+      "RH_IN: solAngle": solAngle_slider.valueAsNumber,
+      "RH_IN: toD": toD_slider.valueAsNumber,
+      "RH_IN: smlOpening": smlOpening_slider.valueAsNumber,
+      "RH_IN: lrgOpening": lrgOpening_slider.valueAsNumber,
+      //Insert Annotation Checkbox here
+      //
+      "RH_IN: Show Trees": Showtrees.checked,
+      "RH_IN: Tree Location": TreesLocation.valueAsNumber,
+      "RH_IN: Trees Scale": TreesScale.valueAsNumber,
+      "RH_IN: Trees No": TreesNo.valueAsNumber,
+      //
+      "RH_IN: Show People": ShowPeople.checked,
+      "RH_IN: People Location": PeopleLocation.valueAsNumber,
+      "RH_IN: Population": Population.valueAsNumber,
 
-  }
- }
+      points: points,
+    },
+  };
 
- showSpinner(true)
+  showSpinner(true);
 
- console.log(data.inputs)
+  console.log(data.inputs);
 
- const request = {
-  'method':'POST',
-  'body': JSON.stringify(data),
-  'headers': {'Content-Type': 'application/json'}
-}
+  const request = {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
+  };
 
-const url = new URL('/solve/' + data.definition, window.location.origin)
-  Object.keys(data.inputs).forEach((key) =>
-    url.searchParams.append(key, data.inputs[key])
-  );
-  console.log(url.toString());
+  // const url = new URL('/solve/' + data.definition, window.location.origin)
+  //   Object.keys(data.inputs).forEach((key) =>
+  //     url.searchParams.append(key, data.inputs[key])
+  //   );
+  //   console.log(url.toString());
 
   try {
-    const response = await fetch('/solve', request);
+    const response = await fetch("/solve", request);
 
     if (!response.ok) {
       // TODO: check for errors in response json
@@ -277,18 +274,16 @@ const url = new URL('/solve/' + data.definition, window.location.origin)
 function collectResults(responseJson) {
   const values = responseJson.values;
 
-  console.log()
+  console.log(values);
   //GET VALUES
-  // // let RH_IN: zHeight =  
+  // // let RH_IN: zHeight =
   // let area = "Slide to see area"
   // let roofarea = "Slide to see roofarea"
   // let plants = "Slide to see No. plants"
 
-
   // clear doc
   try {
-    if( doc !== undefined)
-        doc.delete()
+    if (doc !== undefined) doc.delete();
   } catch {}
 
   //console.log(values)
@@ -316,7 +311,6 @@ function collectResults(responseJson) {
 
         // console.log(values[i].ParamName)
 
-
         if (rhinoObject !== null) {
           doc.objects().add(rhinoObject, null);
         }
@@ -324,34 +318,30 @@ function collectResults(responseJson) {
     }
   }
 
-// //GET VALUES
-// document.getElementById('area').innerText = "// BUILDING AREA = " + area + " m2"
-// document.getElementById('roofarea').innerText = "// ROOF AREA = " + roofarea + " m2"
-// document.getElementById('plants').innerText = "// NO. PLANTS = " + plants + " plant"
-// document.getElementById('kg').innerText = "// YIELD/YEAR = " + kg + " kg"
-// document.getElementById('weight').innerText = "// STRUCTURE WEIGHT = " + weight + " kg"
-
-
+  // //GET VALUES
+  // document.getElementById('area').innerText = "// BUILDING AREA = " + area + " m2"
+  // document.getElementById('roofarea').innerText = "// ROOF AREA = " + roofarea + " m2"
+  // document.getElementById('plants').innerText = "// NO. PLANTS = " + plants + " plant"
+  // document.getElementById('kg').innerText = "// YIELD/YEAR = " + kg + " kg"
+  // document.getElementById('weight').innerText = "// STRUCTURE WEIGHT = " + weight + " kg"
 
   ////////////////////////////
   // let objects = doc.objects();
   // for ( let i = 0; i < objects.count; i++ ) {
-  
+
   //     const rhinoObject = objects.get( i );
-  
-  
+
   //         // asign geometry userstrings to object attributes
   //         if ( rhinoObject.geometry().userStringCount > 0 ) {
   //         const g_userStrings = rhinoObject.geometry().getUserStrings()
   //         rhinoObject.attributes().setUserString(g_userStrings[0][0], g_userStrings[0][1])
-          
+
   //         ////////////////////////////////////////////////////////////
   //         const length = rhinoObject.geometry().getUserStrings()[1]
   //         console.log(length)
   //         ////////////////////////////////////////////////////////////
   //     }
   // }
-
 
   if (doc.objects().count < 1) {
     console.error("No rhino objects to load!");
@@ -371,110 +361,102 @@ function collectResults(responseJson) {
         */
 
     // clear objects from scene. do this here to avoid blink
-      scene.traverse((child) => {
-        if ( child.userData.hasOwnProperty( 'objectType' ) && child.userData.objectType === 'File3dm') {
-          scene.remove(child);
-        }
-      });
+    scene.traverse((child) => {
+      if (
+        child.userData.hasOwnProperty("objectType") &&
+        child.userData.objectType === "File3dm"
+      ) {
+        scene.remove(child);
+      }
+    });
 
     // color crvs
-    object.traverse(child => {
+    object.traverse((child) => {
       if (child.isLine) {
         if (child.userData.attributes.geometry.userStringCount > 0) {
           //console.log(child.userData.attributes.geometry.userStrings[0][1])
-          const col = child.userData.attributes.geometry.userStrings[0][1]
-          const threeColor = new THREE.Color( "rgb(" + col + ")")
-          const mat = new THREE.LineBasicMaterial({color:threeColor})
-          child.material = mat
-        }
-      }
-    })
-    //COLOR MESHES
-    object.traverse((child) => {
-      if (child.isMesh) {
-          const mat = new THREE.MeshStandardMaterial( {color: (0x202020),roughness: 0.01 ,transparent: true, opacity: 0.50 } )
+          const col = child.userData.attributes.geometry.userStrings[0][1];
+          const threeColor = new THREE.Color("rgb(" + col + ")");
+          const mat = new THREE.LineBasicMaterial({ color: threeColor });
           child.material = mat;
-                if (child.userData.attributes.geometry.userStringCount > 0) {
-                  
-  
-                  //get color from userStrings
-                  const colorData = child.userData.attributes.userStrings[0]
-                  const col = colorData[1];
-  
-                  //convert color from userstring to THREE color and assign it
-                  const threeColor = new THREE.Color("rgb(" + col + ")");
-                  const mat = new THREE.LineBasicMaterial({ color: threeColor });
-                  child.material = mat;
-                }
+        }
       }
     });
+    // //COLOR MESHES
+    // object.traverse((child) => {
+    //   if (child.isMesh) {
+    //       const mat = new THREE.MeshStandardMaterial( {color: (0x202020),roughness: 0.01 ,transparent: true, opacity: 0.50 } )
+    //       child.material = mat;
+    //             if (child.userData.attributes.geometry.userStringCount > 0) {
 
+    //               //get color from userStrings
+    //               const colorData = child.userData.attributes.userStrings[0]
+    //               const col = colorData[1];
 
+    //               //convert color from userstring to THREE color and assign it
+    //               const threeColor = new THREE.Color("rgb(" + col + ")");
+    //               const mat = new THREE.LineBasicMaterial({ color: threeColor });
+    //               child.material = mat;
+    //             }
+    //   }
+    // });
 
+    // add object graph from rhino model to three.js scene
+    scene.add(object);
 
+    // hide spinner and enable download button
+    showSpinner(false);
+    downloadButton.disabled = false;
 
-      // add object graph from rhino model to three.js scene
-      scene.add(object);
+    // zoom to extents
+    zoomCameraToSelection(camera, controls, scene.children);
+  });
+}
 
-      // hide spinner and enable download button
-      showSpinner(false);
-      downloadButton.disabled = false;
-
-      // zoom to extents
-      zoomCameraToSelection(camera, controls, scene.children);
-    });
+function decodeItem(item) {
+  const data = JSON.parse(item.data);
+  if (item.type === "System.String") {
+    // hack for draco meshes
+    try {
+      return rhino.DracoCompression.decompressBase64String(data);
+    } catch {} // ignore errors (maybe the string was just a string...)
+  } else if (typeof data === "object") {
+    return rhino.CommonObject.decode(data);
   }
+  return null;
+}
 
-  function decodeItem(item) {
-    const data = JSON.parse(item.data)
-    if (item.type === 'System.String') {
-      // hack for draco meshes
-      try {
-          return rhino.DracoCompression.decompressBase64String(data)
-      } catch {} // ignore errors (maybe the string was just a string...)
-    } else if (typeof data === 'object') {
-      return rhino.CommonObject.decode(data)
-    }
-    return null
-    }
-    
+function onSliderChange() {
+  showSpinner(true);
 
-    function onSliderChange () {
-      showSpinner(true) 
+  // let inputs = {}
+  //   for (const input of document.getElementsByTagName('input')) {
+  //     switch (input.type) {
+  //     case 'number':
+  //       inputs[input.id] = input.valueAsNumber
+  //       break
+  //     case 'range':
+  //       inputs[input.id] = input.valueAsNumber
+  //       break
+  //     case 'checkbox':
+  //       inputs[input.id] = input.checked
+  //       break
+  //     }
+  //   }
 
-      let inputs = {}
-        for (const input of document.getElementsByTagName('input')) {
-          switch (input.type) {
-          case 'number':
-            inputs[input.id] = input.valueAsNumber
-            break
-          case 'range':
-            inputs[input.id] = input.valueAsNumber
-            break
-          case 'checkbox':
-            inputs[input.id] = input.checked
-            break
-          }
-        }
-        
-        data.inputs = inputs
+  // data.inputs = inputs
 
+  compute();
+}
 
-      compute()
-    }
-
-    function showSpinner(enable) {
-      if (enable)
-        document.getElementById('loader').style.display = 'block'
-      else
-        document.getElementById('loader').style.display = 'none'
-    }
-    
-
+function showSpinner(enable) {
+  if (enable) document.getElementById("loader").style.display = "block";
+  else document.getElementById("loader").style.display = "none";
+}
 
 // Boilerplate//
 // more globals
-let scene, camera, renderer, controls;
+var scene, camera, renderer, controls;
 
 /**
  * Sets up the scene, camera, renderer, lights and controls and starts the animation
@@ -498,14 +480,19 @@ function init() {
   // very light grey for background, like rhino
   //   scene.background = new THREE.Color("whitesmoke");
   ///
-  scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
-  
-  camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,1,10000);
+  // scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
+
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    1,
+    10000
+  );
 
   // camera.position.set(1, -1, 1) // like perspective view
-  camera.position.x = -20;
-  camera.position.y = -30;
-  camera.position.z = 45;
+  camera.position.x = 5;
+  camera.position.y = 1;
+  camera.position.z = 0.5;
 
   // create the renderer and add it to the html
   renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -515,7 +502,8 @@ function init() {
 
   // add some controls to orbit the camera
   controls = new OrbitControls(camera, renderer.domElement);
-
+  // controls.target.set(30, 39, 20);
+  controls.update();
 
   // add a directional light
   const directionalLight = new THREE.DirectionalLight(0xffffff);
@@ -530,7 +518,6 @@ function init() {
 
   animate();
 }
-
 
 /**
  * Called when a slider value changes in the UI. Collect all of the
@@ -562,14 +549,19 @@ function init() {
 /**
  * The animation loop!
  */
-function animate() {
+// function animate() {
+//   requestAnimationFrame(animate);
+//   controls.update();
+//   renderer.render(scene, camera);
+//   scene.rotation.z += 0.000002;
+//   scene.rotation.y += 0.0;
+//   scene.rotation.x += 0.0;
+// }
+
+var animate = function () {
   requestAnimationFrame(animate);
-  controls.update();
   renderer.render(scene, camera);
-  scene.rotation.z += 0.000002;
-  scene.rotation.y += 0.0;
-  scene.rotation.x += 0.0;
-}
+};
 
 /**
  * Helper function for window resizes (resets the camera pov and renderer size)
@@ -596,7 +588,8 @@ function zoomCameraToSelection(camera, controls, selection, fitOffset = 1.2) {
   const center = box.getCenter(new THREE.Vector3());
 
   const maxSize = Math.max(size.x, size.y, size.z);
-  const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * camera.fov) / 360));
+  const fitHeightDistance =
+    maxSize / (2 * Math.atan((Math.PI * camera.fov) / 360));
   const fitWidthDistance = fitHeightDistance / camera.aspect;
   const distance = fitOffset * Math.max(fitHeightDistance, fitWidthDistance);
 
@@ -628,7 +621,6 @@ function download() {
   const filename = data.definition.replace(/\.gh$/, "") + ".3dm";
   const link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);
-  link.download = "solihiya.obj";
+  link.download = filename;
   link.click();
 }
-
