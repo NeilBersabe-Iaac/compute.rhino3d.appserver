@@ -507,6 +507,8 @@ function init() {
   camera.position.y = .85;
   camera.position.z = .25;
 
+  camera.lookAt( scene.position)
+
   // create the renderer and add it to the html
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -521,10 +523,18 @@ function init() {
   // add a directional light
   const directionalLight = new THREE.DirectionalLight(0xffffff);
   directionalLight.intensity = 2;
+  directionalLight.castShadow = true
+  directionalLight.intensity = 0.95;
   scene.add(directionalLight);
 
   const ambientLight = new THREE.AmbientLight();
   scene.add(ambientLight);
+
+  const hemisphereLight = new THREE.HemisphereLight(0x000000, 0xFFFFFF, 0.10)
+  scene.add(hemisphereLight)
+
+  raycaster = new THREE.Raycaster()
+
 
   // handle changes in the window size
   window.addEventListener("resize", onWindowResize, false);
