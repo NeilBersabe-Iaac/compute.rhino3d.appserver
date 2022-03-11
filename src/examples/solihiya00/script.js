@@ -533,7 +533,7 @@ function init() {
   const hemisphereLight = new THREE.HemisphereLight(0x000000, 0xFFFFFF, 0.10)
   scene.add(hemisphereLight)
 
-  raycaster = new THREE.Raycaster()
+  // raycaster = new THREE.Raycaster()
 
 
   // handle changes in the window size
