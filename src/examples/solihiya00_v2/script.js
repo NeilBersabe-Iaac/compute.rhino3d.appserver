@@ -224,7 +224,7 @@ async function compute() {
       //Insert Annotation Checkbox here
       //
       "Show Trees": Showtrees.checked,
-      "RH_IN: Tree Location": TreesLocation.valueAsNumber,
+      "RH_IN: Trees Location": TreesLocation.valueAsNumber,
       "RH_IN: Trees Scale": TreesScale.valueAsNumber,
       "RH_IN: Trees No": TreesNo.valueAsNumber,
       //
