@@ -2,74 +2,74 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.m
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js";
 import { Rhino3dmLoader } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js";
 import rhino3dm from "https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js";
-import { TransformControls } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/TransformControls.js";
+// import { TransformControls } from "https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/TransformControls.js";
 
 // set up loader for converting the results to threejs
 const loader = new Rhino3dmLoader();
 loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 
 // initialise 'data' object that will be used by compute()
-// const data = {
-// definition: "Solihiya.gh",
-//     inputs: getInputs(),
-// };
+const data = {
+definition: "Solihiya00_v3a.gh",
+    inputs: getInputs(),
+};
 
-const definition = "Solihiya00_v2.gh";
+const definition = "Solihiya00_v3a.gh";
 
-//////////////////////////
-// Set up sliders
-const zHeight_slider = document.getElementById("RH_IN: zHeight");
-zHeight_slider.addEventListener("mouseup", onSliderChange, false);
-zHeight_slider.addEventListener("touchend", onSliderChange, false);
+// //////////////////////////
+// // Set up sliders
+// const zHeight_slider = document.getElementById("RH_IN: zHeight");
+// zHeight_slider.addEventListener("mouseup", onSliderChange, false);
+// zHeight_slider.addEventListener("touchend", onSliderChange, false);
 
-const solAngle_slider = document.getElementById("RH_IN: solAngle");
-solAngle_slider.addEventListener("mouseup", onSliderChange, false);
-solAngle_slider.addEventListener("touchend", onSliderChange, false);
+// const solAngle_slider = document.getElementById("RH_IN: solAngle");
+// solAngle_slider.addEventListener("mouseup", onSliderChange, false);
+// solAngle_slider.addEventListener("touchend", onSliderChange, false);
 
-const toD_slider = document.getElementById("RH_IN: toD");
-toD_slider.addEventListener("mouseup", onSliderChange, false);
-toD_slider.addEventListener("touchend", onSliderChange, false);
+// const toD_slider = document.getElementById("RH_IN: toD");
+// toD_slider.addEventListener("mouseup", onSliderChange, false);
+// toD_slider.addEventListener("touchend", onSliderChange, false);
 
-const smlOpening_slider = document.getElementById("RH_IN: smlOpening");
-smlOpening_slider.addEventListener("mouseup", onSliderChange, false);
-smlOpening_slider.addEventListener("touchend", onSliderChange, false);
+// const smlOpening_slider = document.getElementById("RH_IN: smlOpening");
+// smlOpening_slider.addEventListener("mouseup", onSliderChange, false);
+// smlOpening_slider.addEventListener("touchend", onSliderChange, false);
 
-const lrgOpening_slider = document.getElementById("RH_IN: lrgOpening");
-lrgOpening_slider.addEventListener("mouseup", onSliderChange, false);
-lrgOpening_slider.addEventListener("touchend", onSliderChange, false);
+// const lrgOpening_slider = document.getElementById("RH_IN: lrgOpening");
+// lrgOpening_slider.addEventListener("mouseup", onSliderChange, false);
+// lrgOpening_slider.addEventListener("touchend", onSliderChange, false);
 
-///////
+//////////////////////////////////////////
 
-// const Annotation_Button = document.getElementById("RH_IN:Show Annotations");
-// Annotation_Button.addEventListener( 'change', onSliderChange, false
+// // const Annotation_Button = document.getElementById("RH_IN:Show Annotations");
+// // Annotation_Button.addEventListener( 'change', onSliderChange, false
 
 const Showtrees = document.getElementById("Show Trees");
 Showtrees.addEventListener("change", onSliderChange, false);
 
-const TreesNo = document.getElementById("RH_IN: Trees No");
-TreesNo.addEventListener("mouseup", onSliderChange, false);
-TreesNo.addEventListener("touchend", onSliderChange, false);
+// const TreesNo = document.getElementById("RH_IN: Trees No");
+// TreesNo.addEventListener("mouseup", onSliderChange, false);
+// TreesNo.addEventListener("touchend", onSliderChange, false);
 
-const TreesLocation = document.getElementById("RH_IN: Trees Location");
-TreesLocation.addEventListener("mouseup", onSliderChange, false);
-TreesLocation.addEventListener("touchend", onSliderChange, false);
+// const TreesLocation = document.getElementById("RH_IN: Trees Location");
+// TreesLocation.addEventListener("mouseup", onSliderChange, false);
+// TreesLocation.addEventListener("touchend", onSliderChange, false);
 
-const TreesScale = document.getElementById("RH_IN: Trees Scale");
-TreesScale.addEventListener("mouseup", onSliderChange, false);
-TreesScale.addEventListener("touchend", onSliderChange, false);
+// const TreesScale = document.getElementById("RH_IN: Trees Scale");
+// TreesScale.addEventListener("mouseup", onSliderChange, false);
+// TreesScale.addEventListener("touchend", onSliderChange, false);
 
-////
+//////////////////////////////////////////
 
 const ShowPeople = document.getElementById("Show People");
 ShowPeople.addEventListener("change", onSliderChange, false);
 
-const Population = document.getElementById("RH_IN: Population");
-Population.addEventListener("mouseup", onSliderChange, false);
-Population.addEventListener("touchend", onSliderChange, false);
+// const Population = document.getElementById("RH_IN: Population");
+// Population.addEventListener("mouseup", onSliderChange, false);
+// Population.addEventListener("touchend", onSliderChange, false);
 
-const PeopleLocation = document.getElementById("RH_IN: People Location");
-PeopleLocation.addEventListener("mouseup", onSliderChange, false);
-PeopleLocation.addEventListener("touchend", onSliderChange, false);
+// const PeopleLocation = document.getElementById("RH_IN: People Location");
+// PeopleLocation.addEventListener("mouseup", onSliderChange, false);
+// PeopleLocation.addEventListener("touchend", onSliderChange, false);
 
 //Set up Buttons
 const downloadButton = document.getElementById("downloadButton");
@@ -79,13 +79,13 @@ downloadButton.onclick = download;
 //Setup Empty Points List
 // globals
 let points = [];
-let cameraRig, activeCamera, activeHelper;
-let cameraPerspective, cameraOrtho;
-let cameraPerspectiveHelper, cameraOrthoHelper;
+// let cameraRig, activeCamera, activeHelper;
+// let cameraPerspective, cameraOrtho;
+// let cameraPerspectiveHelper, cameraOrthoHelper;
 let rhino, doc;
 
 rhino3dm().then(async (m) => {
-  console.log("Loaded rhino3dm.");
+  console.log("Successfully Loaded rhino3dm.");
   rhino = m;
 
   init();
@@ -183,77 +183,79 @@ rhino3dm().then(async (m) => {
  * Gets <input> elements from html and sets handlers
  * (html is generated from the grasshopper definition)
 //  */
-// function getInputs() {
-//   const inputs = {};
-//   for (const input of document.getElementsByTagName("input")) {
-//     switch (input.type) {
-//       case "number":
-//         inputs[input.id] = input.valueAsNumber;
-//         input.onchange = onSliderChange;
-//         break;
-//       case "range":
-//         inputs[input.id] = input.valueAsNumber;
-//         input.onmouseup = onSliderChange;
-//         input.ontouchend = onSliderChange;
-//         break;
-//       case "checkbox":
-//         inputs[input.id] = input.checked;
-//         input.onclick = onSliderChange;
-//         break;
-//       default:
-//         break;
-//     }
-//   }
-//   return inputs;
-// }
+function getInputs() {
+  const inputs = {};
+  for (const input of document.getElementsByTagName("input")) {
+    switch (input.type) {
+      case "number":
+        inputs[input.id] = input.valueAsNumber;
+        input.onchange = onSliderChange;
+        break;
+      case "range":
+        inputs[input.id] = input.valueAsNumber;
+        input.onmouseup = onSliderChange;
+        input.ontouchend = onSliderChange;
+        break;
+      case "checkbox":
+        inputs[input.id] = input.checked;
+        input.onclick = onSliderChange;
+        break;
+      default:
+        break;
+    }
+  }
+  return inputs;
+}
 
 /**
  * Call appserver
  */
 async function compute() {
-  const data = {
-    definition: definition,
-    inputs: {
-      //'dimension': dimension_slider.valueAsNumber,
-      // 'height': height_slider.valueAsNumber,
-      "RH_IN: zHeight": zHeight_slider.valueAsNumber,
-      "RH_IN: solAngle": solAngle_slider.valueAsNumber,
-      "RH_IN: toD": toD_slider.valueAsNumber,
-      "RH_IN: smlOpening": smlOpening_slider.valueAsNumber,
-      "RH_IN: lrgOpening": lrgOpening_slider.valueAsNumber,
-      //Insert Annotation Checkbox here
-      //
-      "Show Trees": Showtrees.checked,
-      "RH_IN: Trees Location": TreesLocation.valueAsNumber,
-      "RH_IN: Trees Scale": TreesScale.valueAsNumber,
-      "RH_IN: Trees No": TreesNo.valueAsNumber,
-      //
-      "Show People": ShowPeople.checked,
-      "RH_IN: People Location": PeopleLocation.valueAsNumber,
-      "RH_IN: Population": Population.valueAsNumber,
+  // const data = {
+  //   definition: definition,
+  //   inputs: {
+  //     //'dimension': dimension_slider.valueAsNumber,
+  //     // 'height': height_slider.valueAsNumber,
+      // "RH_IN: zHeight": zHeight_slider.valueAsNumber,
+  //     "RH_IN: solAngle": solAngle_slider.valueAsNumber,
+  //     "RH_IN: toD": toD_slider.valueAsNumber,
+  //     "RH_IN: smlOpening": smlOpening_slider.valueAsNumber,
+  //     "RH_IN: lrgOpening": lrgOpening_slider.valueAsNumber,
+  //     //Insert Annotation Checkbox here
+  //     //
+      // "Show Trees": Showtrees.checked,
+  //     "RH_IN: Trees Location": TreesLocation.valueAsNumber,
+  //     "RH_IN: Trees Scale": TreesScale.valueAsNumber,
+  //     "RH_IN: Trees No": TreesNo.valueAsNumber,
+  //     //
+      // "Show People": ShowPeople.checked,
+  //     "RH_IN: People Location": PeopleLocation.valueAsNumber,
+  //     "RH_IN: Population": Population.valueAsNumber,
 
-      points: points,
-    },
-  };
+  //     points: points,
+  //   },
+  // };
 
-  showSpinner(true);
+  // showSpinner(true);
 
-  console.log(data.inputs);
+  // console.log(data.inputs);
 
-  const request = {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" },
-  };
+  // const request = {
+  //   method: "POST",
+  //   body: JSON.stringify(data),
+  //   headers: { "Content-Type": "application/json" },
+  // };
 
-  // const url = new URL('/solve/' + data.definition, window.location.origin)
-  //   Object.keys(data.inputs).forEach((key) =>
-  //     url.searchParams.append(key, data.inputs[key])
-  //   );
-  //   console.log(url.toString());
+  //attaches Data to Document
+  const url = new URL('/solve/' + data.definition, window.location.origin)
+    Object.keys(data.inputs).forEach((key) =>
+      url.searchParams.append(key, data.inputs[key])
+    );
+    console.log(url.toString());
 
   try {
-    const response = await fetch("/solve", request);
+    // const response = await fetch("/solve", request);
+    const response = await fetch(url);
 
     if (!response.ok) {
       // TODO: check for errors in response json
@@ -275,11 +277,30 @@ function collectResults(responseJson) {
   const values = responseJson.values;
 
   console.log(values);
+
   //GET VALUES
   // // let RH_IN: zHeight =
   // let area = "Slide to see area"
   // let roofarea = "Slide to see roofarea"
   // let plants = "Slide to see No. plants"
+
+  let mesharea = "Slide to see Mesh Area"
+  let plotarea = "Slide to see Plot Area"
+  let landarea = "Slide to see Land Area"
+  let landDiameter = "Slide to see Diameter"
+
+  let zHeight = "Slide to see value"
+  let solAngle = "Slide to see value"
+  let toD = "Slide to see value"
+  let smlOpening = "Slide to see value"
+  let lrgOpening = "Slide to see value"
+
+  let treesNo = "Slide to see value"
+  let treesLocation = "Slide to see value"
+  let treesScale = "Slide to see value"
+
+  let population = "Slide to see value"
+  let peopleLocation = "Slide to see value"
 
   // clear doc
   try {
@@ -299,17 +320,72 @@ function collectResults(responseJson) {
         // ...load rhino geometry into doc
         const rhinoObject = decodeItem(branch[j]);
 
-        // if (values[i].ParamName == "RH_OUT:maxext") {
-        //   mshifting = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
-        // }
-        // if (values[i].ParamName == "RH_OUT:cropsspacing") {
-        //   crops = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
-        // }
-        // if (values[i].ParamName == "RH_OUT:lanewidth") {
-        //   lwidth = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
-        // }
+        // //GET VALUES
+        if (values[i].ParamName == "RH_OUT:meshArea") {
+          // mesharea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+          mesharea = Math.round(branch[j].data)
+          console.log('mesh area = ' + mesharea + 'm²')
+        }
+        if (values[i].ParamName == "RH_OUT:plotArea") {
+          // plotarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+          plotarea = Math.round(branch[j].data)
+          console.log('plot area = ' + plotarea + 'm²')
+        }
+        if (values[i].ParamName == "RH_OUT:Total Land Area") {
+          // landarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+          landarea = Math.round(branch[j].data)
+          console.log('land area = ' + landarea + 'm²')
+        }
+        if (values[i].ParamName == "RH_OUT:landDiameter") {
+          // landarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+          landDiameter = Math.round(branch[j].data)
+        }
 
-        // console.log(values[i].ParamName)
+
+        ///
+        if (values[i].ParamName == "RH_OUT:zHeight") {
+          // zHeight = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data);
+          zHeight = Math.round(branch[j].data)
+        }
+        if (values[i].ParamName == "RH_OUT:solAngle") {
+          // solAngle = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+          solAngle = Math.round(branch[j].data)
+        }
+        if (values[i].ParamName == "RH_OUT:toD") {
+        //   toD = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+          toD = Math.round(branch[j].data)
+        }
+        if (values[i].ParamName == "RH_OUT:smlOpening") {
+            //   smlOpening = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        smlOpening = Math.round(branch[j].data)
+        }
+        if (values[i].ParamName == "RH_OUT:lrgOpening") {
+        //   lrgOpening = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        lrgOpening = Math.round(branch[j].data)
+        }
+        if (values[i].ParamName == "RH_OUT:treesNo") {
+        //   treesNo = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        treesNo = Math.round(branch[j].data)
+        }
+        if (values[i].ParamName == "RH_OUT:treesLocation") {
+        //   treesLocation = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        treesLocation = Math.round(branch[j].data)
+        }
+        if (values[i].ParamName == "RH_OUT:treesScale") {
+        //   treesScale = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        treesScale = branch[j].data
+        }
+        if (values[i].ParamName == "RH_OUT:population") {
+        //   population = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        population = Math.round(branch[j].data)
+        }
+        if (values[i].ParamName == "RH_OUT:peopleLocation") {
+          //   peopleLocation = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        peopleLocation = Math.round(branch[j].data)
+        }
+
+
+        console.log(values[i].ParamName)
 
         if (rhinoObject !== null) {
           doc.objects().add(rhinoObject, null);
@@ -319,11 +395,24 @@ function collectResults(responseJson) {
   }
 
   // //GET VALUES
-  // document.getElementById('area').innerText = "// BUILDING AREA = " + area + " m2"
-  // document.getElementById('roofarea').innerText = "// ROOF AREA = " + roofarea + " m2"
-  // document.getElementById('plants').innerText = "// NO. PLANTS = " + plants + " plant"
-  // document.getElementById('kg').innerText = "// YIELD/YEAR = " + kg + " kg"
-  // document.getElementById('weight').innerText = "// STRUCTURE WEIGHT = " + weight + " kg"
+  
+  document.getElementById('meshArea').innerText = "MESH SURFACE AREA = " + mesharea + " m²"
+  document.getElementById('plotArea').innerText = "COVERED PLOT AREA = " + plotarea + " m²"
+  document.getElementById('totalLandArea').innerText = "TOTAL LAND AREA = " + landarea + " m²"
+  document.getElementById('landDiameter').innerText = "LAND DIAMETER = " + landDiameter + " m"
+
+  document.getElementById('zHeight').innerText = "Z Height = " + zHeight
+  document.getElementById('solAngle').innerText = "Solar Altitude Angle = " + solAngle + "°"
+  document.getElementById('toD').innerText = "Time of Day = " + toD
+  document.getElementById('smlOpening').innerText = "Small Opening Size = " + smlOpening
+  document.getElementById('lrgOpening').innerText = "Large Opening Size = " + lrgOpening
+
+  document.getElementById('treesNo').innerText = "Tree Quantity = " + treesNo
+  document.getElementById('treesLocation').innerText = "Trees Scattering = " + treesLocation
+  document.getElementById('treesScale').innerText = "Trees Scale = " + treesScale
+  
+  document.getElementById('population').innerText = "Population = " + population
+  document.getElementById('peopleLocation').innerText = "People Scattering = " + peopleLocation
 
   ////////////////////////////
   // let objects = doc.objects();
@@ -382,6 +471,14 @@ function collectResults(responseJson) {
         }
       }
     });
+
+  //   scene.traverse(child => {
+  //     if (!child.isLight) {
+  //         scene.remove(child)
+  //     }
+  // })
+
+
     // //COLOR MESHES
     // object.traverse((child) => {
     //   if (child.isMesh) {
@@ -426,25 +523,29 @@ function decodeItem(item) {
   return null;
 }
 
+/**
+ * Called when a slider value changes in the UI. Collect all of the
+ * slider values and call compute to solve for a new scene
+ */
 function onSliderChange() {
   showSpinner(true);
 
-  // let inputs = {}
-  //   for (const input of document.getElementsByTagName('input')) {
-  //     switch (input.type) {
-  //     case 'number':
-  //       inputs[input.id] = input.valueAsNumber
-  //       break
-  //     case 'range':
-  //       inputs[input.id] = input.valueAsNumber
-  //       break
-  //     case 'checkbox':
-  //       inputs[input.id] = input.checked
-  //       break
-  //     }
-  //   }
+  let inputs = {}
+    for (const input of document.getElementsByTagName('input')) {
+      switch (input.type) {
+      case 'number':
+        inputs[input.id] = input.valueAsNumber
+        break
+      case 'range':
+        inputs[input.id] = input.valueAsNumber
+        break
+      case 'checkbox':
+        inputs[input.id] = input.checked
+        break
+      }
+    }
 
-  // data.inputs = inputs
+  data.inputs = inputs
 
   compute();
 }
@@ -457,7 +558,7 @@ function showSpinner(enable) {
 // Boilerplate//
 // more globals
 var scene, camera, renderer, controls;
-
+ 
 /**
  * Sets up the scene, camera, renderer, lights and controls and starts the animation
  */
@@ -492,7 +593,8 @@ function init() {
   // camera.position.set(1, -1, 1) // like perspective view
   camera.position.x = 5;
   camera.position.y = 1;
-  camera.position.z = 0.5;
+  camera.position.z = 0.7;
+  camera.lookAt( scene.position)
 
   // create the renderer and add it to the html
   renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -519,49 +621,23 @@ function init() {
   animate();
 }
 
-/**
- * Called when a slider value changes in the UI. Collect all of the
- * slider values and call compute to solve for a new scene
- */
-// function onSliderChange() {
-//   showSpinner(true);
-//   // get slider values
-//   let inputs = {};
-//   for (const input of document.getElementsByTagName("input")) {
-//     switch (input.type) {
-//       case "number":
-//         inputs[input.id] = input.valueAsNumber;
-//         break;
-//       case "range":
-//         inputs[input.id] = input.valueAsNumber;
-//         break;
-//       case "checkbox":
-//         inputs[input.id] = input.checked;
-//         break;
-//     }
-//   }
-
-//   data.inputs = inputs;
-
-//   compute();
-// }
 
 /**
  * The animation loop!
  */
-// function animate() {
-//   requestAnimationFrame(animate);
-//   controls.update();
-//   renderer.render(scene, camera);
-//   scene.rotation.z += 0.000002;
-//   scene.rotation.y += 0.0;
-//   scene.rotation.x += 0.0;
-// }
-
-var animate = function () {
+function animate() {
   requestAnimationFrame(animate);
+  controls.update();
   renderer.render(scene, camera);
-};
+  scene.rotation.z += 0.0002;
+  scene.rotation.y += 0.0;
+  scene.rotation.x += 0.0;
+}
+
+// var animate = function () {
+//   requestAnimationFrame(animate);
+//   renderer.render(scene, camera);
+// };
 
 /**
  * Helper function for window resizes (resets the camera pov and renderer size)
