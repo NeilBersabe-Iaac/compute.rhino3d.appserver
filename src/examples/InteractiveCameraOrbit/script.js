@@ -45,6 +45,7 @@ const interactionManager = new InteractionManager(
     cyan: createDonuts({ color: 0x7accc8, x: -50, y: -20 })
   };
 
+  
 //Adding click handler
 for (const [name, object] of Object.entries(donuts)) {
   object.addEventListener("click", (event) => {
@@ -54,8 +55,13 @@ for (const [name, object] of Object.entries(donuts)) {
     console.log(`${name} donut was clicked`);
     //identify the starting and the target point
     const donut = event.target;
-    var tween = new TWEEN.Tween(camera.lookAt( donut.position),5)
-    .start();
+    const coords = { x: camera.position.x, y: camera.position.y };
+    new TWEEN.Tween(coords)
+      .to({ x: donut.position.x, y: donut.position.y })
+      .onUpdate(() =>
+        camera.position.set(coords.x, coords.y, camera.position.z)
+      )
+      .start();
   });
   
   interactionManager.add(object);

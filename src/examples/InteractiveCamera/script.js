@@ -49,9 +49,11 @@ for (const [name, object] of Object.entries(donuts)) {
     console.log(`${name} donut was clicked`);
     //identify the starting and the target point
     const donut = event.target;
-    const coords = { x: camera.position.x, y: camera.position.y };
-    //using tween function to smoothly move from one position to another one
-    var tween = new TWEEN.Tween(coords)
+    /* camera.position.set(donut.position.x, donut.position.y, camera.position.z); */
+
+      const coords = { x: camera.position.x, y: camera.position.y };
+      //using tween function to smoothly move from one position to another one
+      var tween = new TWEEN.Tween(coords)
       .to({ x: donut.position.x, y: donut.position.y })
       .onUpdate(() =>
         camera.position.set(coords.x, coords.y, camera.position.z)
