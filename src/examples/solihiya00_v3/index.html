@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="data:,">
+        <title>S O L I H I Y A</title>
+
+        <link rel="stylesheet" href="style.css">
+        <!-- <style>
+            body {
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            canvas { width: 100%; height: 100%; }
+            input[type=range] { width: 100%; }
+            #container { position: relative; }
+            #container canvas, #overlay { position: absolute; }
+            #overlay { z-index: 1; width: 100%; }
+            #overlay div { padding: 5px; }
+            #loader {
+                border: 5px solid #f3f3f3; /* Light grey */
+                border-top: 5px solid #3d3d3d; /* Grey */
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style> -->
+    </head>
+    <body>
+        <div id="loader"></div> 
+        <div id="container">
+            <div id="overlay">
+                <div id="header00">            
+                        <h1>S O L I H I Y A</h1> 
+                        <br><div class="text1"><h3>- Neil John Bersabe </h3> 
+                             </div>
+        
+                            
+                            
+                    
+
+                    <div>/////////////////////</div>
+                    <div>
+                        <h3><u>PARAMETERS</u> </h3></div>
+                    <div>
+                        <label for="RH_IN: zHeight">Z Height</label>
+                        <input type="range" id="RH_IN: zHeight" class="slider0" name="zHeight" min="1" max="250" value="65" step="1">
+                    </div>
+                    <div>
+                        <label for="RH_IN: solAngle">Solar Angle</label>
+                        <input type="range" id="RH_IN: solAngle" class="slider0" name="solAngle" min="0" max="180" value="150" step="1">
+                    </div>
+                    <div>
+                        <label for="RH_IN: toD">Time of Day</label>
+                        <input type="range" id="RH_IN: toD" class="slider0" name="toD" min="1" max="9" value="5" step="1">
+                    </div>
+                    <div>
+                        <label for="RH_IN: smlOpening">Small Opening</label>
+                        <input type="range" id="RH_IN: smlOpening" class="slider0" name="smlOpening" min="0" max="45" value="5" step="1">
+                    </div>
+                    <div>
+                        <label for="RH_IN: lrgOpening">Large Opening</label>
+                        <input type="range" id="RH_IN: lrgOpening" class="slider0" name="lrgOpening" min="0" max="45" value="45" step="1">
+                    </div>
+                    <div>/////////////////////</div> 
+                    <div>
+                       <h3><u>VEGETATION</u> </h3></div>
+                    <div>
+                        <label for="Show Trees">Add Trees</label>
+                        <input type="checkbox" id="Show Trees" class="button1">
+                    </div>
+                    <div>
+                        <label for="RH_IN: Trees No">Trees Count</label>  
+                        <input type="range" id="RH_IN: Trees No" class="slider0" min="1" max="200" value="50" step="1">
+                      </div>
+                      <div>
+                          <label for="RH_IN: Trees Location">Trees Scattering</label>
+                          <input type="range" id="RH_IN: Trees Location" class="slider0" min="1" max="50" value="30" step="1">
+                        </div>
+                      <div>
+                          <label for="RH_IN: Trees Scale">Trees Scale</label>
+                          <input type="range" id="RH_IN: Trees Scale" class="slider0" min="0.1" max="3" value=".7" step=".1">
+                      </div>
+
+                      <br>
+                    <div>
+                        <label for="Show People">Add People</label>
+                        <input type="checkbox" id="Show People" class="button1">
+                    </div>
+                    <div>
+                        <label for="RH_IN: Population">Population</label>  
+                        <input type="range" id="RH_IN: Population" class="slider0" min="1" max="50" value="0" step="1">
+                      </div>
+                      <div>
+                          <label for="RH_IN: People Location">People Scattering</label>
+                          <input type="range" id="RH_IN: People Location" class="slider0" min="1" max="50" value="40" step="1">
+                        </div>
+                        <div>/////////////////////</div> 
+                        <h3><u>ANALYTICS</u></h3>
+
+                        <div>
+                            Insert data 1 here (Building Plot Area) <br>
+                            Insert data 2 here (Land Area) <br>
+                            Insert data 3 here (Surface Area Mesh) <br>
+                            
+                        </div>
+                        <div id="Button">
+                            <button id="downloadButton" onclick="download()" enabled> 
+                            Download the Model</button>
+                            <br>
+                            <br>
+                            <div id="logo">
+                            <img src="./assets/iaac_logo.png" width="120px"></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        
+        <script type="module" src="script.js"></script>
+            <!-- Data Inserted Here
+             -->
+
+
+
+
+    </body>
+</html>
