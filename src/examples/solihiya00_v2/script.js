@@ -43,7 +43,7 @@ lrgOpening_slider.addEventListener("touchend", onSliderChange, false);
 // const Annotation_Button = document.getElementById("RH_IN:Show Annotations");
 // Annotation_Button.addEventListener( 'change', onSliderChange, false
 
-const Showtrees = document.getElementById("RH_IN:Show Trees");
+const Showtrees = document.getElementById("Show Trees");
 Showtrees.addEventListener("change", onSliderChange, false);
 
 const TreesNo = document.getElementById("RH_IN:Trees No");
@@ -60,7 +60,7 @@ TreesScale.addEventListener("touchend", onSliderChange, false);
 
 ////
 
-const ShowPeople = document.getElementById("RH_IN:Show People");
+const ShowPeople = document.getElementById("Show People");
 ShowPeople.addEventListener("change", onSliderChange, false);
 
 const Population = document.getElementById("RH_IN:Population");
@@ -223,12 +223,12 @@ async function compute() {
       "RH_IN: lrgOpening": lrgOpening_slider.valueAsNumber,
       //Insert Annotation Checkbox here
       //
-      "RH_IN: Show Trees": Showtrees.checked,
+      "Show Trees": Showtrees.checked,
       "RH_IN: Tree Location": TreesLocation.valueAsNumber,
       "RH_IN: Trees Scale": TreesScale.valueAsNumber,
       "RH_IN: Trees No": TreesNo.valueAsNumber,
       //
-      "RH_IN: Show People": ShowPeople.checked,
+      "Show People": ShowPeople.checked,
       "RH_IN: People Location": PeopleLocation.valueAsNumber,
       "RH_IN: Population": Population.valueAsNumber,
 

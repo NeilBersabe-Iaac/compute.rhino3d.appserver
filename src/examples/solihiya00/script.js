@@ -18,23 +18,23 @@ const definition = 'Solihiya00_v3.gh';
 
 //////////////////////////
 // Set up sliders
-const zHeight_slider = document.getElementById("RH_IN: zHeight");
+const zHeight_slider = document.getElementById("RH_IN:zHeight");
 zHeight_slider.addEventListener("mouseup", onSliderChange, false);
 zHeight_slider.addEventListener("touchend", onSliderChange, false);
 
-const solAngle_slider = document.getElementById("RH_IN: solAngle");
+const solAngle_slider = document.getElementById("RH_IN:olAngle");
 solAngle_slider.addEventListener("mouseup", onSliderChange, false);
 solAngle_slider.addEventListener("touchend", onSliderChange, false);
 
-const toD_slider = document.getElementById("RH_IN: toD");
+const toD_slider = document.getElementById("RH_IN:toD");
 toD_slider.addEventListener("mouseup", onSliderChange, false);
 toD_slider.addEventListener("touchend", onSliderChange, false);
 
-const smlOpening_slider = document.getElementById("RH_IN: smlOpening");
+const smlOpening_slider = document.getElementById("RH_IN:smlOpening");
 smlOpening_slider.addEventListener("mouseup", onSliderChange, false);
 smlOpening_slider.addEventListener("touchend", onSliderChange, false);
 
-const lrgOpening_slider = document.getElementById("RH_IN: lrgOpening");
+const lrgOpening_slider = document.getElementById("RH_IN:lrgOpening");
 lrgOpening_slider.addEventListener("mouseup", onSliderChange, false);
 lrgOpening_slider.addEventListener("touchend", onSliderChange, false);
 
@@ -43,31 +43,31 @@ lrgOpening_slider.addEventListener("touchend", onSliderChange, false);
 // const Annotation_Button = document.getElementById("RH_IN:Show Annotations");
 // Annotation_Button.addEventListener( 'change', onSliderChange, false 
 
-const Showtrees = document.getElementById( 'RH_IN: Show Trees' )
+const Showtrees = document.getElementById( 'RH_IN:Show Trees' )
 Showtrees.addEventListener( 'change', onSliderChange, false )
 
-const TreesNo = document.getElementById( 'RH_IN: Trees No' )
+const TreesNo = document.getElementById( 'RH_IN:Trees No' )
 TreesNo.addEventListener( 'mouseup', onSliderChange, false )
 TreesNo.addEventListener( 'touchend', onSliderChange, false )
 
-const TreesLocation = document.getElementById( 'RH_IN: Trees Location' )
+const TreesLocation = document.getElementById( 'RH_IN:Trees Location' )
 TreesLocation.addEventListener( 'mouseup', onSliderChange, false )
 TreesLocation.addEventListener( 'touchend', onSliderChange, false )
 
-const TreesScale = document.getElementById( 'RH_IN: Trees Scale' )
+const TreesScale = document.getElementById( 'RH_IN:Trees Scale' )
 TreesScale.addEventListener( 'mouseup', onSliderChange, false )
 TreesScale.addEventListener( 'touchend', onSliderChange, false )
 
 ////
 
-const ShowPeople = document.getElementById( 'RH_IN: Show People' )
+const ShowPeople = document.getElementById( 'RH_IN:Show People' )
 ShowPeople.addEventListener( 'change', onSliderChange, false )
 
-const Population = document.getElementById( 'RH_IN: Population' )
+const Population = document.getElementById( 'RH_IN:Population' )
 Population.addEventListener( 'mouseup', onSliderChange, false )
 Population.addEventListener( 'touchend', onSliderChange, false )
 
-const PeopleLocation = document.getElementById( 'RH_IN: People Location' )
+const PeopleLocation = document.getElementById( 'RH_IN:People Location' )
 PeopleLocation.addEventListener( 'mouseup', onSliderChange, false )
 PeopleLocation.addEventListener( 'touchend', onSliderChange, false )
 
