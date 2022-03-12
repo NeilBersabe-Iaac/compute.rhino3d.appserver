@@ -71,6 +71,13 @@ ShowPeople.addEventListener("change", onSliderChange, false);
 // PeopleLocation.addEventListener("mouseup", onSliderChange, false);
 // PeopleLocation.addEventListener("touchend", onSliderChange, false);
 
+
+const ShowAnnot = document.getElementById("Show Annotations");
+ShowAnnot.addEventListener("change", onSliderChange, false);
+
+// const ShowShadow = document.getElementById("Shadow Analysis");
+// ShowShadow.addEventListener("change", onSliderChange, false);
+
 //Set up Buttons
 const downloadButton = document.getElementById("downloadButton");
 downloadButton.onclick = download;
@@ -288,6 +295,7 @@ function collectResults(responseJson) {
   let plotarea = "Slide to see Plot Area"
   let landarea = "Slide to see Land Area"
   let landDiameter = "Slide to see Diameter"
+  // let shadowArea = "Slide to see shadowArea"
 
   let zHeight = "Slide to see value"
   let solAngle = "Slide to see value"
@@ -340,6 +348,10 @@ function collectResults(responseJson) {
           // landarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
           landDiameter = Math.round(branch[j].data)
         }
+        // if (values[i].ParamName == "RH_OUT:shadowArea") {
+        //   // landarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+        //   shadowArea = Math.round(branch[j].data)
+        // }
 
 
         ///
@@ -400,6 +412,7 @@ function collectResults(responseJson) {
   document.getElementById('plotArea').innerText = "COVERED PLOT AREA = " + plotarea + " m²"
   document.getElementById('totalLandArea').innerText = "TOTAL LAND AREA = " + landarea + " m²"
   document.getElementById('landDiameter').innerText = "LAND DIAMETER = " + landDiameter + " m"
+  // document.getElementById('shadowArea').innerText = "SHADOW AREA = " + shadowArea + " m²"
 
   document.getElementById('zHeight').innerText = "Z Height = " + zHeight
   document.getElementById('solAngle').innerText = "Solar Altitude Angle = " + solAngle + "°"
@@ -594,7 +607,7 @@ function init() {
   camera.position.x = 5;
   camera.position.y = 1;
   camera.position.z = 0.7;
-  camera.lookAt( scene.position)
+  camera.lookAt(scene.position);
 
   // create the renderer and add it to the html
   renderer = new THREE.WebGLRenderer({ antialias: true });

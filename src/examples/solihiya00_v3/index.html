@@ -61,7 +61,7 @@
                     </div>
                     <div>
                         <label for="RH_IN: toD" id="toD">Time of Day</label>
-                        <input type="range" id="toD" class="slider0" name="toD" min="1" max="9" value="5" step="1">
+                        <input type="range" id="toD" class="slider0" name="toD" min="1" max="9" value="4" step="1">
                     </div>
                     <div>
                         <label for="RH_IN: smlOpening" id="smlOpening">Small Opening</label>
@@ -79,15 +79,15 @@
                         <input type="checkbox" id="Show Trees" class="button1">
                     </div>
                     <div>
-                        <label for="RH_IN: Trees No" id="treesNo">Trees Count</label>  
+                        <label for="treesNo" id="treesNo">Trees Count</label>  
                         <input type="range" id="treesNo" class="slider0" min="1" max="200" value="50" step="1">
                       </div>
                       <div>
-                          <label for="RH_IN: Trees Location" id="treesLocation">Trees Scattering</label>
+                          <label for="treesLocation" id="treesLocation">Trees Scattering</label>
                           <input type="range" id="treesLocation" class="slider0" min="1" max="50" value="30" step="1">
                         </div>
                       <div>
-                          <label for="RH_IN: Trees Scale" id="treesScale">Trees Scale</label>
+                          <label for="treesScale" id="treesScale">Trees Scale</label>
                           <input type="range" id="treesScale" class="slider0" min="0.10" max="3.00" value=".70" step=".10">
                       </div>
 
@@ -97,22 +97,31 @@
                         <input type="checkbox" id="Show People" class="button1">
                     </div>
                     <div>
-                        <label for="RH_IN: Population" id="population">Population</label>  
+                        <label for="population" id="population">Population</label>  
                         <input type="range" id="population" class="slider0" min="1" max="50" value="0" step="1">
-                      </div>
+                    </div>
                       <div>
-                          <label for="RH_IN: People Location" id="peopleLocation">People Scattering</label>
+                          <label for="peopleLocation" id="peopleLocation">People Scattering</label>
                           <input type="range" id="peopleLocation" class="slider0" min="1" max="50" value="40" step="1">
+                        </div>
+                        <div>
+                            <label for="Show Annotations">Show Annotations</label>
+                            <input type="checkbox" id="Show Annotations" class="button1">
                         </div>
                         <div><hr></div> 
                         <h3><u>ANALYTICS</u></h3>
-
+                        
                         <div class="analytics">
                             <div id="meshArea"> Slide to update mesh area</div><br>
                             <div id="plotArea"> Slide to update  plot area</div><br>
                             <div id="totalLandArea"> Slide to update land area</div><br>
                             <div id="landDiameter"> Slide to update diameter</div><br>
-
+                            <!-- <div>
+                                <label for="Shadow Analysis">Show Shadow Analysis</label>
+                                <input type="checkbox" id="Shadow Analysis" class="button1">
+                            </div> -->
+                            <!-- <div id="shadowArea">Run Analysis to show shadow area</div><br> -->
+                            
                         </div><hr>
                         <div id="Button">
                             <button id="downloadButton" onclick="download()" enabled> 
