@@ -599,13 +599,13 @@ function init() {
   ///
   // scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
 
-  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight,1,10000 );
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,1,10000 );
 
   // camera.position.set(1, -1, 1) // like perspective view
   camera.position.x = 2;
   camera.position.y = 1;
   camera.position.z = 1;
-  camera.zoom = 1;
+  // camera.zoom = 1;
   camera.lookAt(scene.position);
 
   // create the renderer and add it to the html
