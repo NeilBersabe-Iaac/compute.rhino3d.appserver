@@ -10,11 +10,11 @@ loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 
 // initialise 'data' object that will be used by compute()
 const data = {
-definition: "Solihiya00_v3b.gh",
+definition: "Solihiya00_v4test.gh",
     inputs: getInputs(),
 };
 
-const definition = "Solihiya00_v3b.gh";
+const definition = "Solihiya00_v4test.gh";
 
 // //////////////////////////
 // // Set up sliders
