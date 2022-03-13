@@ -10,11 +10,11 @@ loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 
 // initialise 'data' object that will be used by compute()
 const data = {
-definition: "Solihiya00_v3a.gh",
+definition: "Solihiya00_v3b.gh",
     inputs: getInputs(),
 };
 
-const definition = "Solihiya00_v3a.gh";
+const definition = "Solihiya00_v3b.gh";
 
 // //////////////////////////
 // // Set up sliders
@@ -311,9 +311,9 @@ function collectResults(responseJson) {
   let peopleLocation = "Slide to see value"
 
   // clear doc
-  try {
+  // try {
     if (doc !== undefined) doc.delete();
-  } catch {}
+  // } catch {}
 
   //console.log(values)
   doc = new rhino.File3dm();
@@ -349,7 +349,7 @@ function collectResults(responseJson) {
           landDiameter = Math.round(branch[j].data)
         }
         // if (values[i].ParamName == "RH_OUT:shadowArea") {
-        //   // landarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
+          // landarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
         //   shadowArea = Math.round(branch[j].data)
         // }
 
@@ -397,7 +397,7 @@ function collectResults(responseJson) {
         }
 
 
-        console.log(values[i].ParamName)
+        // console.log(values[i].ParamName)
 
         if (rhinoObject !== null) {
           doc.objects().add(rhinoObject, null);
@@ -408,24 +408,24 @@ function collectResults(responseJson) {
 
   // //GET VALUES
   
-  document.getElementById('meshArea').innerText = "MESH SURFACE AREA = " + mesharea + " m²"
-  document.getElementById('plotArea').innerText = "COVERED PLOT AREA = " + plotarea + " m²"
-  document.getElementById('totalLandArea').innerText = "TOTAL LAND AREA = " + landarea + " m²"
-  document.getElementById('landDiameter').innerText = "LAND DIAMETER = " + landDiameter + " m"
-  // document.getElementById('shadowArea').innerText = "SHADOW AREA = " + shadowArea + " m²"
+  document.getElementById('meshArea').innerText = "MESH SURFACE AREA = " + mesharea + " m²";
+  document.getElementById('plotArea').innerText = "COVERED PLOT AREA = " + plotarea + " m²";
+  document.getElementById('totalLandArea').innerText = "TOTAL LAND AREA = " + landarea + " m²";
+  document.getElementById('landDiameter').innerText = "LAND DIAMETER = " + landDiameter + " m";
+  // document.getElementById('shadowArea').innerText = "SHADOW AREA = " + shadowArea + " m²";
 
-  document.getElementById('zHeight').innerText = "Z Height = " + zHeight
-  document.getElementById('solAngle').innerText = "Solar Altitude Angle = " + solAngle + "°"
-  document.getElementById('toD').innerText = "Time of Day = " + toD
-  document.getElementById('smlOpening').innerText = "Small Opening Size = " + smlOpening
-  document.getElementById('lrgOpening').innerText = "Large Opening Size = " + lrgOpening
+  document.getElementById('zHeight').innerText = "Z Height = " + zHeight;
+  document.getElementById('solAngle').innerText = "Solar Altitude Angle = " + solAngle + "°";
+  document.getElementById('toD').innerText = "Time of Day = " + toD;
+  document.getElementById('smlOpening').innerText = "Small Opening Size = " + smlOpening;
+  document.getElementById('lrgOpening').innerText = "Large Opening Size = " + lrgOpening;
 
-  document.getElementById('treesNo').innerText = "Tree Quantity = " + treesNo
-  document.getElementById('treesLocation').innerText = "Trees Scattering = " + treesLocation
-  document.getElementById('treesScale').innerText = "Trees Scale = " + treesScale
+  document.getElementById('treesNo').innerText = "Tree Quantity = " + treesNo;
+  document.getElementById('treesLocation').innerText = "Trees Scattering = " + treesLocation;
+  document.getElementById('treesScale').innerText = "Trees Scale = " + treesScale;
   
-  document.getElementById('population').innerText = "Population = " + population
-  document.getElementById('peopleLocation').innerText = "People Scattering = " + peopleLocation
+  document.getElementById('population').innerText = "Population = " + population;
+  document.getElementById('peopleLocation').innerText = "People Scattering = " + peopleLocation;
 
   ////////////////////////////
   // let objects = doc.objects();
