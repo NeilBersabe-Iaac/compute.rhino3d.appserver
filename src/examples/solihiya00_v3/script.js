@@ -10,11 +10,11 @@ loader.setLibraryPath("https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/");
 
 // initialise 'data' object that will be used by compute()
 const data = {
-definition: "Solihiya00_v4test.gh",
+definition: "Solihiya00_v4.gh",
     inputs: getInputs(),
 };
 
-const definition = "Solihiya00_v4test.gh";
+const definition = "Solihiya00_v4.gh";
 
 // //////////////////////////
 // // Set up sliders
@@ -75,8 +75,8 @@ ShowPeople.addEventListener("change", onSliderChange, false);
 const ShowAnnot = document.getElementById("Show Annotations");
 ShowAnnot.addEventListener("change", onSliderChange, false);
 
-// const ShowShadow = document.getElementById("Shadow Analysis");
-// ShowShadow.addEventListener("change", onSliderChange, false);
+const ShowShadow = document.getElementById("Shadow Analysis");
+ShowShadow.addEventListener("change", onSliderChange, false);
 
 //Set up Buttons
 const downloadButton = document.getElementById("downloadButton");
@@ -295,7 +295,7 @@ function collectResults(responseJson) {
   let plotarea = "Slide to see Plot Area"
   let landarea = "Slide to see Land Area"
   let landDiameter = "Slide to see Diameter"
-  // let shadowArea = "Slide to see shadowArea"
+  let shadowArea = "Run Shadow Analysis to see area"
 
   let zHeight = "Slide to see value"
   let solAngle = "Slide to see value"
@@ -348,10 +348,10 @@ function collectResults(responseJson) {
           // landarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
           landDiameter = Math.round(branch[j].data)
         }
-        // if (values[i].ParamName == "RH_OUT:shadowArea") {
+        if (values[i].ParamName == "RH_OUT:shadowArea") {
           // landarea = JSON.parse(responseJson.values[i].InnerTree['{ 0; }'][0].data)
-        //   shadowArea = Math.round(branch[j].data)
-        // }
+          shadowArea = Math.round(branch[j].data)
+        }
 
 
         ///
@@ -412,7 +412,7 @@ function collectResults(responseJson) {
   document.getElementById('plotArea').innerText = "COVERED PLOT AREA = " + plotarea + " m²";
   document.getElementById('totalLandArea').innerText = "TOTAL LAND AREA = " + landarea + " m²";
   document.getElementById('landDiameter').innerText = "LAND DIAMETER = " + landDiameter + " m";
-  // document.getElementById('shadowArea').innerText = "SHADOW AREA = " + shadowArea + " m²";
+  document.getElementById('shadowArea').innerText = "SHADOW AREA = " + shadowArea + " m²";
 
   document.getElementById('zHeight').innerText = "Z Height = " + zHeight;
   document.getElementById('solAngle').innerText = "Solar Altitude Angle = " + solAngle + "°";
@@ -596,17 +596,13 @@ function init() {
   ///
   // scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
 
-  camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    1,
-    10000
-  );
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight,1,10000 );
 
   // camera.position.set(1, -1, 1) // like perspective view
-  camera.position.x = 5;
+  camera.position.x = 2;
   camera.position.y = 1;
-  camera.position.z = 0.7;
+  camera.position.z = 1;
+  camera.zoom = 1;
   camera.lookAt(scene.position);
 
   // create the renderer and add it to the html
@@ -622,11 +618,28 @@ function init() {
 
   // add a directional light
   const directionalLight = new THREE.DirectionalLight(0xffffff);
-  directionalLight.intensity = 2;
+  directionalLight.intensity = 1.5;
   scene.add(directionalLight);
 
   const ambientLight = new THREE.AmbientLight();
   scene.add(ambientLight);
+
+  scene.add( new THREE.AmbientLight( 0xf1e3c9, 1 ) )
+  const light = new THREE.DirectionalLight( 0xf1e3c9, 1 )
+  light.position.set( 200, 800, 300 )
+  light.position.multiplyScalar( 5000 )
+  light.castShadow = true;
+  light.shadow.mapSize.width = 1024;
+  light.shadow.mapSize.height = 1024;
+  const d = 500;
+  light.shadow.camera.left = - d;
+  light.shadow.camera.right = d;
+  light.shadow.camera.top = d;
+  light.shadow.camera.bottom = - d;
+  light.shadow.camera.far = 2000;
+  scene.add( light );
+
+
 
   // handle changes in the window size
   window.addEventListener("resize", onWindowResize, false);
@@ -642,7 +655,7 @@ function animate() {
   requestAnimationFrame(animate);
   controls.update();
   renderer.render(scene, camera);
-  scene.rotation.z += 0.0002;
+  scene.rotation.z += 0.00015;
   scene.rotation.y += 0.0;
   scene.rotation.x += 0.0;
 }

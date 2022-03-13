@@ -55,7 +55,7 @@ canvas { width: 100%; height: 100%; }
 }
 
 div.analytics{
-    margin-top: 15px;
+    margin-top: 5px;
     color: orange;
     font-weight: bolder;
 }
@@ -82,9 +82,14 @@ h3{
     margin-top: 0%;
     margin-bottom: 0%;
 }
+h4{
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-size: smaller;
+}
 span.a{
     display: inline-block;
-    width: 70%;
+    width: 50%;
 }
 span.b{
     display: inline-block;
