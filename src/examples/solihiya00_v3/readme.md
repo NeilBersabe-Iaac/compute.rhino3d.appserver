@@ -43,7 +43,7 @@ Format: (ParamName) - (Name),(Description); (DomainValueMin, DomainValueMax)
 
 
 ## _LINKS
-- [Link to my Rhino.compute repo](https://github.com/NeilBersabe-Iaac/compute.rhino3d.appserver/tree/main/src/examples/solihiya00_v3)
+- [Link to my Rhino.compute Repository](https://github.com/NeilBersabe-Iaac/compute.rhino3d.appserver/tree/main/src/examples/solihiya00_v3)
 - [Link to the Heroku App](https://bimsc22-neiljohnbersabe.herokuapp.com/examples/solihiya00_v3/)
 - [Link to Github Pages (Landing Page)](https://neilbersabe-iaac.github.io/IAAC-BIMSC-FINAL/)
 
