@@ -2,7 +2,7 @@
 //Iaac-Macad-Bimsc.DataMgt-FinalProject.Neil John Bersabe
 
 
-![](/images/Finals.jpg?raw=true)
+![](/src/examples/solihiya00_v3/images//images/Finals.jpg?raw=true)
 
 ## _PROJECT DESCRIPTION
 Solihiya is a parametric pavilion configurator based from the Philippine sunburst weaving pattern of the same name. 
