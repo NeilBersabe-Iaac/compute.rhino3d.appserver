@@ -537,6 +537,7 @@ function init() {
     .setPath("./assets/")
     .load(["px.jpg", "nx.jpg", "py.jpg", "ny.jpg", "pz.jpg", "nz.jpg"]);
   scene.background = cubeMap;
+  // material.envMap = scene.background;
 
   // very light grey for background, like rhino
   //   scene.background = new THREE.Color("whitesmoke");
