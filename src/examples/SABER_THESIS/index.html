@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="data:,">
+        <title>RE:SETTLE</title>
+
+        <link rel="stylesheet" href="style.css">
+        <!-- <style>
+            body {
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            canvas { width: 100%; height: 100%; }
+            input[type=range] { width: 100%; }
+            #container { position: relative; }
+            #container canvas, #overlay { position: absolute; }
+            #overlay { z-index: 1; width: 100%; }
+            #overlay div { padding: 5px; }
+            #loader {
+                border: 5px solid #f3f3f3; /* Light grey */
+                border-top: 5px solid #3d3d3d; /* Grey */
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style> -->
+    </head>
+    <body>
+        <div id="loader"></div> 
+        <div id="container">
+            <div id="overlay">
+                <div id="header00">            
+                        <h1>RE: SETTLE</h1> 
+                        <br><div class="text1"><h4>© Neil John Bersabe </h4> 
+                             </div>
+        
+                            
+                    <div><hr style="margin: 0%;"></div>
+                    <div>
+                        <h3><u>PARAMETERS</u> </h3></div>
+                    <div>
+                        <label for="Aggregation_Count" id="Aggregation_Count">Module Count</label>
+                        <input type="range" id="Aggregation_Count" class="slider0" name="Aggregation_Count" min="20" max="500" value="80" step="1">
+                    </div>
+                    <div>
+                        <label for="House1_Ratio" id="House1_Ratio">House 1 Ratio</label>
+                        <input type="range" id="House1_Ratio" class="slider0" name="House1_Ratio" min="1" max="100" value="30" step="1">
+                    </div>
+                    <div>
+                        <label for="House2_Ratio" id="House2_Ratio">House 2 Ratio</label>
+                        <input type="range" id="House2_Ratio" class="slider0" name="House2_Ratio" min="1" max="100" value="11" step="1">
+                    </div>
+                    <div>
+                        <label for="Parklet_Ratio" id="Parklet_Ratio">Parklet Ratio</label>
+                        <input type="range" id="Parklet_Ratio" class="slider0" name="Parklet_Ratio" min="1" max="100" value="20" step="1">
+                    </div>
+                    <div>
+                        <label for="Market_Ratio" id="Market_Ratio">Market Ratio</label>
+                        <input type="range" id="Market_Ratio" class="slider0" name="Market_Ratio" min="1" max="100" value="10" step="1">
+                    </div>
+                    <div>
+                        <label for="Store_Ratio" id="Store_Ratio">Store Ratio</label>
+                        <input type="range" id="Store_Ratio" class="slider0" name="Store_Ratio" min="1" max="100" value="30" step="1">
+                    </div>
+                    <div>
+                        <label for="Park_Ratio" id="Park_Ratio">Park Ratio</label>
+                        <input type="range" id="Park_Ratio" class="slider0" name="Park_Ratio" min="1" max="100" value="40" step="1">
+                    </div>
+                    <div><hr style="margin: 0%;"></div> 
+                    <div>
+                       <h3><u>CIRCULATION</u> </h3></div>
+                    <!-- <div>
+                        <label for="Show Trees" class="switch">Add Trees </label>
+                            <input type="checkbox" id="Show Trees" class="button1" checked>                 
+                    </div> -->
+
+                    <div>
+                        <label for="Bend_S_Ratio" id="Bend_S_Ratio">Bent Bridge Small Ratio</label>  
+                        <input type="range" id="Bend_S_Ratio" class="slider0" min="1" max="50" value="8" step="1">
+                      </div>
+                    <div>
+                        <label for="Bend_L_Ratio" id="Bend_L_Ratio">Bent Bridge Small Ratio</label>  
+                        <input type="range" id="Bend_L_Ratio" class="slider0" min="1" max="50" value="8" step="1">
+                      </div>
+                    <div>
+                        <label for="Bridge_Ratio" id="Bridge_Ratio">Bridge Ratio</label>  
+                        <input type="range" id="Bridge_Ratio" class="slider0" min="1" max="50" value="6" step="1">
+                      </div>
+                    <div>
+                        <label for="Core_Ratio" id="Core_Ratio">Core Ratio</label>  
+                        <input type="range" id="Core_Ratio" class="slider0" min="1" max="50" value="20" step="1">
+                      </div>
+                    <div>
+                        <label for="Stair_Ratio" id="Stair_Ratio">Stair Ratio</label>  
+                        <input type="range" id="Stair_Ratio" class="slider0" min="1" max="50" value="8" step="1">
+                      </div>
+                    <div>
+                        <label for="Balcony_Ratio" id="Balcony_Ratio">Balcony Ratio</label>  
+                        <input type="range" id="Balcony_Ratio" class="slider0" min="1" max="50" value="8" step="1">
+                      </div>
+
+                      
+                        <div><hr style="margin: 0%;"></div> 
+                        <!-- <h3><u>ANALYTICS</u></h3>
+                        
+                        <div class="analytics">
+                            <div id="meshArea"> Slide to update mesh area</div>
+                            <div id="plotArea"> Slide to update  plot area</div>
+                            <div id="totalLandArea"> Slide to update land area</div>
+                            <div id="landDiameter"> Slide to update diameter</div>
+                            <div id="shadowArea">Run Analysis to show shadow area</div>
+                            
+                        </div><hr> -->
+                        <div id="Button">
+                            <button id="downloadButton" onclick="download()" enabled> 
+                            Download the Model</button>
+                            <br>
+                            <br>
+                            <div id="logo">
+                            <img src="./assets/iaac_logo.png" width="120px"></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <script type="module" src="script.js"></script>
+            <!-- Data Inserted Here
+             -->
+
+
+    </body>
+</html>
