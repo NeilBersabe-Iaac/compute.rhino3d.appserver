@@ -9,6 +9,18 @@
 
     </head>
     <body>
+<!-- SIDE PANEL SETTINGS -->
+<!-- <div id="mySidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div> -->
+  
+  <!-- <button class="openbtn" onclick="openNav()">☰ Toggle Sidepanel</button>   -->
+<!-- SIDE PANEL SETTINGS OFF-->
+
         <div id="loader"></div> 
         <div id="container">
             <div id="overlay">
@@ -64,7 +76,7 @@
                     <!-- <div><hr style="margin: 0%;"></div>  -->
                     <!-- <div>
                        <h3><u>CIRCULATION</u> </h3></div> -->
-             E       <!-- <div>
+                    <!-- <div>
                         <label for="Show Trees" class="switch">Add Trees </label>
                             <input type="checkbox" id="Show Trees" class="button1" checked>                 
                     </div> -->
@@ -113,14 +125,102 @@
                             <img src="./assets/iaac_logo.png" width="120px"></div>
                             <br>
                         </div>
-                    </div>
+                </div>
             </div>
+                <div class="analysis">
+                    <h2>Design Analytics</h2>
+                    <br>
+                    <p>The map shows an overlay of different housing types and the different projected inundation maps of Davao City, Philippines.  The map allows the ability to catalogue the buildings typologies affected by flooding. <br><br>
+                        <ul style="list-style-type:none">
+                            <li>CHART</li>
+                            <li>Houses2 - XXXX</li>
+                            <li>Houses - XXXX</li>
+                            <li>Houses - XXXX</li>
+                            <li>Houses - XXXX</li>
+                            <li>Houses - XXXX</li>
+                        </ul>
+                    </p>
+                    <!-- Add CHART.JS -->
+                    <div>
+                        <canvas id="myChart" 
+
+                        ></canvas>
+                    </div>
+                    <!-- <div>
+                        <canvas id="myChart2" ></canvas>
+                    </div> -->
+                    <!-- <ul class="actions">
+                        <li><a href="generic.html" class="button">Learn more</a></li>
+                    </ul> -->
+                </div>
         </div>
         
         <script type="module" src="script.js"></script>
-            <!-- Data Inserted Here
-             -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const labels = [
+              'COM IND',
+              'ENV QUAL',
+              'ACC IND',
+              'FLOOD IND',
+              'DENSE IND',
+            ];
+          
+            const data = {
+              labels: labels,
+              fontColor: '#008080',
+              datasets: [{
+                label: 'SCORE',
+                backgroundColor: '#FF7F5080',
+                borderColor: '#FF7F50',
+                
+                // hoverBackgroundColor:'#008080',
+                //
+                // fillColor : "rgba(255, 89, 114, 0.6)",
+                // strokeColor : "rgba(51, 51, 51, 1)",
+                // pointColor : "rgba(255, 89, 114, 1)",
+                // pointStrokeColor : "#fff",
+                // pointHighlightFill : "#fff",
+                // pointHighlightStroke : "rgba(151,187,205,1)",
+                // maintainAspectRatio: false,
+                data: [8, 10, 5, 12, 20],
+              }]
+            };
+          
+            // const config = {
+            //   type: 'line',
+            //   data: data,
+            //   options: {}
+            // };
 
+            const config = {
+            type: 'radar',
+            data: data,
+            options: {
+                // interaction: {
+                // intersect: false,
+                // mode: 'index',
+                // },
+                // plugins: {
+                    //     tooltip: {
+                        //     callbacks: {
+                            //     footer: footer,
+                            //     }
+                            // },
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'ANALYSIS METRICS'
+                }
+                }
+            // },
+            };
 
+            // 
+            const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+          </script>             
     </body>
 </html>

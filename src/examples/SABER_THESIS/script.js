@@ -3,7 +3,16 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/exampl
 import { Rhino3dmLoader } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js'
 import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js'
 
+/////////////////////////////////
+//LOAD SIDE PANEL
+// function openNav() {
+//   document.getElementById("mySidepanel").style.width = "250px";
+//   }
 
+//   function closeNav() {
+//   document.getElementById("mySidepanel").style.width = "0";
+//   }
+////////////////////////////////
 
 // set up loader for converting the results to threejs
 const loader = new Rhino3dmLoader()
@@ -84,9 +93,9 @@ let scene, camera, renderer, controls, raycaster, selectedMaterial;
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,1,10000 );
   
     // camera.position.set(1, -1, 1) // like perspective view
-    camera.position.x = 2;
-    camera.position.y = 1;
-    camera.position.z = 1;
+    camera.position.x = -100;
+    camera.position.y = -300;
+    camera.position.z = 150;
     // camera.zoom = 1;
     camera.lookAt(scene.position);
   
@@ -221,7 +230,7 @@ function collectResults(responseJson) {
         downloadButton.disabled = false
 
         // zoom to extents
-        zoomCameraToSelection(camera, controls, scene.children)
+        // zoomCameraToSelection(camera, controls, scene.children)
     })
 }
 
@@ -348,3 +357,7 @@ function showSpinner(enable) {
   else
     document.getElementById('loader').style.display = 'none'
 }
+
+///////////// CHART.JS LOAD HERE
+
+/////////////
