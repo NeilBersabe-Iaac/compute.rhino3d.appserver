@@ -20,7 +20,8 @@ loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
 
 // initialise 'data' object that will be used by compute()
 const data = {
-  definition: 'THESIS_MACAD_AGGREGATION_FOR_WEB3.gh',
+  // definition: 'THESIS_MACAD_AGGREGATION_FOR_WEB3.gh',
+  definition: 'THESIS_MACAD_AGGREGATION_FOR_WEB3_noanalysis.gh',
   inputs: getInputs()
 }
 
