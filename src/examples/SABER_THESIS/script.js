@@ -21,7 +21,7 @@ loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
 // initialise 'data' object that will be used by compute()
 const data = {
   // definition: 'THESIS_MACAD_AGGREGATION_FOR_WEB3.gh',
-  definition: 'THESIS_MACAD_AGGREGATION_FOR_WEB3_noanalysis.gh', 
+  definition: 'THESIS_MACAD_AGGREGATION_FOR_WEB4.gh', 
   inputs: getInputs()
 }
 
@@ -95,8 +95,8 @@ let scene, camera, renderer, controls, raycaster, selectedMaterial;
   
     // camera.position.set(1, -1, 1) // like perspective view
     camera.position.x = -100;
-    camera.position.y = -300;
-    camera.position.z = 150;
+    camera.position.y = -450;
+    camera.position.z = 200;
     // camera.zoom = 1;
     camera.lookAt(scene.position);
   
@@ -285,6 +285,9 @@ function animate() {
   requestAnimationFrame( animate )
   controls.update()
   renderer.render(scene, camera)
+  scene.rotation.z += 0.00015;
+  scene.rotation.y += 0.0;
+  scene.rotation.x += 0.0;
 }
 
 /**
