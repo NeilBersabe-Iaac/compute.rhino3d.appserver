@@ -2,7 +2,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.m
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js'
 import { Rhino3dmLoader } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js'
 import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js'
-
+import { TransformControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/TransformControls.js'
 /////////////////////////////////
 //LOAD SIDE PANEL
 // function openNav() {
@@ -25,6 +25,8 @@ const data = {
   inputs: getInputs()
 }
 
+let points = []
+
 // globals
 let rhino, doc
 
@@ -32,11 +34,76 @@ rhino3dm().then(async m => {
     rhino = m
 
     init()
+    rndPts()
     compute()
 })
 
 const downloadButton = document.getElementById("downloadButton")
 downloadButton.onclick = download
+
+
+
+
+function rndPts() {
+  // generate random points
+
+  const startPts = {x:33.160349,y: -83.034558,z: 0}
+
+  const cntPts = startPts.length
+
+  for (let i = 0; i < cntPts; i++) {
+    const x = startPts[i].x
+    const y = startPts[i].y
+    const z = startPts[i].z
+
+    const pt = "{\"X\":" + x + ",\"Y\":" + y + ",\"Z\":" + z + "}"
+
+    console.log( `x ${x} y ${y}` )
+
+    points.push(pt)
+
+    //viz in three
+    const icoGeo = new THREE.SphereGeometry(0.3)
+    const icoMat = new THREE.MeshNormalMaterial()
+    const ico = new THREE.Mesh( icoGeo, icoMat )
+    ico.name = 'ico'
+    ico.position.set( x, y, z)
+    scene.add( ico )
+    
+    let tcontrols = new TransformControls( camera, renderer.domElement )
+    tcontrols.enabled = true
+    tcontrols.attach( ico )
+    tcontrols.showZ = false
+    tcontrols.addEventListener( 'dragging-changed', onChange )
+    scene.add(tcontrols)
+    
+  }
+}
+
+let dragging = false
+function onChange() {
+  dragging = ! dragging
+  if ( !dragging ) {
+    // update points position
+    points = []
+    scene.traverse(child => {
+      if ( child.name === 'ico' ) {
+        const pt = "{\"X\":" + child.position.x + ",\"Y\":" + child.position.y + ",\"Z\":" + child.position.z + "}"
+        points.push( pt )
+        console.log(pt)
+      }
+    }, false)
+
+    compute()
+
+    controls.enabled = true
+    return 
+}
+
+  controls.enabled = false
+
+}
+
 
   /////////////////////////////////////////////////////////////////////////////
  //                            HELPER  FUNCTIONS                            //

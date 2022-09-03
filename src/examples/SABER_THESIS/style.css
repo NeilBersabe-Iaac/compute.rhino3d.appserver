@@ -151,16 +151,202 @@ span.b{
     100% { transform: rotate(360deg); }
 }   
 
+/* CHART.JS STYLES */
+.chartCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* gap: 5px; */
+  background: transparent;
+  backdrop-filter: blur(6px);
+}
+.chartBox {
+  width: 100%;
+  height: 340px;
+  /* padding: 2px; */
+
+}
+
+/* Menu */
+
+ul.menu {
+  list-style: none;
+  padding: 0;
+}
+
+  ul.menu > li {
+    border-left: solid 1px rgba(255, 255, 255, 0.15);
+    display: inline-block;
+    line-height: 1;
+    margin-left: 1.5em;
+    padding: 0 0 0 1.5em;
+  }
+
+    ul.menu > li:first-child {
+      border-left: 0;
+      margin: 0;
+      padding-left: 0;
+    }
+
+  @media screen and (max-width: 480px) {
+
+    ul.menu > li {
+      border-left: 0;
+      display: block;
+      line-height: inherit;
+      margin: 0.5em 0 0 0;
+      padding-left: 0;
+    }
+
+  }
+/* Button */
+
+input[type="button"],
+button,
+.button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: border-color 0.2s ease;
+  -webkit-transition: border-color 0.2s ease;
+  -ms-transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease;
+  background-color: transparent;
+  border: solid 1px !important;
+  border-color: #003535 !important;
+  border-radius: 3em;
+  color: #003535 !important;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.6em;
+  font-weight: bold;
+  height: calc(4.75em + 2px);
+  letter-spacing: 0.25em;
+  line-height: 4.75em;
+  outline: 0;
+  padding: 0 3.75em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+  input[type="button"]:after,
+  button:after,
+  .button:after {
+    -moz-transform: scale(0.25);
+    -webkit-transform: scale(0.25);
+    -ms-transform: scale(0.25);
+    transform: scale(0.25);
+    pointer-events: none;
+    -moz-transition: opacity 0.2s ease, -moz-transform 0.2s ease;
+    -webkit-transition: opacity 0.2s ease, -webkit-transform 0.2s ease;
+    -ms-transition: opacity 0.2s ease, -ms-transform 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    background: #003535;
+    border-radius: 3em;
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  input[type="button"].icon:before,
+  button.icon:before,
+  .button.icon:before {
+    margin-right: 0.75em;
+  }
+
+  input[type="button"].fit,
+  button.fit,
+  .button.fit {
+    width: 100%;
+  }
+
+  input[type="button"].small,
+  button.small,
+  .button.small {
+    font-size: 0.4em;
+  }
+
+  input[type="button"].large,
+  button.large,
+  .button.large {
+    font-size: 0.8em;
+  }
+
+  input[type="button"].primary,
+  button.primary,
+  .button.primary {
+    background-color: #ffffff;
+    color: #312450 !important;
+  }
+
+    input[type="button"].primary:after,
+    button.primary:after,
+    .button.primary:after {
+      display: none;
+    }
+
+  input[type="button"].disabled,
+  input[type="button"]:disabled,
+  button.disabled,
+  button:disabled,
+  .button.disabled,
+  .button:disabled {
+    cursor: default;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  input[type="button"]:hover,
+  button:hover,
+  .button:hover {
+    border-color: rgba(255, 255, 255, 0.55) !important;
+  }
+
+    input[type="button"]:hover:after,
+    button:hover:after,
+    .button:hover:after {
+      opacity: 0.05;
+      -moz-transform: scale(1);
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
+
+    input[type="button"]:hover:active,
+    button:hover:active,
+    .button:hover:active {
+      border-color: #ffffff !important;
+    }
+
+      input[type="button"]:hover:active:after,
+      button:hover:active:after,
+      .button:hover:active:after {
+        opacity: 0.1;
+      }
+
+
+
 /* STYLE SIDE PANELS */
 .analysis {
     position: absolute;
     right: 0;
-    width: 30em !important;
-    top: 40px;
+    width: 25em !important;
+    top: 5px;
     background: transparent;
     backdrop-filter: blur(6px);
     padding: 10px !important;
-    color: black;
+    /* color: black; */
+    color: #003535;
 }
 /* .sidepanel  {
     width: 0;
