@@ -1,27 +1,16 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.module.js'
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js'
 import { Rhino3dmLoader } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js'
-import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js'
+import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@7.14.0/rhino3dm.module.js'
 import { TransformControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/TransformControls.js'
-/////////////////////////////////
-//LOAD SIDE PANEL
-// function openNav() {
-//   document.getElementById("mySidepanel").style.width = "250px";
-//   }
-
-//   function closeNav() {
-//   document.getElementById("mySidepanel").style.width = "0";
-//   }
-////////////////////////////////
 
 // set up loader for converting the results to threejs
 const loader = new Rhino3dmLoader()
-loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
+loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@7.14.0/' )
 
 // initialise 'data' object that will be used by compute()
 const data = {
-  // definition: 'THESIS_MACAD_AGGREGATION_FOR_WEB3.gh',
-  definition: 'THESIS_MACAD_AGGREGATION_FOR_WEB4.gh', 
+  definition: 'MACAD_RESETTLE_Thesis.gh',
   inputs: getInputs()
 }
 
@@ -41,46 +30,44 @@ rhino3dm().then(async m => {
 const downloadButton = document.getElementById("downloadButton")
 downloadButton.onclick = download
 
-
-
-
+// rnd Points
 function rndPts() {
-  // generate random points
-
-  const startPts = {x:33.160349,y: -83.034558,z: 0}
-
-  const cntPts = startPts.length
-
-  for (let i = 0; i < cntPts; i++) {
-    const x = startPts[i].x
-    const y = startPts[i].y
-    const z = startPts[i].z
-
-    const pt = "{\"X\":" + x + ",\"Y\":" + y + ",\"Z\":" + z + "}"
-
-    console.log( `x ${x} y ${y}` )
-
-    points.push(pt)
-
-    //viz in three
-    const icoGeo = new THREE.SphereGeometry(0.3)
-    const icoMat = new THREE.MeshNormalMaterial()
-    const ico = new THREE.Mesh( icoGeo, icoMat )
-    ico.name = 'ico'
-    ico.position.set( x, y, z)
-    scene.add( ico )
-    
-    let tcontrols = new TransformControls( camera, renderer.domElement )
-    tcontrols.enabled = true
-    tcontrols.attach( ico )
-    tcontrols.showZ = false
-    tcontrols.addEventListener( 'dragging-changed', onChange )
-    scene.add(tcontrols)
-    
+    // generate random points
+  
+    const startPts = {x:33.160349,y: -83.034558,z: 0}
+  
+    const cntPts = startPts.length
+  
+    for (let i = 0; i < cntPts; i++) {
+      const x = startPts[i].x
+      const y = startPts[i].y
+      const z = startPts[i].z
+  
+      const pt = "{\"X\":" + x + ",\"Y\":" + y + ",\"Z\":" + z + "}"
+  
+      console.log( `x ${x} y ${y}` )
+  
+      points.push(pt)
+  
+      //viz in three
+      const icoGeo = new THREE.SphereGeometry(0.3)
+      const icoMat = new THREE.MeshNormalMaterial()
+      const ico = new THREE.Mesh( icoGeo, icoMat )
+      ico.name = 'ico'
+      ico.position.set( x, y, z)
+      scene.add( ico )
+      
+      let tcontrols = new TransformControls( camera, renderer.domElement )
+      tcontrols.enabled = true
+      tcontrols.attach( ico )
+      tcontrols.showZ = false
+      tcontrols.addEventListener( 'dragging-changed', onChange )
+      scene.add(tcontrols)
+      
+    }
   }
-}
 
-let dragging = false
+  let dragging = false
 function onChange() {
   dragging = ! dragging
   if ( !dragging ) {
@@ -103,6 +90,7 @@ function onChange() {
   controls.enabled = false
 
 }
+
 
 
   /////////////////////////////////////////////////////////////////////////////
@@ -143,49 +131,49 @@ let scene, camera, renderer, controls, raycaster, selectedMaterial;
 /**
  * Sets up the scene, camera, renderer, lights and controls and starts the animation
  */
- function init() {
+function init() {
+
     // Rhino models are z-up, so set this as the default
-    THREE.Object3D.DefaultUp = new THREE.Vector3(0, 0, 1);
-  
+    THREE.Object3D.DefaultUp = new THREE.Vector3( 0, 0, 1 );
+
     // create a scene and a camera
-    scene = new THREE.Scene();
-  
+    scene = new THREE.Scene()
+   
     let cubeMap;
     cubeMap = new THREE.CubeTextureLoader()
       .setPath("./assets/")
       .load(["px.jpg", "nx.jpg", "py.jpg", "ny.jpg", "pz.jpg", "nz.jpg"]);
     scene.background = cubeMap;
-  
-    // scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
-  
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight,1,10000 );
-  
+
+
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000)
     // camera.position.set(1, -1, 1) // like perspective view
+
     camera.position.x = -100;
     camera.position.y = -450;
     camera.position.z = 200;
-    // camera.zoom = 1;
+
     camera.lookAt(scene.position);
-  
+
     // create the renderer and add it to the html
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-  
+    renderer = new THREE.WebGLRenderer({ antialias: true })
+    renderer.setPixelRatio( window.devicePixelRatio )
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    document.body.appendChild(renderer.domElement)
+
     // add some controls to orbit the camera
-    controls = new OrbitControls(camera, renderer.domElement);
-    // controls.target.set(30, 39, 20);
+    controls = new OrbitControls(camera, renderer.domElement)
     controls.update();
-  
+
     // add a directional light
-    const directionalLight = new THREE.DirectionalLight(0xffffff);
+    const directionalLight = new THREE.DirectionalLight( 0xffffff )
     directionalLight.intensity = 1.5;
-    scene.add(directionalLight);
-  
-    const ambientLight = new THREE.AmbientLight();
-    scene.add(ambientLight);
-  
+    scene.add( directionalLight )
+
+    const ambientLight = new THREE.AmbientLight()
+    scene.add( ambientLight )
+
+    // add lights and views
     scene.add( new THREE.AmbientLight( 0xf1e3c9, 1 ) )
     const light = new THREE.DirectionalLight( 0xf1e3c9, 1 )
     light.position.set( 200, 800, 300 )
@@ -201,13 +189,12 @@ let scene, camera, renderer, controls, raycaster, selectedMaterial;
     light.shadow.camera.far = 2000;
     scene.add( light );
   
-  
-  
+
     // handle changes in the window size
-    window.addEventListener("resize", onWindowResize, false);
-  
-    animate();
-  }
+    window.addEventListener( 'resize', onWindowResize, false )
+
+    animate()
+}
 
 /**
  * Call appserver
@@ -428,7 +415,3 @@ function showSpinner(enable) {
   else
     document.getElementById('loader').style.display = 'none'
 }
-
-///////////// CHART.JS LOAD HERE
-
-/////////////
