@@ -19,37 +19,63 @@ The project aims to create a tool to analyze housing strategies by employing mac
 
 
 ## _INSTRUCTIONS (TO BE UPDATED)
-Play around the configuration of the pavilion as desired.  
+Play around the configuration of the site and building as desired.  
 You can download the 3dm geometries with the download button
 
 **PARAMETERS:**  
 Format: (ParamName) - (Name),(Description); (DomainValueMin, DomainValueMax)  
 
-**zHeight** - Moves the height of the pavillion; (0,250)  
-**solAngle** - solar angle, Move the altitude angle of the sun; (1,179)  
-**toD** - time of day, Moves the sun along the curve path; (1,9)  
-**smlOpening** - Small opening, Modifies the size of the small opening of the pavilion; (0,45)  
-**lrgOpening** - Large opening, Modifies the size of the large opening of the pavilion; (0,45) 
+**AGGREGATION COUNT** - Controls the total number of modules in the aggregation; (150,1000)  
+**RESET DESIGN** - Resets the aggregation; (boolean)  
+**POINT** - Controls the location of the building; (realtime)  
 
-**Add Trees** - Change visibility of the trees; (boolean)  
-**Trees Count** - Change the number of trees; (1,250)  
-**Trees Scattering** - A seed value to randomize the placement of trees; (1,50)  
-**Trees Scale** - Changes the size of the trees; (0.10,3.00)  
+**SHOW FLOOD MAP** - Controls the visibility of the Flood Map; (boolean)  
+**SHOW DETAILED BUIDLING** - Changes the level of detail of the aggregation; (boolean)
+**SHOW AGGREGATION BOUNDARY** - Controls the visibility of the Aggregation Boundary Area; (boolean) 
 
-**Add People** - Change visibility of people; (boolean)  
-**Population** - Changes the quantity of people; (1,50)  
-**People Location** - A seed value to randomize the placement of people; (1,50)  
+**Trees No** - Controls the number of trees within the site; (1,250)  
+**Trees Location** - Controls the distance of the trees from the build area; (1,50)  
+**Trees Scale** - Changes the size of the trees; (0.10,2.01) 
+**Show Trees** - Controls the visibility of the trees; (boolean)  
 
-**Show Annotations** - Change visibility of the annotations; (boolean)  
-**Show Shadow Analysis** - Shows the shadows cast on the plane as curves; (boolean)  
+**Other Buildings No.** - Controls the number of other buildings within the site; (1,10)  
+**Other Buildings Random** - Changes the randomness of the location of other buildings within the site; (1,10)  
+**Show Other Buildings** - Controls the visibility of other buildings within the site; (boolean)  
+
 
 **ANALYTICS:**  
-**Mesh Area** = Shows the total surface area covered by the pavilion  
-**Plot Area** = Shows the total area of the concrete plot under the pavilion as a grey area  
-**Land Area** = Shows the total Land Area of the mini planet  
-**Land Diameter** = Shows the Diameter of the planet  
-**Shadow Area** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate  
 
+**Res Density** = Shows the total surface area covered by the pavilion  
+**Pop Density** = Shows the total area of the concrete plot under the pavilion as a grey area  
+**DENSITY INDEX** = Shows the total Land Area of the mini planet  
+
+**Access to Exit** = Shows the Diameter of the planet  
+**Access to Green Spaces** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate  
+**Access to Amenities** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**ACCESSIBILITY INDEX SCORE** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate
+
+**ModElev_Housing** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**ModElev_Circulation** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**ModElev_Green Space** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**ModElev_Commercial** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**MODULE ELEVATION SCORE** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**High Risk** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Med Risk** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Safe/ Low Risk** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**FLOOD RISK RATING** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**FLOOD MITIGATION RISK SCORE** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate
+
+**Green Plot Ratio** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Surrounding Quality** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**ENVIRONMENTAL QUALITY** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+
+**Community Plot Ratio** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Civic Generosity Index** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Housing Zone Ratio** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Green Space Zone Ratio** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Commercial Zone Ratio** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**ZONING RATIO SCORE** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**COMMUNITY INDEX SCORE** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
 
 
 ## _LINKS
