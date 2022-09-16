@@ -87,14 +87,15 @@ Standards for ideal ratio of the spaces were set as follows:
 1 Store module: 5 Housing modules
 1 Market module: 20 Housing modules
 
-**Civic Generosity Index** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Civic Generosity Index** = Quantifies how accessible the development’s common spaces are to the public. The standard for the ideal walking distance was set to ≥ 60m.  
 
-**Housing Zone Ratio** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
-**Green Space Zone Ratio** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
-**Commercial Zone Ratio** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
-**ZONING RATIO SCORE** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**Housing Zone Ratio** = Refers to the proportion of Housing zone to the total gross floor area of the aggregation. Standards for ideal ratio of the spaces were set to ≥ 50%. 
+**Circulation Zone Ratio** = Refers to the proportion of Circulation zone to the total gross floor area of the aggregation. Standards for ideal ratio of the spaces were set to ≥ 30%. 
+**Green Space Zone Ratio** = Refers to the proportion of Green Space zone to the total gross floor area of the aggregation. Standards for ideal ratio of the spaces were set to ≥ 30%.  
+**Commercial Zone Ratio** = Refers to the proportion of Commercial zone to the total gross floor area of the aggregation. Standards for ideal ratio of the spaces were set to ≥ 15%. 
+**ZONING RATIO SCORE** = Refers to the proportion of each zone to the total gross floor area of the aggregation. 
 
-**COMMUNITY INDEX SCORE** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate 
+**COMMUNITY INDEX SCORE** = Measures how much community spaces it offers to occupants and the public. The overall score was quantified as the average of the 3 factors (Community Plot Ratio, Civic Generosity Index, and Zoning Ratio).
 
 
 ## _LINKS
