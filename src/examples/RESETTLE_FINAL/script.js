@@ -50,7 +50,7 @@ function rndPts() {
       points.push(pt)
   
       //viz in three
-      const icoGeo = new THREE.SphereGeometry(0.3)
+      const icoGeo = new THREE.IcosahedronGeometry(25)
       const icoMat = new THREE.MeshNormalMaterial()
       const ico = new THREE.Mesh( icoGeo, icoMat )
       ico.name = 'ico'
@@ -205,6 +205,7 @@ async function compute() {
   Object.keys(data.inputs).forEach(key => url.searchParams.append(key, data.inputs[key]))
   console.log(url.toString())
   
+
   try {
     const response = await fetch(url)
   
@@ -228,7 +229,13 @@ async function compute() {
 function collectResults(responseJson) {
 
     const values = responseJson.values
-
+// XXXXXXXXXXXXXXXXXXXXXXXX-------------------VALUES--------xxxxxxxxxxxxxxXXXXXXXX
+let den_IND = "Slide to see Density Index"
+let acc_IND = "Slide to see Accessibility Index"
+let fld_IND = "Slide to see Flood Mitigation Index"
+let env_IND = "Slide to see Environmental Index"
+let com_IND = "Slide to see Community Index"
+// XXXXXXXXXXXXXXXXXXXXXXXX-------------------/VALUES--------xxxxxxxxxxxxxxXXXXXXXX
     // clear doc
     if( doc !== undefined)
         doc.delete()
@@ -245,13 +252,47 @@ function collectResults(responseJson) {
         for( let j = 0; j < branch.length; j ++) {
           // ...load rhino geometry into doc
           const rhinoObject = decodeItem(branch[j])
+// XXXXXXXXXXXXXXXXXXXXXXXX-------------------VALUES--------xxxxxxxxxxxxxxXXXXXXXX
+          //GET VALUES
+          if (values[i].ParamName == "RH_OUT: DENSITY INDEX_0") {
+            den_IND = branch[j].data
+            console.log("Density Index =" + den_IND)
+          }
+          if (values[i].ParamName == "RH_OUT: ACCESSIBILITY INDEX SCORE") {
+            acc_IND = branch[j].data
+            console.log("Accessibility Index =" + acc_IND)
+          }
+          if (values[i].ParamName == "RH_OUT: FLOOD MITIGATION RISK SCORE") {
+            fld_IND = branch[j].data
+            console.log("Flood Mitigation Index =" + fld_IND)
+          }
+          if (values[i].ParamName == "RH_OUT: ENVIRONMENTAL QUALITY") {
+            env_IND = branch[j].data
+            console.log("Environmental Index =" + env_IND)
+          }
+          if (values[i].ParamName == "RH_OUT: COMMUNITY INDEX SCORE") {
+            com_IND = branch[j].data
+            console.log("Community Index =" + com_IND)
+          }
+// XXXXXXXXXXXXXXXXXXXXXXXX-------------------/VALUES--------xxxxxxxxxxxxxxXXXXXXXX
+
+
           if (rhinoObject !== null) {
             doc.objects().add(rhinoObject, null)
           }
         }
       }
     }
+// XXXXXXXXXXXXXXXXXXXXXXXX-------------------VALUES--------xxxxxxxxxxxxxxXXXXXXXX
 
+     //GET VALUES
+     document.getElementById('den_IND').innerText = "// DENSITY = " + den_IND
+     document.getElementById('acc_IND').innerText = "// ACCESSIBILITY = " + acc_IND
+     document.getElementById('fld_IND').innerText = "// FLOOD = " + fld_IND
+     document.getElementById('env_IND').innerText = "// ENVIRONMENT = " + env_IND
+     document.getElementById('com_IND').innerText = "// COMMUNITY = " + com_IND
+
+// XXXXXXXXXXXXXXXXXXXXXXXX-------------------/VALUES--------xxxxxxxxxxxxxxXXXXXXXX
     if (doc.objects().count < 1) {
       console.error('No rhino objects to load!')
       showSpinner(false)
@@ -415,3 +456,42 @@ function showSpinner(enable) {
   else
     document.getElementById('loader').style.display = 'none'
 }
+
+          /////////////////////
+          ////     RADAR CHART
+          /////////////////////    
+          let den_chart = parseFloat(den_IND)
+          let acc_chart = parseFloat(acc_IND)
+          let fld_chart = parseFloat(fld_IND)
+          let env_chart = parseFloat(env_IND)
+          let com_chart = parseFloat(com_IND)
+
+
+          const myChart = new Chart(document.getElementById('myChart'),{
+            type: 'radar',
+            data: {
+              labels: ['Density','Accessibility','Flood Mitigation','Environment','Community'],
+              datasets: [
+                {
+                  label: 'PERFORMANCE SCORE',
+                  backgroundColor: '#FF7F5080',
+                  borderColor: '#FF7F50',
+                  data: [den_chart, acc_chart, fld_chart, env_chart, com_chart],
+                  
+                }
+              ]
+              
+            },
+            options: {
+              title: {
+                display: true,
+                text: 'ANALYSIS METRICS'
+              },
+              fontColor: '#008080',
+              color: '#003535',// affects words colour
+              // display: false,
+              // tickColor:"0000ff",
+              responsive: true,
+              }
+            }         
+          );

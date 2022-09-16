@@ -23,16 +23,16 @@
                   <input type="range" class="slider0" id="Aggregation_Count" min="150" value="150" max="1000">
                 </div>
                 <div>
-                  <label for="Reset_Design">Reset_Design</label>
-                  <input type="checkbox" id="Reset_Design" class="button1" checked>
+                  <label for="RESET DESIGN">RESET DESIGN</label>
+                  <input type="checkbox" id="RESET DESIGN" class="button1" checked>
                 </div>
                 <div>
-                  <label for="Show_FloodMap">Show_FloodMap</label>
-                  <input type="checkbox" id="Show_FloodMap" class="button1">
+                  <label for="SHOW FLOOD MAP">SHOW FLOOD MAP</label>
+                  <input type="checkbox" id="SHOW FLOOD MAP" class="button1">
                 </div>
                 <div>
-                  <label for="Show_Detailed Building">Show_Detailed Building</label>
-                  <input type="checkbox" id="Show_Detailed Building" class="button1">
+                  <label for="SHOW DETAILED BUILDING">SHOW DETAILED BUILDING</label>
+                  <input type="checkbox" id="SHOW DETAILED BUILDING" class="button1">
                 </div>
                 <div>
                   <label for="SHOW AGGREGATION BOUNDARY">SHOW AGGREGATION BOUNDARY</label>
@@ -76,7 +76,17 @@
                   </div>
                   <br>
                 </div>
+
+                <div class="analytics">
+                  <div id="den_IND"> Slide to update density</div>
+                  <div id="acc_IND"> Slide to update accessibility</div>
+                  <div id="fld_IND"> Slide to update flood mitigation</div>
+                  <div id="env_IND"> Slide to update environment</div>
+                  <div id="com_IND"> Slide to update community</div>
+
                 </div>
+
+              </div>
             </div>
             <div class="analysis">
               <ul class="menu">
@@ -106,36 +116,7 @@
         <script type="module" src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>    
-          /////////////////////
-          ////     RADAR CHART
-          /////////////////////    
-
-          const myChart = new Chart(document.getElementById('myChart'),{
-            type: 'radar',
-            data: {
-              labels: ['COM IND','ENV QUAL','ACC IND','FLOOD IND','DENS IND'],
-              datasets: [
-                {
-                  label: 'PERFORMANCE SCORE',
-                  backgroundColor: '#FF7F5080',
-                  borderColor: '#FF7F50',
-                  data: [0.85, 0.79, 0.85, 0.97, 0.75],
-                }
-              ]
-            },
-            options: {
-              title: {
-                display: true,
-                text: 'ANALYSIS METRICS'
-              },
-              fontColor: '#008080',
-              color: '#003535',// affects words colour
-              // display: false,
-              // tickColor:"0000ff",
-              responsive: true,
-              }
-            }         
-          );
+          
           /////////////////////
           ////     MODULE COUNT
           /////////////////////
