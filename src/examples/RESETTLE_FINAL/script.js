@@ -37,11 +37,11 @@ downloadButton.onclick = download
 function rndPts() {
     // generate random points
 
-    const startPts = {
+    const startPts = [{
         x: 33.160349,
         y: -83.034558,
         z: 0
-    }
+    }]
 
     const cntPts = startPts.length
 
@@ -57,8 +57,8 @@ function rndPts() {
         points.push(pt)
 
         //viz in three
-        const icoGeo = new THREE.IcosahedronGeometry(25)
-        const icoMat = new THREE.MeshNormalMaterial()
+        const icoGeo = new THREE.SphereGeometry(1)
+        const icoMat = new THREE.MeshNormalMaterial(50)
         const ico = new THREE.Mesh(icoGeo, icoMat)
         ico.name = 'ico'
         ico.position.set(x, y, z)
@@ -199,7 +199,6 @@ function init() {
     light.shadow.camera.bottom = -d;
     light.shadow.camera.far = 2000;
     scene.add(light);
-
 
     // handle changes in the window size
     window.addEventListener('resize', onWindowResize, false)
@@ -415,11 +414,18 @@ function collectResults(responseJson) {
         */
 
         // clear objects from scene. do this here to avoid blink
+        // scene.traverse(child => {
+        //     if (!child.isLight) {
+        //         scene.remove(child)
+        //     }
+        // })
         scene.traverse(child => {
-            if (!child.isLight) {
-                scene.remove(child)
+            if ( child.userData.hasOwnProperty( 'objectType' ) && child.userData.objectType === 'File3dm') {
+              scene.remove( child )
             }
-        })
+          })
+
+
 
         // add object graph from rhino model to three.js scene
         scene.add(object)
@@ -484,6 +490,7 @@ function animate() {
     controls.update()
     renderer.render(scene, camera)
     scene.rotation.z += 0.00005;
+    // scene.rotation.z += 0.0;
     scene.rotation.y += 0.0;
     scene.rotation.x += 0.0;
 }
@@ -594,7 +601,9 @@ function drawModuleCountChart(data) {
           x: {
             ticks: {color: '#003535'}
           },
-          y: {
+          y: {  
+                min: 0,
+                max: 100,
             ticks: {color: '#003535'}
           }
         },
@@ -626,7 +635,7 @@ function drawRadarChart(den_chart, acc_chart, fld_chart, env_chart, com_chart) {
                 label: 'EXISTING SCORE',
                 backgroundColor: '#00808060',
                 borderColor: '#008080',
-                data: [0.087, 0.983, 0.12680, 0.332, 0.80625],             
+                data: [0.087, 0.983, 0.12680, 0.1332, 0.60625],             
                         }
                     ]
         },
@@ -636,6 +645,8 @@ function drawRadarChart(den_chart, acc_chart, fld_chart, env_chart, com_chart) {
                 ticks: {color: '#003535'}
               },
               y: {
+                min: 0,
+                max: 1,
                 ticks: {color: '#003535'}
               }
           },
