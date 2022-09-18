@@ -246,6 +246,22 @@ function collectResults(responseJson) {
     let fld_IND = "Slide to see Flood Mitigation Index"
     let env_IND = "Slide to see Environmental Index"
     let com_IND = "Slide to see Community Index"
+
+    let agg_area = "Aggregation Boundary Area"
+    let pop_den = "Population Density"
+    let comZone_Ratio = "Commercial Zone Ratio"
+    let zonRatio_Score = "Housing Zone Ratio"
+    let mod_Green = "Elevation of Green Spaces"
+    let mod_Comm = "Elevation of Commercial Spaces"
+    let mod_score = "Module Elevations"
+    let med_risk = "Medium/High Risk Zones"
+    let low_risk = "Low Risk Zones"
+    
+    let aggre_count = "Module Count"
+    let tree_no = "Tree Number"
+    let tree_scale = "Tree Scale"
+    let bldg_no = "Building No"
+
     // XXXXXXXXXXXXXXXXXXXXXXXX-------------------/VALUES--------xxxxxxxxxxxxxxXXXXXXXX
     // clear doc
     if (doc !== undefined)
@@ -285,6 +301,66 @@ function collectResults(responseJson) {
                     com_IND = branch[j].data
                     console.log("Community Index =" + com_IND)
                 }
+
+                if (values[i].ParamName == "RH_OUT: AGG_BOUNDARY_AREA") {
+                    agg_area = parseFloat(branch[j].data).toFixed(2)
+                    console.log("Agg Boundary Area =" + agg_area)
+                }
+                if (values[i].ParamName == "RH_OUT: Pop Density") {
+                    pop_den = parseFloat(branch[j].data).toFixed(2)
+                    console.log("Pop Density =" + pop_den)
+                }
+                if (values[i].ParamName == "RH_OUT: Commercial Zone Ratio") {
+                    comZone_Ratio = parseFloat(branch[j].data).toFixed(2)
+                    console.log("Commercial Zone Ratio =" + comZone_Ratio)
+                }
+                if (values[i].ParamName == "RH_OUT: ZONING RATIO SCORE") {
+                    zonRatio_Score = parseFloat(branch[j].data).toFixed(2)
+                    console.log("Zoning Ratio Score =" + zonRatio_Score)
+                }
+                if (values[i].ParamName == "RH_OUT: ModElev_Green Space") {
+                    mod_Green = parseFloat(branch[j].data).toFixed(2)
+                    console.log("ModElev_Green Space =" + mod_Green)
+                }
+                if (values[i].ParamName == "RH_OUT: ModElev_Commercial") {
+                    mod_Comm = parseFloat(branch[j].data).toFixed(2)
+                    console.log("ModElev_Commercial =" + mod_Comm)
+                }
+                if (values[i].ParamName == "RH_OUT: ModElev_Green Space") {
+                    mod_Green = parseFloat(branch[j].data).toFixed(2)
+                    console.log("ModElev_Green Space =" + mod_Green)
+                }
+                if (values[i].ParamName == "RH_OUT: MODULE ELEVATION SCORE") {
+                    mod_score = parseFloat(branch[j].data).toFixed(2)
+                    console.log("MODULE ELEVATION SCORE =" + mod_score)
+                }
+                if (values[i].ParamName == "RH_OUT: Med Risk") {
+                    med_risk = parseFloat(branch[j].data).toFixed(2)
+                    console.log("Med Risk =" + med_risk)
+                }
+                if (values[i].ParamName == "RH_OUT: Safe/ Low Risk") {
+                    low_risk = parseFloat(branch[j].data).toFixed(2)
+                    console.log("Safe/ Low Risk =" + low_risk)
+                }
+
+
+                if (values[i].ParamName == "RH_OUT: Aggre_Count") {
+                    aggre_count = branch[j].data
+                    console.log("Module Count =" + aggre_count)
+                }
+                if (values[i].ParamName == "RH_OUT: Trees_No") {
+                    tree_no = branch[j].data
+                    console.log("Trees Number =" + tree_no)
+                }
+                if (values[i].ParamName == "RH_OUT: Trees_Scale") {
+                    tree_scale = branch[j].data
+                    console.log("Tree Scale =" + tree_scale)
+                }
+                if (values[i].ParamName == "RH_OUT: Bldg_No") {
+                    bldg_no = branch[j].data
+                    console.log("Number of Clusters =" + bldg_no)
+                }
+
                 // XXXXXXXXXXXXXXXXXXXXXXXX-------------------/VALUES--------xxxxxxxxxxxxxxXXXXXXXX
 
 
@@ -302,11 +378,28 @@ function collectResults(responseJson) {
     // XXXXXXXXXXXXXXXXXXXXXXXX-------------------VALUES--------xxxxxxxxxxxxxxXXXXXXXX
 
     //GET VALUES
-    document.getElementById('den_IND').innerText = "// DENSITY = " + den_IND
-    document.getElementById('acc_IND').innerText = "// ACCESSIBILITY = " + acc_IND
-    document.getElementById('fld_IND').innerText = "// FLOOD = " + fld_IND
-    document.getElementById('env_IND').innerText = "// ENVIRONMENT = " + env_IND
-    document.getElementById('com_IND').innerText = "// COMMUNITY = " + com_IND
+    // document.getElementById('den_IND').innerText = "// DENSITY = " + den_IND
+    // document.getElementById('acc_IND').innerText = "// ACCESSIBILITY = " + acc_IND
+    // document.getElementById('fld_IND').innerText = "// FLOOD = " + fld_IND
+    // document.getElementById('env_IND').innerText = "// ENVIRONMENT = " + env_IND
+    // document.getElementById('com_IND').innerText = "// COMMUNITY = " + com_IND
+    
+    ////////////////
+    
+    document.getElementById('agg_area').innerText = "Aggregation Boundary Area = " + agg_area
+    document.getElementById('pop_den').innerText = "Population Density = " + pop_den
+    document.getElementById('comZone_Ratio').innerText = "Commercial Zoning Ratio = " + comZone_Ratio
+    document.getElementById('zonRatio_Score').innerText = "House Zoning Ratio = " + zonRatio_Score
+    document.getElementById('mod_Green').innerText = "Green Elevation = " + mod_Green
+    document.getElementById('mod_Comm').innerText = "Commercial Elevation = " + mod_Comm
+    document.getElementById('mod_score').innerText = "Module Elevation = " + mod_score
+    document.getElementById('med_risk').innerText = "Medium/High Risk = " + med_risk
+    document.getElementById('low_risk').innerText = "Low Risk = " + low_risk
+    
+    document.getElementById('module_count').innerText = "Module Count = " + aggre_count
+    document.getElementById('tree_no').innerText = "Trees No = " + tree_no
+    document.getElementById('tree_scale').innerText = "Tree Scale = " + tree_scale
+    document.getElementById('bldg_no').innerText = "Number of Clusters = " + bldg_no
 
     // XXXXXXXXXXXXXXXXXXXXXXXX-------------------/VALUES--------xxxxxxxxxxxxxxXXXXXXXX
     if (doc.objects().count < 1) {
@@ -395,7 +488,7 @@ function animate() {
     requestAnimationFrame(animate)
     controls.update()
     renderer.render(scene, camera)
-    scene.rotation.z += 0.00015;
+    scene.rotation.z += 0.00005;
     scene.rotation.y += 0.0;
     scene.rotation.x += 0.0;
 }
@@ -457,7 +550,8 @@ function download() {
     })
 
     // use "hidden link" trick to get the browser to download the blob
-    const filename = data.definition.replace(/\.gh$/, '') + '.3dm'
+    // const filename = data.definition.replace(/\.gh$/, '') + '.3dm'
+    const filename = 'macad_thesis_bersabe.obj'
     const link = document.createElement('a')
     link.href = window.URL.createObjectURL(blob)
     link.download = filename
@@ -476,12 +570,12 @@ function showSpinner(enable) {
 
 function drawModuleCountChart(data) {
 
-  let chartLabels = [];
+//   let chartLabels = [];
   let chartData = [];
 
   data.forEach(obj => {
     if (obj.ParamName.includes('ModCount')) {
-      chartLabels.push(obj.ParamName);
+    //   chartLabels.push(obj.ParamName);
       chartData.push(obj.InnerTree['{0}'][0].data);
     }
   });
@@ -489,12 +583,13 @@ function drawModuleCountChart(data) {
   myModuleCountChart = new Chart(document.getElementById('myChart2'), {
     type: 'bar',
     data: {
-        labels: chartLabels,
+        labels: ['House A', 'House B', 'Park', 'Parklet', 'Balcony', 'Market', 'Store', 'Bridge_BendS', 'Bridge_BendL', 'Bridge', 'Core', 'Stair'],
         fontColor: '#008080',
         datasets: [{
             label: 'Module Count',
             backgroundColor: '#FF7F5080',
             borderColor: '#FF7F50',
+            // data: chartData,
             data: chartData,
         }]
     },
@@ -502,10 +597,10 @@ function drawModuleCountChart(data) {
         responsive: true,
         scales: {
           x: {
-            ticks: {color: 'black'}
+            ticks: {color: '#003535'}
           },
           y: {
-            ticks: {color: 'black'}
+            ticks: {color: '#003535'}
           }
         },
         title: {
@@ -530,17 +625,26 @@ function drawRadarChart(den_chart, acc_chart, fld_chart, env_chart, com_chart) {
             datasets: [{
                 label: 'PERFORMANCE SCORE',
                 backgroundColor: '#FF7F5080',
-                // borderColor: '#FF7F50',
+                borderColor: '#FF7F50',
                 data: [den_chart, acc_chart, fld_chart, env_chart, com_chart],
-            }]
+                        },{
+                label: 'EXISTING SCORE',
+                backgroundColor: '#00808060',
+                borderColor: '#008080',
+                data: [0.087, 0.983, 0.12680, 0.332, 0.80625],             
+                        }
+                    ]
         },
         options: {
           scale: {
-            gridLines: {
-              color: ['black', 'red', 'orange', 'yellow', 'green']
-            },
+            x: {
+                ticks: {color: '#003535'}
+              },
+              y: {
+                ticks: {color: '#003535'}
+              }
           },
-          borderColor: "#FF7F50",
+        //   borderColor: "#FF7F50",
           title: {
               display: true,
               text: 'ANALYSIS METRICS'
@@ -564,6 +668,3 @@ function destroyCharts()
   }
 }
 
-/////////////////////
-////     RADAR CHART
-/////////////////////    

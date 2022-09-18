@@ -35,10 +35,15 @@ canvas { width: 100%; height: 100%; }
 /* #overlay{z-index: 1; width: 100%
 } */
 
+#Button {
+margin: 10px;
+padding-left: 20px;
+}
+
 #downloadButton{
     background-color: transparent;
-    height:50px;
-    width: 250px;
+    height:25px;
+    width: 200px;
     color: #00cfcf;
     font-family: Raj;
     font-size: 100%;
@@ -52,6 +57,7 @@ canvas { width: 100%; height: 100%; }
     cursor: pointer;
     border: 2px solid #00cfcf;
 }    
+
 
 #loader {
     border: 5px solid #f3f3f3; /* Light grey */
@@ -204,7 +210,7 @@ ul.menu {
     }
 
   }
-/* Button */
+Button
 
 input[type="button"],
 button,
@@ -219,9 +225,9 @@ button,
   transition: border-color 0.2s ease;
   background-color: transparent;
   border: solid 1px !important;
-  border-color: #003535 !important;
+  border-color: #003535;
   border-radius: 3em;
-  color: #003535 !important;
+  color: #003535;
   cursor: pointer;
   display: inline-block;
   font-size: 0.6em;
@@ -238,7 +244,7 @@ button,
   white-space: nowrap;
 }
 
-  input[type="button"]:after,
+ input[type="button"]:after,
   button:after,
   .button:after {
     -moz-transform: scale(0.25);
@@ -250,7 +256,7 @@ button,
     -webkit-transition: opacity 0.2s ease, -webkit-transform 0.2s ease;
     -ms-transition: opacity 0.2s ease, -ms-transform 0.2s ease;
     transition: opacity 0.2s ease, transform 0.2s ease;
-    background: #003535;
+    background: #00f7ff;
     border-radius: 3em;
     content: '';
     height: 100%;
@@ -313,6 +319,7 @@ button,
   button:hover,
   .button:hover {
     border-color: rgba(255, 255, 255, 0.55) !important;
+    font-weight: bolder;
   }
 
     input[type="button"]:hover:after,
@@ -334,7 +341,7 @@ button,
       input[type="button"]:hover:active:after,
       button:hover:active:after,
       .button:hover:active:after {
-        opacity: 0.1;
+        opacity: .5;
       }
 
 
@@ -345,11 +352,13 @@ button,
     right: 0;
     width: 25em !important;
     top: 5px;
-    background: transparent;
-    backdrop-filter: blur(6px);
+    background: #eaeaea30;
+    /* backdrop-filter: blur(6px); */
     padding: 10px !important;
+    
     /* color: black; */
     color: #003535;
+    border-radius: 10px;
 }
 /* .sidepanel  {
     width: 0;
