@@ -12,21 +12,26 @@
             <div id="overlay">
               <div id="header00">
                 <div>
-                  <img src="./images/Resettle Logo-11.png" width="50px" style="float: left;margin-top: 15px;">
+                  <img src="./images/Resettle Logo-11.png" width="50px" style="float: ;left;margin-top: 10px;">
                   <h1 style="float: right; color:white;">RE:SETTLE</h1> 
-                </div>
+                </div> 
 
                 <br>
+
                      <div>
                       <h3>PARAMETERS </h3>
                     </div>
                     <div>
-                      <label for="AGGREGATION COUNT">Module Count</label>
-                      <input type="range" class="slider0" id="Aggregation_Count" min="150" value="150" max="1000">
+                      <label for="AGGREGATION COUNT" id="module_count">Module Count</label>
+                      <input type="range" class="slider0" id="AGGREGATION COUNT" min="150" value="150" max="1000">
                     </div>
+                    <!-- <div id="Button">
+                      <button id="RESET DESIGN" onclick="download()" enabled style="width: 150px; height: 30px; line-height: 1em; color: white; border-color: whitesmoke; padding: 5px; ">Reset Design</button>
+                  </div><br> -->
                     <div>
                       <label for="RESET DESIGN">RESET DESIGN</label>
-                      <input type="checkbox" id="RESET DESIGN" class="button1" checked>
+                      <!-- <input type="button" id="RESET DESIGN" class="button_000"> -->
+                      <input type="checkbox" id="RESET DESIGN" class="button1">
                     </div>
                     <div>
                       <label for="SHOW FLOOD MAP">SHOW FLOOD MAP</label>
@@ -40,13 +45,9 @@
                       <label for="SHOW AGGREGATION BOUNDARY">SHOW AGGREGATION BOUNDARY</label>
                       <input type="checkbox" id="SHOW AGGREGATION BOUNDARY" class="button1">
                     </div>
-<<<<<<< HEAD
-                    <h3 style="margin-top: 10px;">DISPLAY</h3>
-=======
-                    <!-- <h3>PARAMETERS </h3> -->
->>>>>>> parent of 8496aeb (Updated Graphics and Input Params)
+                    <h3 style="margin-top: 15px;">DISPLAY</h3>
                     <div>
-                  <label for="Trees No">Trees No</label>
+                  <label for="Trees No" id="tree_no">Trees No</label>
                   <input type="range" id="Trees No" class="slider0" min="1" max="700" value="180" step="1">
                 </div>
                 <div>
@@ -54,7 +55,7 @@
                   <input type="range" id="Trees Location" class="slider0" min="50" max="250" value="85" step="1">
                 </div>
                 <div>
-                  <label for="Trees Scale">Trees Scale</label>
+                  <label for="Trees Scale" id="tree_scale">Trees Scale</label>
                   <input type="range" id="Trees Scale" class="slider0" min="0.1" max="2" value="0.8" step="1">
                 </div>
                 <div>
@@ -62,43 +63,47 @@
                   <input type="checkbox" id="Show Trees" class="button1" checked>
                 </div>
                 <div>
-                  <label for="Other Buildings No.">Other Buildings No.</label>
+                  <label for="Other Buildings No." id="bldg_no">Number of Clusters</label>
                   <input type="range" id="Other Buildings No." class="slider0" min="1" max="5" value="3" step="1">
                 </div>
                 <div>
-                  <label for="Other Buildings Random">Other Buildings Random</label>
+                  <label for="Other Buildings Random">Randomize Clusters</label>
                   <input type="range" id="Other Buildings Random" class="slider0" min="0" max="10" value="3" step="1">
                 </div>
                 <div>
-                  <label for="Show Other Buildings">Show Other Buildings</label>
+                  <label for="Show Other Buildings">Show Other Clusters</label>
                   <input type="checkbox" id="Show Other Buildings" class="button1" checked>
                 </div>
                 <div id="Button">
-<<<<<<< HEAD
                     <button id="downloadButton" onclick="download()" enabled style="  line-height: 1em; color: white; border-color: whitesmoke; float: left;">Download</button>
                 </div>
                 <br>
                 <div id="Button">
                     <button id="downloadButton" enabled style="  line-height: 1em; color: white; border-color: whitesmoke; float: right;">
                       <a href="https://issuu.com/neiljohnbersabe.architecture/docs/resettle_macad_thesis_bersabe" 
-                      style="  line-height: 1em; color: white; border-color: whitesmoke; text-decoration:none" target=”_blank”>
+                      style="  line-height: 1em; color: white; border-color: whitesmoke; text-decoration:none;" target=”_blank”>
                       Booklet</a> </button>
                 </div>
                 <br>
-=======
-                  <div>
-                    <button id="downloadButton" onclick="download()" enabled>Download</button>
-                  </div>
-                  <br>
-                </div>
-                
->>>>>>> parent of 8496aeb (Updated Graphics and Input Params)
                 <div class="analytics">
-                  <div id="den_IND"> Slide to update density</div>
+                </div>
+                <h3 style="margin-top: 10px;">INPUT PARAMS</h3>
+                <div>
+                  <!-- <div id="den_IND"> Slide to update density</div>
                   <div id="acc_IND"> Slide to update accessibility</div>
                   <div id="fld_IND"> Slide to update flood mitigation</div>
                   <div id="env_IND"> Slide to update environment</div>
-                  <div id="com_IND"> Slide to update community</div>
+                  <div id="com_IND"> Slide to update community</div> -->
+
+                  <div id="agg_area"> Updating Aggregation Area</div>
+                  <div id="pop_den"> Updating Population Density</div>
+                  <div id="comZone_Ratio"> Updating Commercial Zone Ratio</div>
+                  <div id="zonRatio_Score"> Updating Housing Zone Ratio</div>
+                  <div id="mod_Green"> Updating Green Space Elevation</div>
+                  <div id="mod_Comm"> Updating Commercial Elevation</div>
+                  <div id="mod_score"> Updating Module Elevation</div>
+                  <div id="med_risk"> Updating Medium/High Risk</div>
+                  <div id="low_risk"> Updating Low Risk</div>
                 </div>
                 <br>
                 <div id="logo" style="float:left;">
@@ -114,13 +119,8 @@
                   <li><h2>Design Analytics</h2></li>
                   <li><a href="https://neilbersabe-iaac.github.io/IAAC-THESIS-MACAD/" class="button">Learn more</a></li>
                 </ul> 
-<<<<<<< HEAD
                 <h5 style="margin: 3px;">Key Performance Score</h5>
                 <p>Radar chart shows how well the proposed development is performing in the five key aspects of the study versus the existing. The bar chart shows how many of each module is present in the current configuration. Refer to the Learn more to check the parameters used for the KPIs.<br><br>
-=======
-                <h5>Key Performance Score</h5>
-                <p>Machine Learningation maps of Davao City, Philippines.  The map allows the ability to catalogue the buildings typologies affected by flooding. <br><br>
->>>>>>> parent of 8496aeb (Updated Graphics and Input Params)
 
                 </p>
                 <!-- Add CHART.JS -->
