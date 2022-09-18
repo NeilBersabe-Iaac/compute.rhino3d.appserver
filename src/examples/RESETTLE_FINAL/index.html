@@ -10,11 +10,13 @@
         <div id="loader"></div> 
         <div id="container">
             <div id="overlay">
-              <div id="header00">            
-                <h1>RE: SETTLE</h1> 
+              <div id="header00">
+                <div>
+                  <img src="./images/Resettle Logo-11.png" width="50px" style="float: ;left;margin-top: 15px;">
+                  <h1 style="float: right; color:white;">RE:SETTLE</h1> 
+                </div>
 
                 <br>
-
                      <div>
                       <h3>PARAMETERS </h3>
                     </div>
@@ -42,7 +44,7 @@
                       <label for="SHOW AGGREGATION BOUNDARY">SHOW AGGREGATION BOUNDARY</label>
                       <input type="checkbox" id="SHOW AGGREGATION BOUNDARY" class="button1">
                     </div>
-                    <h3 style="margin-top: 15px;">DISPLAY</h3>
+                    <h3 style="margin-top: 10px;">DISPLAY</h3>
                     <div>
                   <label for="Trees No" id="tree_no">Trees No</label>
                   <input type="range" id="Trees No" class="slider0" min="1" max="700" value="180" step="1">
@@ -72,11 +74,11 @@
                   <input type="checkbox" id="Show Other Buildings" class="button1" checked>
                 </div>
                 <div id="Button">
-                    <button id="downloadButton" onclick="download()" enabled style="  line-height: 1em; color: white; border-color: whitesmoke;">Download</button>
+                    <button id="downloadButton" onclick="download()" enabled style="  line-height: 1em; color: white; border-color: whitesmoke; float: left;">Download</button>
                 </div>
                 <br>
                 <div id="Button">
-                    <button id="downloadButton" enabled style="  line-height: 1em; color: white; border-color: whitesmoke;">
+                    <button id="downloadButton" enabled style="  line-height: 1em; color: white; border-color: whitesmoke; float: right;">
                       <a href="https://issuu.com/neiljohnbersabe.architecture/docs/resettle_macad_thesis_bersabe" 
                       style="  line-height: 1em; color: white; border-color: whitesmoke; text-decoration:none" target=”_blank”>
                       Booklet</a> </button>
@@ -116,7 +118,7 @@
                   <li><h2>Design Analytics</h2></li>
                   <li><a href="https://neilbersabe-iaac.github.io/IAAC-THESIS-MACAD/" class="button">Learn more</a></li>
                 </ul> 
-                <h5>Key Performance Score</h5>
+                <h5 style="margin: 3px;">Key Performance Score</h5>
                 <p>Radar chart shows how well the proposed development is performing in the five key aspects of the study versus the existing. The bar chart shows how many of each module is present in the current configuration. Refer to the Learn more to check the parameters used for the KPIs.<br><br>
 
                 </p>
@@ -138,13 +140,6 @@
 
         <script type="module" src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>    
-          
-          /////////////////////
-          ////     MODULE COUNT
-          /////////////////////
 
-         
-        </script>
     </body>
 </html>
