@@ -1,12 +1,17 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.module.js'
-import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js'
-import {Rhino3dmLoader} from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js'
+import {
+    OrbitControls
+} from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js'
+import {
+    Rhino3dmLoader
+} from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js'
 import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@7.14.0/rhino3dm.module.js'
-import {TransformControls} from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/TransformControls.js'
+import {
+    TransformControls
+} from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/TransformControls.js'
 
 // set up loader for converting the results to threejs
 const loader = new Rhino3dmLoader()
-// loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.14.0/')
 loader.setLibraryPath('https://cdn.jsdelivr.net/npm/rhino3dm@7.14.0/')
 
 var myRadarChart;
@@ -44,7 +49,7 @@ function rndPts() {
         z: 0
     }
 
-    const cntPts = 1
+    const cntPts = startPts.length
 
     for (let i = 0; i < cntPts; i++) {
         const x = startPts[i].x
@@ -58,8 +63,8 @@ function rndPts() {
         points.push(pt)
 
         //viz in three
-        const icoGeo = new THREE.SphereGeometry(0.3)
-        const icoMat = new THREE.MeshNormalMaterial(50)
+        const icoGeo = new THREE.IcosahedronGeometry(25)
+        const icoMat = new THREE.MeshNormalMaterial()
         const ico = new THREE.Mesh(icoGeo, icoMat)
         ico.name = 'ico'
         ico.position.set(x, y, z)
@@ -70,7 +75,6 @@ function rndPts() {
         tcontrols.attach(ico)
         tcontrols.showZ = false
         tcontrols.addEventListener('dragging-changed', onChange)
-        tcontrols.setSize(.5)
         scene.add(tcontrols)
 
     }
@@ -663,4 +667,3 @@ function destroyCharts()
     myRadarChart.destroy();
   }
 }
-
