@@ -38,8 +38,8 @@ function rndPts() {
     // generate random points
 
     const startPts = [{
-        x: 33.160349,
-        y: -83.034558,
+        x: 45,
+        y: -90,
         z: 0
     }]
 
