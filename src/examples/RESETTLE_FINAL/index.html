@@ -1,251 +1,146 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <link rel="icon" href=".\images\Resettle Logo-13.png" type = "image/x-icon">
-        <title>RE:SETTLE</title>
-
-        <link rel="stylesheet" href="style.css">
-
+      <meta charset="utf-8">
+      <link rel="icon" href=".\images\Resettle Logo-13.png" type = "image/x-icon">
+      <title>RE:SETTLE</title>
+      <link rel="stylesheet" href="style.css">
     </head>
     <body>
-<!-- SIDE PANEL SETTINGS -->
-<!-- <div id="mySidepanel" class="sidepanel">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
-  </div> -->
-  
-  <!-- <button class="openbtn" onclick="openNav()">☰ Toggle Sidepanel</button>   -->
-<!-- SIDE PANEL SETTINGS OFF-->
-
         <div id="loader"></div> 
         <div id="container">
             <div id="overlay">
-                <div id="header00">            
-                        <h1>RE: SETTLE</h1> 
-                        <br><div class="text1"><h4>© Neil John Bersabe </h4> 
-                             </div>
-        
-                            
-                    <!-- <div><hr style="margin: 0%;"></div> -->
-                    <div>
-                        <h3><u>PARAMETERS</u> </h3></div>
-                    <div>
-                        <label for="Aggregation_Count" id="Aggregation_Count">Module Count</label>
-                        <input type="range" id="Aggregation_Count" class="slider0" name="Aggregation_Count" min="20" max="500" value="80" step="1">
+              <div id="header00">
+                <div>
+                  <img src="./images/Resettle Logo-11.png" width="50px" style="float:right;margin-top: 10px;">
+                  <h1 style="float: left; color:white;">RE:SETTLE</h1> 
+                </div> 
+
+                <br>
+
+                     <div>
+                      <h3>PARAMETERS </h3>
                     </div>
                     <div>
-                        <label for="Reset_Design">Reset_Design</label>
-                        <input type="checkbox" id="Reset_Design" class="button1" checked>
-                      </div>
-                      <div>
-                        <label for="Show_FloodMap">Show_FloodMap</label>
-                        <input type="checkbox" id="Show_FloodMap" class="button1" >
-                      </div>
-                      <div>
-                        <label for="Show_Detailed Building">Show_Detailed Building</label>
-                        <input type="checkbox" id="Show_Detailed Building" class="button1">
-                      </div>
-                      <div>
-                        <label for="Trees No">Trees No</label>
-                        <input type="range" id="Trees No" class="slider0" min="1" max="700" value="180" step="1">
-                      </div>
-                      <div>
-                        <label for="Trees Location">Trees Location</label>
-                        <input type="range" id="Trees Location" class="slider0" min="50" max="250" value="85" step="1">
-                      </div>
-                      <div>
-                        <label for="Trees Scale">Trees Scale</label>
-                        <input type="range" id="Trees Scale" class="slider0" min="0.1" max="2" value="0.8" step="1">
-                      </div>
-                      <div>
-                        <label for="Show Trees">Show Trees</label>
-                        <input type="checkbox" id="Show Trees" class="button1" checked>
-                      </div>
-                    <!-- <div>
-                        <label for="House1_Ratio" id="House1_Ratio">House 1 Ratio</label>
-                        <input type="range" id="House1_Ratio" class="slider0" name="House1_Ratio" min="1" max="100" value="30" step="1">
+                      <label for="AGGREGATION COUNT" id="module_count">Module Count</label>
+                      <input type="range" class="slider0" id="AGGREGATION COUNT" min="150" value="150" max="1000">
+                    </div>
+                    <!-- <div id="Button">
+                      <button id="RESET DESIGN" onclick="download()" enabled style="width: 150px; height: 30px; line-height: 1em; color: white; border-color: whitesmoke; padding: 5px; ">Reset Design</button>
+                  </div><br> -->
+                    <div>
+                      <label for="RESET DESIGN">RESET DESIGN</label>
+                      <!-- <input type="button" id="RESET DESIGN" class="button_000"> -->
+                      <input type="checkbox" id="RESET DESIGN" class="button1">
                     </div>
                     <div>
-                        <label for="House2_Ratio" id="House2_Ratio">House 2 Ratio</label>
-                        <input type="range" id="House2_Ratio" class="slider0" name="House2_Ratio" min="1" max="100" value="11" step="1">
+                      <label for="SHOW FLOOD MAP">SHOW FLOOD MAP</label>
+                      <input type="checkbox" id="SHOW FLOOD MAP" class="button1">
                     </div>
                     <div>
-                        <label for="Parklet_Ratio" id="Parklet_Ratio">Parklet Ratio</label>
-                        <input type="range" id="Parklet_Ratio" class="slider0" name="Parklet_Ratio" min="1" max="100" value="20" step="1">
+                      <label for="SHOW DETAILED BUILDING">SHOW DETAILED BUILDING</label>
+                      <input type="checkbox" id="SHOW DETAILED BUILDING" class="button1">
                     </div>
                     <div>
-                        <label for="Market_Ratio" id="Market_Ratio">Market Ratio</label>
-                        <input type="range" id="Market_Ratio" class="slider0" name="Market_Ratio" min="1" max="100" value="10" step="1">
+                      <label for="SHOW AGGREGATION BOUNDARY">SHOW AGGREGATION BOUNDARY</label>
+                      <input type="checkbox" id="SHOW AGGREGATION BOUNDARY" class="button1">
                     </div>
+                    <h3 style="margin-top: 15px;">DISPLAY</h3>
                     <div>
-                        <label for="Store_Ratio" id="Store_Ratio">Store Ratio</label>
-                        <input type="range" id="Store_Ratio" class="slider0" name="Store_Ratio" min="1" max="100" value="30" step="1">
-                    </div>
-                    <div>
-                        <label for="Park_Ratio" id="Park_Ratio">Park Ratio</label>
-                        <input type="range" id="Park_Ratio" class="slider0" name="Park_Ratio" min="1" max="100" value="40" step="1">
-                    </div> -->
-                    <!-- <div><hr style="margin: 0%;"></div>  -->
-                    <!-- <div>
-                       <h3><u>CIRCULATION</u> </h3></div> -->
-                    <!-- <div>
-                        <label for="Show Trees" class="switch">Add Trees </label>
-                            <input type="checkbox" id="Show Trees" class="button1" checked>                 
-                    </div> -->
-                    <!-- <div>
-                        <label for="Bend_S_Ratio" id="Bend_S_Ratio">Bent Bridge Small Ratio</label>  
-                        <input type="range" id="Bend_S_Ratio" class="slider0" min="1" max="50" value="8" step="1">
-                      </div>
-                    <div>
-                        <label for="Bend_L_Ratio" id="Bend_L_Ratio">Bent Bridge Small Ratio</label>  
-                        <input type="range" id="Bend_L_Ratio" class="slider0" min="1" max="50" value="8" step="1">
-                      </div>
-                    <div>
-                        <label for="Bridge_Ratio" id="Bridge_Ratio">Bridge Ratio</label>  
-                        <input type="range" id="Bridge_Ratio" class="slider0" min="1" max="50" value="6" step="1">
-                      </div>
-                    <div>
-                        <label for="Core_Ratio" id="Core_Ratio">Core Ratio</label>  
-                        <input type="range" id="Core_Ratio" class="slider0" min="1" max="50" value="20" step="1">
-                      </div>
-                    <div>
-                        <label for="Stair_Ratio" id="Stair_Ratio">Stair Ratio</label>  
-                        <input type="range" id="Stair_Ratio" class="slider0" min="1" max="50" value="8" step="1">
-                      </div>
-                    <div>
-                        <label for="Balcony_Ratio" id="Balcony_Ratio">Balcony Ratio</label>  
-                        <input type="range" id="Balcony_Ratio" class="slider0" min="1" max="50" value="8" step="1">
-                      </div> -->
-                        <!-- <div><hr style="margin: 0%;"></div>  -->
-                        <!-- <h3><u>ANALYTICS</u></h3>
-                        
-                        <div class="analytics">
-                            <div id="meshArea"> Slide to update mesh area</div>
-                            <div id="plotArea"> Slide to update  plot area</div>
-                            <div id="totalLandArea"> Slide to update land area</div>
-                            <div id="landDiameter"> Slide to update diameter</div>
-                            <div id="shadowArea">Run Analysis to show shadow area</div>
-                            
-                        </div><hr> -->
-                        <br>
-                        <div id="Button">
-                            <button id="downloadButton" onclick="download()" enabled> 
-                            Download the Model</button>
-                            <br>
-                            <br>
-                              <div id="logo">
-                              <img src="./assets/iaac_logo.png" width="120px">
-                              </div>
-                            <br>
-                        </div>
+                  <label for="Trees No" id="tree_no">Trees No</label>
+                  <input type="range" id="Trees No" class="slider0" min="1" max="700" value="180" step="1">
                 </div>
+                <div>
+                  <label for="Trees Location">Trees Location</label>
+                  <input type="range" id="Trees Location" class="slider0" min="50" max="250" value="85" step="1">
+                </div>
+                <div>
+                  <label for="Trees Scale" id="tree_scale">Trees Scale</label>
+                  <input type="range" id="Trees Scale" class="slider0" min="0.1" max="2" value="0.8" step="1">
+                </div>
+                <div>
+                  <label for="Show Trees">Show Trees</label>
+                  <input type="checkbox" id="Show Trees" class="button1" checked>
+                </div>
+                <div>
+                  <label for="Other Buildings No." id="bldg_no">Number of Clusters</label>
+                  <input type="range" id="Other Buildings No." class="slider0" min="1" max="5" value="3" step="1">
+                </div>
+                <div>
+                  <label for="Other Buildings Random">Randomize Clusters</label>
+                  <input type="range" id="Other Buildings Random" class="slider0" min="0" max="10" value="3" step="1">
+                </div>
+                <div>
+                  <label for="Show Other Buildings">Show Other Clusters</label>
+                  <input type="checkbox" id="Show Other Buildings" class="button1" checked>
+                </div>
+                <div id="Button">
+                    <button id="downloadButton" onclick="download()" enabled style="  line-height: 1em; color: white; border-color: whitesmoke; float: left;">Download</button>
+                </div>
+                <br>
+                <div id="Button">
+                    <button id="downloadButton" enabled style="  line-height: 1em; color: white; border-color: whitesmoke; float: right;">
+                      <a href="https://issuu.com/neiljohnbersabe.architecture/docs/resettle_macad_thesis_bersabe" 
+                      style="  line-height: 1em; color: white; border-color: whitesmoke; text-decoration:none;" target=”_blank”>
+                      Booklet</a> </button>
+                </div>
+                <br>
+                <div class="analytics">
+                </div>
+                <h3 style="margin-top: 10px;">INPUT PARAMS</h3>
+                <div>
+                  <!-- <div id="den_IND"> Slide to update density</div>
+                  <div id="acc_IND"> Slide to update accessibility</div>
+                  <div id="fld_IND"> Slide to update flood mitigation</div>
+                  <div id="env_IND"> Slide to update environment</div>
+                  <div id="com_IND"> Slide to update community</div> -->
+
+                  <div id="agg_area"> Updating Aggregation Area</div>
+                  <div id="pop_den"> Updating Population Density</div>
+                  <div id="comZone_Ratio"> Updating Commercial Zone Ratio</div>
+                  <div id="zonRatio_Score"> Updating Housing Zone Ratio</div>
+                  <div id="mod_Green"> Updating Green Space Elevation</div>
+                  <div id="mod_Comm"> Updating Commercial Elevation</div>
+                  <div id="mod_score"> Updating Module Elevation</div>
+                  <div id="med_risk"> Updating Medium/High Risk</div>
+                  <div id="low_risk"> Updating Low Risk</div>
+                </div>
+                <br>
+                <div id="logo" style="float:left;">
+                  <img src="./assets/iaac_logo.png" width="120px">
+                  <div class="text1" style="float: right;"><h4>© Neil John Bersabe </h4> 
+                     </div>
+                </div>
+
+              </div>
             </div>
-                <div class="analysis">
-                  <ul class="menu">
-                      <li><h2>Design Analytics</h2></li>
-                      <li><a href="generic.html" class="button">Learn more</a></li>
-                    </ul> 
-                    <h5>Key Performance Score</h5>
-                    <p>Machine Learningation maps of Davao City, Philippines.  The map allows the ability to catalogue the buildings typologies affected by flooding. <br><br>
-                        <!-- <ul style="list-style-type:none">
-                            <li>CHART</li>
-                            <li>Houses2 - XXXX</li>
-                            <li>Houses - XXXX</li>
-                            <li>Houses - XXXX</li>
-                            <li>Houses - XXXX</li>
-                            <li>Houses - XXXX</li>
-                        </ul> -->
-                    </p>
-                    <!-- Add CHART.JS -->
-                    <div class="chartCard">
-                      <div class="chartBox">
-                          <canvas id="myChart" ></canvas>
-                      </div>
-                      <br>
-                      <div class="chartBox">
-                          <canvas id="myChart2" ></canvas>
-                      </div>
-                    </div>
-                    <!-- <ul class="actions">
-                        <li><a href="generic.html" class="button">Learn more</a></li>
-                    </ul> -->
+            <div class="analysis">
+              <ul class="menu">
+                  <li><h2>Design Analytics</h2></li>
+                  <li><a href="https://neilbersabe-iaac.github.io/IAAC-THESIS-MACAD/" class="button">Learn more</a></li>
+                </ul> 
+                <h5 style="margin: 3px;">Key Performance Score</h5>
+                <p>Radar chart shows how well the proposed development is performing in the five key aspects of the study versus the existing. The bar chart shows how many of each module is present in the current configuration. Refer to the Learn more to check the parameters used for the KPIs.<br><br>
+
+                </p>
+                <!-- Add CHART.JS -->
+                <div class="chartCard">
+                  <div class="chartBox">
+                      <canvas id="myChart" ></canvas>
+                  </div>
+                  <br>
+                  <div class="chartBox">
+                      <canvas id="myChart2" ></canvas>
+                  </div>
                 </div>
+
+            </div>
         </div>
-        
+<!-- ANALYSIS TAB -->
+
+
         <script type="module" src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>    
-            /////////////////////
-            ////     RADAR CHART
-            /////////////////////    
- 
-            const myChart = new Chart(document.getElementById('myChart'),{
-              type: 'radar',
-              data: {
-                labels: ['COM IND','ENV QUAL','ACC IND','FLOOD IND','DENS IND'],
-                datasets: [
-                  {
-                    label: 'PERFORMANCE SCORE',
-                    backgroundColor: '#FF7F5080',
-                    borderColor: '#FF7F50',
-                    data: [0.85, 0.79, 0.85, 0.97, 0.75],
-                  }
-                ]
-              },
-              options: {
-                title: {
-                  display: true,
-                  text: 'ANALYSIS METRICS'
-                },
-                fontColor: '#008080',
-                color: '#003535',// affects words colour
-                // display: false,
-                // tickColor:"0000ff",
-                responsive: true,
-                }
-              }         
-            );
-            /////////////////////
-            ////     MODULE COUNT
-            /////////////////////
 
-            const myChart2 = new Chart(document.getElementById('myChart2'),{
-              type: 'bar',
-              data: {
-                labels: [
-                'House A',
-                'House B',
-                'Park 1',
-                'Park 2',
-                'Market',
-                'Store',
-                'Bend_S',
-                'Bend L',
-                'Bridge',
-                'Core',
-                'Stairs'
-                ],
-                fontColor: '#008080',
-                datasets: [{
-                  label: 'Module Count',
-                  backgroundColor: '#FF7F5080',
-                  borderColor: '#FF7F50',
-                  data: [12, 17, 5, 8, 7,3,14,11,14,4,9],
-                }]
-              },
-            options: {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'ANALYSIS METRICS'
-                    }
-                }
-            }
-            );
-          </script>             
     </body>
 </html>

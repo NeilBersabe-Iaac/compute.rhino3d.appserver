@@ -1,0 +1,569 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="data:,">
+        <title>Cloudscape</title>
+        <style>
+            body {
+                margin: 10;
+                font-family: "Montserrat", sans-serif;  
+                font-size: 1rem;
+                color: rgb(0, 0, 0);
+                background-color: rgb(218, 237, 250);
+                text-align:left;
+                
+                }
+            canvas { width: 100%; height: 100%; }
+            input[type=range] { width: 100%; }
+            #container {position: relative;}
+            #container canvas, #overlay { position: absolute;}
+            #overlay div { padding: 3px; }
+
+            #loader {
+                border: 5px solid #f3f3f3; /* Light grey */
+                border-top: 5px solid #3d3d3d; /* Grey */
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="loader"></div> 
+        <div id="container">
+            <div id="overlay">
+                <div><h2>||CLOUDSCAPE ☁  ☁ ☁ </h1></div>
+                <div>
+                  <label for="RH_IN:Iterations">Iterations</label>
+                  <input type="range" id="RH_IN:Iterations" min="1" max="100" value="87" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Fillet">Fillet Radius</label>
+                  <input type="range" id="RH_IN:Fillet" min="0" max="9" value="5" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Show Annotations">Show Annotations</label>
+                  <input type="checkbox" id="RH_IN:Show Annotations" >
+                </div>
+                <div><h4>TREES----------------------------------- </h1></div>
+                <div>
+                  <label for="RH_IN:Show Trees">Add Trees</label>
+                  <input type="checkbox" id="RH_IN:Show Trees" >
+                </div>
+                <div>
+                  <label for="RH_IN:Trees No">Trees Count</label>
+                  <input type="range" id="RH_IN:Trees No" min="5" max="50" value="0" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Trees Location">Trees Scattering</label>
+                  <input type="range" id="RH_IN:Trees Location" min="1" max="50" value="46" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Trees Scale">Trees Scale</label>
+                  <input type="range" id="RH_IN:Trees Scale" min="0.1" max="2" value=".7" step=".1">
+                </div>
+                <div>
+                  <label for="RH_IN:Color Manipulation">Trees Color</label>
+                  <input type="checkbox" id="RH_IN:Color Manipulation" >
+                </div>
+                <div>
+                  <label for="RH_IN:Hue">Hue</label>
+                  <input type="range" id="RH_IN:Hue" min="0" max="1" value="1" step="0.1">
+                </div>
+                <div><h4>ZONES----------------------------------- </h4></div>
+                <div>
+                  <label for="RH_IN:Water">Water Radius</label>
+                  <input type="range" id="RH_IN:Water" min="0" max="100" value="48" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Seating">Seating Radius</label>
+                  <input type="range" id="RH_IN:Seating" min="0" max="100" value="15" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Fire place">Fire Place Radius</label>
+                  <input type="range" id="RH_IN:Fire place" min="0" max="100" value="7" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Green01">Green+ Radius</label>
+                  <input type="range" id="RH_IN:Green01" min="0" max="100" value="15" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Green02">Green++ Radius</label>
+                  <input type="range" id="RH_IN:Green02" min="0" max="100" value="29" step="1">
+                </div>
+                <div>
+                  <label for="RH_IN:Green03">Green+++ Radius</label>
+                  <input type="range" id="RH_IN:Green03" min="0" max="100" value="37" step="1">
+                </div>
+                <div><button id="downloadButton" disabled>Download</button></div>
+            </div>
+        </div>
+        <script type="module">
+            /* eslint no-undef: "off", no-unused-vars: "off" */
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.module.js'
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js'
+import { TransformControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/TransformControls.js'
+import { Rhino3dmLoader } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js'
+import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js'
+
+// set up loader for converting the results to threejs
+const loader = new Rhino3dmLoader()
+loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
+
+const definition = 'Cloudscape_02.gh'
+
+//adding inputs
+const Iterations = document.getElementById( 'RH_IN:Iterations' )
+Iterations.addEventListener( 'mouseup', onSliderChange, false )
+Iterations.addEventListener( 'touchend', onSliderChange, false )
+
+const Fillet = document.getElementById( 'RH_IN:Fillet' )
+Fillet.addEventListener( 'mouseup', onSliderChange, false )
+Fillet.addEventListener( 'touchend', onSliderChange, false )
+
+const Annotations = document.getElementById( 'RH_IN:Show Annotations' )
+Annotations.addEventListener( 'change', onSliderChange, false )
+
+const Showtrees = document.getElementById( 'RH_IN:Show Trees' )
+Showtrees.addEventListener( 'change', onSliderChange, false )
+
+const TreesNo = document.getElementById( 'RH_IN:Trees No' )
+TreesNo.addEventListener( 'mouseup', onSliderChange, false )
+TreesNo.addEventListener( 'touchend', onSliderChange, false )
+
+const TreesLocation = document.getElementById( 'RH_IN:Trees Location' )
+TreesLocation.addEventListener( 'mouseup', onSliderChange, false )
+TreesLocation.addEventListener( 'touchend', onSliderChange, false )
+
+const TreesScale = document.getElementById( 'RH_IN:Trees Scale' )
+TreesScale.addEventListener( 'mouseup', onSliderChange, false )
+TreesScale.addEventListener( 'touchend', onSliderChange, false )
+
+const Colors = document.getElementById( 'RH_IN:Color Manipulation' )
+Colors.addEventListener( 'change', onSliderChange, false )
+
+const Hue = document.getElementById( 'RH_IN:Hue' )
+Hue.addEventListener( 'mouseup', onSliderChange, false )
+Hue.addEventListener( 'touchend', onSliderChange, false )
+
+const Water = document.getElementById( 'RH_IN:Water' )
+Water.addEventListener( 'mouseup', onSliderChange, false )
+Water.addEventListener( 'touchend', onSliderChange, false )
+
+const Seating = document.getElementById( 'RH_IN:Seating' )
+Seating.addEventListener( 'mouseup', onSliderChange, false )
+Seating.addEventListener( 'touchend', onSliderChange, false )
+
+const Fireplace = document.getElementById( 'RH_IN:Fire place' )
+Fireplace.addEventListener( 'mouseup', onSliderChange, false )
+Fireplace.addEventListener( 'touchend', onSliderChange, false )
+
+const Green01 = document.getElementById( 'RH_IN:Green01' )
+Green01.addEventListener( 'mouseup', onSliderChange, false )
+Green01.addEventListener( 'touchend', onSliderChange, false )
+
+const Green02 = document.getElementById( 'RH_IN:Green02' )
+Green02.addEventListener( 'mouseup', onSliderChange, false )
+Green02.addEventListener( 'touchend', onSliderChange, false )
+
+const Green03 = document.getElementById( 'RH_IN:Green03' )
+Green03.addEventListener( 'mouseup', onSliderChange, false )
+Green03.addEventListener( 'touchend', onSliderChange, false )
+        
+let points = []
+let cameraRig, activeCamera, activeHelper;
+let cameraPerspective, cameraOrtho;
+let cameraPerspectiveHelper, cameraOrthoHelper;
+let rhino, doc
+
+rhino3dm().then(async m => {
+  console.log('Loaded rhino3dm.')
+  rhino = m // global
+
+  init()
+  rndPts()
+  compute()
+})
+
+
+const downloadButton = document.getElementById("downloadButton")
+downloadButton.onclick = download
+
+
+function rndPts() {
+  // generate Inital points
+  const startPts = [
+    { x: 27, y: 8, z: 0 },
+    { x: 24, y: 25, z: 0 },
+    { x: 17, y: 35, z: 0 },
+    { x: 11, y: 41, z: 0 },
+    { x: 19, y: 66, z: 0 },
+    { x: 35, y: 69, z: 0 },
+    { x: 50, y: 29, z: 0 },
+    { x: 40, y: 15, z: 0 },
+]
+const cntPts = startPts.length
+
+  for (let i = 0; i < cntPts; i++) {
+    const x = startPts[i].x
+    const y = startPts[i].y
+    const z = startPts[i].z
+
+    const pt = "{\"X\":" + x + ",\"Y\":" + y + ",\"Z\":" + z + "}"
+
+    console.log( `x ${x} y ${y}` )
+
+    points.push(pt)
+
+    //viz in three
+    const icoGeo = new THREE.SphereGeometry(0.3)
+    const icoMat = new THREE.MeshNormalMaterial(50)
+    const ico = new THREE.Mesh( icoGeo, icoMat )
+    ico.name = 'ico'
+    ico.position.set( x, y, z)
+    scene.add( ico )
+    
+    let tcontrols = new TransformControls( camera, renderer.domElement )
+    tcontrols.enabled = true
+    tcontrols.attach( ico )
+    tcontrols.showZ = false
+    tcontrols.addEventListener( 'dragging-changed', onChange )
+    tcontrols.setSize(.5)
+    scene.add(tcontrols)
+    
+  }
+
+}
+
+let dragging = false
+function onChange() {
+  dragging = ! dragging
+  if ( !dragging ) {
+    // update points position
+    points = []
+    scene.traverse(child => {
+      if ( child.name === 'ico' ) {
+        const pt = "{\"X\":" + child.position.x + ",\"Y\":" + child.position.y + ",\"Z\":" + child.position.z + "}"
+        points.push( pt )
+        console.log(pt)
+      }
+    }, false)
+
+    compute()
+
+    controls.enabled = true
+    return 
+}
+
+  controls.enabled = false
+
+}
+
+/**
+ * Call appserver
+ */
+async function compute () {
+  const data = {
+    definition: definition,
+    inputs: {
+      //'dimension': dimension_slider.valueAsNumber,
+     // 'height': height_slider.valueAsNumber,
+     'RH_IN:Iterations': Iterations.valueAsNumber,
+     'RH_IN:Fillet': Fillet.valueAsNumber,
+     'RH_IN:Show Annotations': Annotations.checked,
+     'RH_IN:Show Trees': Showtrees.checked,
+     'RH_IN:Trees No': TreesNo.valueAsNumber,
+     'RH_IN:Trees Location': TreesLocation.valueAsNumber,
+     'RH_IN:Trees Scale': TreesScale.valueAsNumber,
+     'RH_IN:Color Manipulation': Colors.checked,
+     'RH_IN:Hue': Hue.valueAsNumber,
+     'RH_IN:Water': Water.valueAsNumber,
+     'RH_IN:Seating': Seating.valueAsNumber,
+     'RH_IN:Fire place': Fireplace.valueAsNumber,
+     'RH_IN:Green01': Green01.valueAsNumber,
+     'RH_IN:Green02': Green02.valueAsNumber,
+     'RH_IN:Green03': Green03.valueAsNumber,
+     'points': points
+    }
+  }
+
+  showSpinner(true)
+
+  console.log(data.inputs)
+
+  const request = {
+    'method':'POST',
+    'body': JSON.stringify(data),
+    'headers': {'Content-Type': 'application/json'}
+  }
+
+  try {
+    const response = await fetch('/solve', request)
+
+    if(!response.ok)
+      throw new Error(response.statusText)
+
+    const responseJson = await response.json()
+    collectResults(responseJson)
+
+  } catch(error){
+    console.error(error)
+  }
+}
+
+/**
+ * Parse response
+ */
+ function collectResults(responseJson) {
+
+  const values = responseJson.values
+
+  console.log(values)
+
+  // clear doc
+  try {
+    if( doc !== undefined)
+        doc.delete()
+  } catch {}
+
+  //console.log(values)
+  doc = new rhino.File3dm()
+
+  // for each output (RH_OUT:*)...
+  for ( let i = 0; i < values.length; i ++ ) {
+    // ...iterate through data tree structure...
+    for (const path in values[i].InnerTree) {
+      const branch = values[i].InnerTree[path]
+      // ...and for each branch...
+      for( let j = 0; j < branch.length; j ++) {
+        // ...load rhino geometry into doc
+        const rhinoObject = decodeItem(branch[j])
+        if (rhinoObject !== null) {
+          // console.log(rhinoObject)
+          doc.objects().add(rhinoObject, null)
+        }
+      }
+    }
+  }
+
+  if (doc.objects().count < 1) {
+    console.error('No rhino objects to load!')
+    showSpinner(false)
+    return
+  }
+
+  // load rhino doc into three.js scene
+  const buffer = new Uint8Array(doc.toByteArray()).buffer
+  loader.parse( buffer, function ( object ) 
+  {
+
+      // clear objects from scene
+      scene.traverse(child => {
+        if ( child.userData.hasOwnProperty( 'objectType' ) && child.userData.objectType === 'File3dm') {
+          scene.remove( child )
+        }
+      })
+
+      ///////////////////////////////////////////////////////////////////////
+      
+      // color crvs
+      object.traverse(child => {
+        if (child.isLine) {
+          if (child.userData.attributes.geometry.userStringCount > 0) {
+            //console.log(child.userData.attributes.geometry.userStrings[0][1])
+            const col = child.userData.attributes.geometry.userStrings[0][1]
+            const threeColor = new THREE.Color( "rgb(" + col + ")")
+            const mat = new THREE.LineBasicMaterial({color:threeColor})
+            child.material = mat
+          }
+        }
+      })
+
+      ///////////////////////////////////////////////////////////////////////
+      // add object graph from rhino model to three.js scene
+      scene.add( object )
+
+      // hide spinner and enable download button
+      showSpinner(false)
+      downloadButton.disabled = false
+
+  })
+}
+
+/**
+* Attempt to decode data tree item to rhino geometry
+*/
+function decodeItem(item) {
+const data = JSON.parse(item.data)
+if (item.type === 'System.String') {
+  // hack for draco meshes
+  try {
+      return rhino.DracoCompression.decompressBase64String(data)
+  } catch {} // ignore errors (maybe the string was just a string...)
+} else if (typeof data === 'object') {
+  return rhino.CommonObject.decode(data)
+}
+return null
+}
+
+/**
+ * Called when a slider value changes in the UI. Collect all of the
+ * slider values and call compute to solve for a new scene
+ */
+ function onSliderChange () {
+  showSpinner(true)
+  // get slider values
+  /*let inputs = {}
+  for (const input of document.getElementsByTagName('input')) {
+    switch (input.type) {
+    case 'number':
+      inputs[input.id] = input.valueAsNumber
+      break
+    case 'range':
+      inputs[input.id] = input.valueAsNumber
+      break
+    case 'checkbox':
+      inputs[input.id] = input.checked
+      break
+    }
+  }
+  
+  data.inputs = inputs*/
+
+  compute()
+}
+
+
+/**
+ * Shows or hides the loading spinner
+ */
+ function showSpinner(enable) {
+  if (enable)
+    document.getElementById('loader').style.display = 'block'
+  else
+    document.getElementById('loader').style.display = 'none'
+}
+
+// BOILERPLATE //
+
+var scene, camera, renderer, controls
+
+function init () {
+
+  // Rhino models are z-up, so set this as the default
+  THREE.Object3D.DefaultUp = new THREE.Vector3( 0, 0, 1 );
+
+  scene = new THREE.Scene()
+  scene.background = new THREE.Color(0xdaedfa)
+  scene.fog = new THREE.Fog( 0xffffff, 40, 100 )
+  camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 1, 10000 )
+  camera.position.set(1, -1, 30)
+    // create the renderer and add it to the html
+  renderer = new THREE.WebGLRenderer({antialias: true})
+  renderer.setPixelRatio( window.devicePixelRatio )
+  renderer.setSize( window.innerWidth, window.innerHeight )
+  document.body.appendChild(renderer.domElement)
+ // add some controls to orbit the camera
+  controls = new OrbitControls( camera, renderer.domElement  )
+  controls.target.set(30, 39, 20);
+  controls.update();
+
+  // add a directional light
+  scene.add( new THREE.AmbientLight( 0xf1e3c9, 2 ) )
+    const light = new THREE.DirectionalLight( 0xf1e3c9, 3 )
+    light.position.set( 200, 800, 300 )
+    light.position.multiplyScalar( 5000 )
+    light.castShadow = true;
+    light.shadow.mapSize.width = 1024;
+    light.shadow.mapSize.height = 1024;
+    const d = 500;
+    light.shadow.camera.left = - d;
+    light.shadow.camera.right = d;
+    light.shadow.camera.top = d;
+    light.shadow.camera.bottom = - d;
+    light.shadow.camera.far = 2000;
+    scene.add( light );
+
+// handle changes in the window size
+  window.addEventListener( 'resize', onWindowResize, false )
+
+  animate()
+}
+
+var animate = function () {
+  requestAnimationFrame( animate )
+  renderer.render( scene, camera )
+}
+  
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight
+  camera.updateProjectionMatrix()
+  renderer.setSize( window.innerWidth, window.innerHeight )
+  animate()
+}
+
+/**
+ * This function is called when the download button is clicked
+ */
+ function download () {
+    // write rhino doc to "blob"
+    const bytes = doc.toByteArray()
+    const blob = new Blob([bytes], {type: "application/octect-stream"})
+
+    // use "hidden link" trick to get the browser to download the blob
+    const filename = data.definition.replace(/\.gh$/, '') + '.3dm'
+    const link = document.createElement('a')
+    link.href = window.URL.createObjectURL(blob)
+    link.download = filename
+    link.click()
+}
+
+/**
+ * Helper function that behaves like rhino's "zoom to selection", but for three.js!
+ */
+ function zoomCameraToSelection( camera, controls, selection, fitOffset = 1.2 ) {
+  
+  const box = new THREE.Box3();
+  
+  for( const object of selection ) {
+    if (object.isLight) continue
+    box.expandByObject( object );
+  }
+  
+  const size = box.getSize( new THREE.Vector3() );
+  const center = box.getCenter( new THREE.Vector3() );
+  
+  const maxSize = Math.max( size.x, size.y, size.z );
+  const fitHeightDistance = maxSize / ( 2 * Math.atan( Math.PI * camera.fov / 360 ) );
+  const fitWidthDistance = fitHeightDistance / camera.aspect;
+  const distance = fitOffset * Math.max( fitHeightDistance, fitWidthDistance );
+  
+  const direction = controls.target.clone()
+    .sub( camera.position )
+    .normalize()
+    .multiplyScalar( distance );
+  controls.maxDistance = distance * 10;
+  controls.target.copy( center );
+  
+  camera.near = distance / 100;
+  camera.far = distance * 100;
+  camera.updateProjectionMatrix();
+  camera.position.copy( controls.target ).sub(direction);
+  
+  controls.update();
+  
+}
+        </script>
+        
+    </body>
+</html>
