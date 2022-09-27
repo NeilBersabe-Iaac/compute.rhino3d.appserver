@@ -99,12 +99,12 @@ Standards for ideal ratio of the spaces were set as follows:
 
 
 ## _LINKS
-- [Link to my Rhino.compute repo](https://github.com/NeilBersabe-Iaac/compute.rhino3d.appserver)
-- [Link to my Website repo](https://github.com/NeilBersabe-Iaac/IAAC-THESIS-MACAD)
-- [Link to the Heroku App](https://bimsc22-neiljohnbersabe.herokuapp.com/examples/solihiya00_v3/)
-- [Link to Github Pages (Landing Page)](https://neilbersabe-iaac.github.io/IAAC-BIMSC-FINAL/)
-- [Link to Book and Papers](https://neilbersabe-iaac.github.io/IAAC-BIMSC-FINAL/)
-- [Link to Blogpost](https://neilbersabe-iaac.github.io/IAAC-BIMSC-FINAL/)
+- [Link to my Rhino.compute repo](https://github.com/NeilBersabe-Iaac/compute.rhino3d.appserver/edit/THESIS-Branch/)
+- [Link to my Website repo](https://github.com/NeilBersabe-Iaac/compute.rhino3d.appserver/edit/THESIS-Branch/)
+- [Link to the Heroku App](https://macad-thesis-resettle.herokuapp.com/examples/RESETTLE_FINAL/index.html)
+- [Link to Github Pages (Landing Page)](https://neilbersabe-iaac.github.io/IAAC-THESIS-MACAD/)
+- [Link to Book and Papers](https://issuu.com/neiljohnbersabe.architecture/docs/resettle_macad_thesis_bersabe)
+- [Link to Blogpost](https://www.iaacblog.com/programs/resettle-housing-ai/)
 
 ## _CREDITS
 Project by:  
