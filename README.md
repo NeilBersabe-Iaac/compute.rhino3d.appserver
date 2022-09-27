@@ -19,37 +19,83 @@ The project aims to create a tool to analyze housing strategies by employing mac
 
 
 ## _INSTRUCTIONS (TO BE UPDATED)
-Play around the configuration of the pavilion as desired.  
+Play around the configuration of the site and building as desired.  
 You can download the 3dm geometries with the download button
 
 **PARAMETERS:**  
 Format: (ParamName) - (Name),(Description); (DomainValueMin, DomainValueMax)  
 
-**zHeight** - Moves the height of the pavillion; (0,250)  
-**solAngle** - solar angle, Move the altitude angle of the sun; (1,179)  
-**toD** - time of day, Moves the sun along the curve path; (1,9)  
-**smlOpening** - Small opening, Modifies the size of the small opening of the pavilion; (0,45)  
-**lrgOpening** - Large opening, Modifies the size of the large opening of the pavilion; (0,45) 
+**AGGREGATION COUNT** - Controls the total number of modules in the aggregation; (150,1000)  
+**RESET DESIGN** - Resets the aggregation; (boolean)  
+**POINT** - Controls the location of the building; (realtime)  
 
-**Add Trees** - Change visibility of the trees; (boolean)  
-**Trees Count** - Change the number of trees; (1,250)  
-**Trees Scattering** - A seed value to randomize the placement of trees; (1,50)  
-**Trees Scale** - Changes the size of the trees; (0.10,3.00)  
+**SHOW FLOOD MAP** - Controls the visibility of the Flood Map; (boolean)  
+**SHOW DETAILED BUIDLING** - Changes the level of detail of the aggregation; (boolean)
+**SHOW AGGREGATION BOUNDARY** - Controls the visibility of the Aggregation Boundary Area; (boolean) 
 
-**Add People** - Change visibility of people; (boolean)  
-**Population** - Changes the quantity of people; (1,50)  
-**People Location** - A seed value to randomize the placement of people; (1,50)  
+**Trees No** - Controls the number of trees within the site; (1,250)  
+**Trees Location** - Controls the distance of the trees from the build area; (1,50)  
+**Trees Scale** - Changes the size of the trees; (0.10,2.01) 
+**Show Trees** - Controls the visibility of the trees; (boolean)  
 
-**Show Annotations** - Change visibility of the annotations; (boolean)  
-**Show Shadow Analysis** - Shows the shadows cast on the plane as curves; (boolean)  
+**Other Buildings No.** - Controls the number of other buildings within the site; (1,10)  
+**Other Buildings Random** - Changes the randomness of the location of other buildings within the site; (1,10)  
+**Show Other Buildings** - Controls the visibility of other buildings within the site; (boolean)  
+
 
 **ANALYTICS:**  
-**Mesh Area** = Shows the total surface area covered by the pavilion  
-**Plot Area** = Shows the total area of the concrete plot under the pavilion as a grey area  
-**Land Area** = Shows the total Land Area of the mini planet  
-**Land Diameter** = Shows the Diameter of the planet  
-**Shadow Area** = Calculates the area of the shadow casted. You must run Shadow Analysis first to calculate  
 
+**Res Density** = Shows the density of the residential area per hec2 of the aggregation boundary area. This was quantified by dividing the total area of residential modules to the total area of the aggregation boundary 
+**Pop Density** = Shows the density of the residential area per hec2 of the aggregation boundary area. This was quantified by dividing the total area of residential modules to the total area of the aggregation boundary  
+**DENSITY INDEX** = Shows the ratio of residential population to the total area of the aggregation boundary projected to the ground surface
+
+
+
+**Access to Exit** = Quantifies whether the average distance of the Housing modules to the Core and Stair modules is within walking distance. The standard for the ideal walking distance was set to ≥ 45m  
+**Access to Green Spaces** = Quantifies whether the average distance of the Housing modules to the Park. Parklet and Balcony modules is within walking distance. The standard for the ideal walking distance was set to ≥ 200m  
+**Access to Amenities** = Quantifies whether the average distance of the Housing modules to the Market and Store modules is within walking distance. The standard for the ideal walking distance was set to ≥ 150m
+**ACCESSIBILITY INDEX SCORE** = Quantifies the ease of accessibility of the housing modules to the Amenities, Green Spaces and Exit points. The value was calculated as the average of the 3 factors (Access to Exit, Access to Green Spaces and Access to Amenities).
+
+**ModElev_Housing** = Quantifies how safe the Housing modules are from the identified flood levels according to its elevation from the ground. Standard for ideal elevation was set to ≥ 9m.
+**ModElev_Circulation** = Quantifies how safe the Circulation modules are from the identified flood levels according to its elevation from the ground. Standard for ideal elevation was set to ≥ 10m.
+**ModElev_Green Space** = Quantifies how safe the Green Space modules are from the identified flood levels according to its elevation from the ground. Standard for ideal elevation was set to ≥ 12m.
+**ModElev_Commercial** =  Quantifies how safe the Commercial modules are from the identified flood levels according to its elevation from the ground. Standards for ideal elevation were set to ≤ 10m and ≥ 10m for Market modules and Store modules respectively.
+**MODULE ELEVATION SCORE** = Refers to the correlation of the height per module from the ground and the site’s Flood Map. This was quantified by setting preferred elevation height levels per module type based on its function in the building’s Flood Mitigation strategy and the identified flood level height.
+
+**High Risk** = Calculates how much of your site is within the high risk zone. Standard for ideal area percentage was set to ≤ 15%
+**Med Risk** = Calculates how much of your site is within the medium risk zone. Standard for ideal area percentage was set to ≤ 35% 
+**Safe/ Low Risk** = Calculates how much of your site is within the medium risk zone. Standard for ideal area percentage was set to ≥ 50%  
+**LOCATION FLOOD RISK RATING** = Measures how good your chosen area is for flood risk mitigation. The lower percentage of High and Medium risk areas within the site, the the more ideal it is. 
+
+**FLOOD MITIGATION RISK SCORE** = Measures how well the aggregation does in relation to the site’s flood map. The value was calculated as the average of the 2 factors (Module Elevation score and Location Flood Risk Rating)
+
+
+
+**Green Plot Ratio** = Refers to the total amount of vertical or horizontal vegetation within the building. This was quantified by dividing the total green space areas by the aggregation boundary area. The higher the value means more green spaces.
+
+**Surrounding Quality** = Refers to the total area of the aggregation boundary in comparison to the site’s total area. This was quantified by dividing the aggregation boundary area by the total site area. The lesser the value means more opportunities for green spaces.
+
+**ENVIRONMENTAL QUALITY** = Calculates the amount of green spaces/ vegetation on and around the building compared to the total area of the aggregation boundary. Involving 2 factors, overall result was quantified by setting a 60/40 weighted average, favoring Green Plot Ratio as heavier than Surrounding Quality.  
+
+
+
+**Community Plot Ratio** = Refers to the amount of community space within the development compared to the number of housing modules. 
+Standards for ideal ratio of the spaces were set as follows: 
+1 Parklet module: 3 Housing modules
+1 Park module: 6 Housing modules
+1 Balcony module: 2 Housing modules
+1 Store module: 5 Housing modules
+1 Market module: 20 Housing modules
+
+**Civic Generosity Index** = Quantifies how accessible the development’s common spaces are to the public. The standard for the ideal walking distance was set to ≥ 60m.  
+
+**Housing Zone Ratio** = Refers to the proportion of Housing zone to the total gross floor area of the aggregation. Standards for ideal ratio of the spaces were set to ≥ 50%. 
+**Circulation Zone Ratio** = Refers to the proportion of Circulation zone to the total gross floor area of the aggregation. Standards for ideal ratio of the spaces were set to ≥ 30%. 
+**Green Space Zone Ratio** = Refers to the proportion of Green Space zone to the total gross floor area of the aggregation. Standards for ideal ratio of the spaces were set to ≥ 30%.  
+**Commercial Zone Ratio** = Refers to the proportion of Commercial zone to the total gross floor area of the aggregation. Standards for ideal ratio of the spaces were set to ≥ 15%. 
+**ZONING RATIO SCORE** = Refers to the proportion of each zone to the total gross floor area of the aggregation. 
+
+**COMMUNITY INDEX SCORE** = Measures how much community spaces it offers to occupants and the public. The overall score was quantified as the average of the 3 factors (Community Plot Ratio, Civic Generosity Index, and Zoning Ratio).
 
 
 ## _LINKS
