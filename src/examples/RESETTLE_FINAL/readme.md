@@ -2,7 +2,7 @@
 //Iaac-Macad-Thesis.Neil John Bersabe
 
 
-![](/images/POSTER_COVER.png?raw=true)
+![](./images/POSTER_COVER.png?raw=true)
 
 ## _PROJECT ABSTRACT
 The rapid population growth of cities affects the acquisition of land tenure, land security, and production of good quality housing.  The constant pressure of living in highly urbanized cities forced the working class to live in lower-quality housing.  In return, these people have reverted to living in areas within the poorer residential districts of the city. 
